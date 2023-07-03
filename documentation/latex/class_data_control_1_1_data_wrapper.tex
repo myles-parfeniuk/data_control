@@ -1,0 +1,379 @@
+\doxysection{Data\+Control\+::Data\+Wrapper\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_data_control_1_1_data_wrapper}{}\label{class_data_control_1_1_data_wrapper}\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+
+
+Base \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} class.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Wrapper.\+hpp$>$}
+
+Inheritance diagram for Data\+Control\+::Data\+Wrapper\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.407035cm]{class_data_control_1_1_data_wrapper}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_data_wrapper_1_1_follower}{Follower}}
+\begin{DoxyCompactList}\small\item\em contains information about a follower \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511}{Data\+Wrapper}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a01d003ece9cdd1626f2b48e154d4bfba}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}})
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa967175d5ddb2610428f7a95e053b95e}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}, bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}})
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a9cd288f92d0dcb8c02947be757fc64fe}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}, bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}}, const char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}{name}})
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow}} (std\+::function$<$ void(T)$>$ cb)
+\begin{DoxyCompactList}\small\item\em Follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5}{un\+\_\+follow}} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Un-\/follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get}} ()
+\begin{DoxyCompactList}\small\item\em Get current data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}{set\+\_\+cb\+\_\+task\+\_\+depth}} (uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}{stack\+\_\+depth}})
+\begin{DoxyCompactList}\small\item\em Set stack-\/depth of call-\/back task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}
+\begin{DoxyCompactList}\small\item\em the current data \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a}{new\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em new data, overwrites current data after execution of all call-\/back functions \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a7a2158d7c7c27ff46224f3f328e06119}{next\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em next follower ID to assign \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}{stack\+\_\+depth}}
+\begin{DoxyCompactList}\small\item\em depth of task executing call-\/back functions \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_data_wrapper_1_1_follower}{Follower}} $>$ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a44019614a9a3f58931a02835c9855914}{follower\+\_\+list}}
+\begin{DoxyCompactList}\small\item\em list of all followers, each element contains the call-\/back function and ID of a follower \end{DoxyCompactList}\item 
+x\+Task\+Handle \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a1b128bf5be3ec37632b5615b158aae78}{cb\+\_\+task\+\_\+hdl}}
+\begin{DoxyCompactList}\small\item\em task handle of call-\/back task \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a049b55ecc5cde9f4961af519dfc140b0}{cb\+\_\+task\+\_\+complete}}
+\begin{DoxyCompactList}\small\item\em whether or not the call-\/back task has completed, false if running, true if completed \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}{name}}
+\begin{DoxyCompactList}\small\item\em name of \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object, used in log statements \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}}
+\begin{DoxyCompactList}\small\item\em whether or not logging is enabled, false if disabled, true if enabled \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const constexpr char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae07a80934a40d90998e4f8fb3cfc7e7b}{TAG}} = \"{}Data\+Control\"{}
+\begin{DoxyCompactList}\small\item\em class tag, used in logging statements \end{DoxyCompactList}\item 
+static const constexpr uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa12353ba771d82940b761093adee53be}{default\+\_\+stack\+\_\+depth}} = 4096
+\begin{DoxyCompactList}\small\item\em default stack depth \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Data\+Control\+::\+Data\+Wrapper$<$ T $>$}
+Base \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} class. 
+
+Stores a variable/data and allows for execution of callback functions when it is changed. When changing the data is desired, the set() method should be called, upon which any callbacks registered with the \doxylink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow()} method will be executed, and the data updated. \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} objects should not be instantiated directly, instead insatiate objects from derived classes of which definitions can be found in cb\+\_\+types/ directory. ~\newline
+
+
+\begin{DoxyAuthor}{Author}
+Myles Parfeniuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511}\label{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!DataWrapper@{DataWrapper}}
+\index{DataWrapper@{DataWrapper}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{DataWrapper()}{DataWrapper()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Data\+Wrapper\+::\+Data\+Wrapper}
+
+
+
+Construct a new \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. 
+
+Default \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} constructor. Data will be NULL until set is called if this constructor is used.
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_data_wrapper_a01d003ece9cdd1626f2b48e154d4bfba}\label{class_data_control_1_1_data_wrapper_a01d003ece9cdd1626f2b48e154d4bfba} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!DataWrapper@{DataWrapper}}
+\index{DataWrapper@{DataWrapper}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{DataWrapper()}{DataWrapper()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Data\+Wrapper\+::\+Data\+Wrapper (\begin{DoxyParamCaption}\item[{T}]{data }\end{DoxyParamCaption})}
+
+
+
+Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. 
+
+Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} with initial value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & initial value of data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_data_wrapper_aa967175d5ddb2610428f7a95e053b95e}\label{class_data_control_1_1_data_wrapper_aa967175d5ddb2610428f7a95e053b95e} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!DataWrapper@{DataWrapper}}
+\index{DataWrapper@{DataWrapper}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{DataWrapper()}{DataWrapper()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Data\+Wrapper\+::\+Data\+Wrapper (\begin{DoxyParamCaption}\item[{T}]{data,  }\item[{bool}]{logging\+\_\+en }\end{DoxyParamCaption})}
+
+
+
+Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. 
+
+Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} with initial value and logging status. Enabling logs may be desirable for debugging purposes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & initial value of data \\
+\hline
+{\em logging\+\_\+en} & logging status, true to enable logging, false to disable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_data_wrapper_a9cd288f92d0dcb8c02947be757fc64fe}\label{class_data_control_1_1_data_wrapper_a9cd288f92d0dcb8c02947be757fc64fe} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!DataWrapper@{DataWrapper}}
+\index{DataWrapper@{DataWrapper}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{DataWrapper()}{DataWrapper()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Data\+Wrapper\+::\+Data\+Wrapper (\begin{DoxyParamCaption}\item[{T}]{data,  }\item[{bool}]{logging\+\_\+en,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+
+
+Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. 
+
+Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & initial value of data \\
+\hline
+{\em logging\+\_\+en} & logging status, true to enable logging, false to disable \\
+\hline
+{\em name} & name of data wrapper object, printed out with logs to aid debugging \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}\label{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!follow@{follow}}
+\index{follow@{follow}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{follow()}{follow()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+uint16\+\_\+t Data\+Wrapper\+::follow (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(T)$>$}]{cb }\end{DoxyParamCaption})}
+
+
+
+Follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. 
+
+Trigger callback when this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set. The call-\/back function parameter should have a single input parameter of type T. This input will be the new value of the data being set. Calling the \doxylink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get()} method from within the callback will return the current value. When all callbacks have been executed the current value will over written with the new value. ~\newline
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & the call-\/back function to be called when \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set, must take the form \"{}void f(\+T new\+\_\+data)\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+follower ID, if un-\/following \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is desired this return value must be saved 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}\label{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!get@{get}}
+\index{get@{get}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T Data\+Wrapper\+::get}
+
+
+
+Get current data. 
+
+\begin{DoxyReturn}{Returns}
+the current data 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}\label{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!set\_cb\_task\_depth@{set\_cb\_task\_depth}}
+\index{set\_cb\_task\_depth@{set\_cb\_task\_depth}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{set\_cb\_task\_depth()}{set\_cb\_task\_depth()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Data\+Wrapper\+::set\+\_\+cb\+\_\+task\+\_\+depth (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{stack\+\_\+depth }\end{DoxyParamCaption})}
+
+
+
+Set stack-\/depth of call-\/back task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack\+\_\+depth} & Size of stack-\/depth to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5}\label{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!un\_follow@{un\_follow}}
+\index{un\_follow@{un\_follow}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{un\_follow()}{un\_follow()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Data\+Wrapper\+::un\+\_\+follow (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Un-\/follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. 
+
+Stop triggering callback when this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower to remove from the follower list. Returned when \doxylink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow()} is called. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_data_control_1_1_data_wrapper_a049b55ecc5cde9f4961af519dfc140b0}\label{class_data_control_1_1_data_wrapper_a049b55ecc5cde9f4961af519dfc140b0} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!cb\_task\_complete@{cb\_task\_complete}}
+\index{cb\_task\_complete@{cb\_task\_complete}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cb\_task\_complete}{cb\_task\_complete}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::cb\+\_\+task\+\_\+complete\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+whether or not the call-\/back task has completed, false if running, true if completed 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_a1b128bf5be3ec37632b5615b158aae78}\label{class_data_control_1_1_data_wrapper_a1b128bf5be3ec37632b5615b158aae78} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!cb\_task\_hdl@{cb\_task\_hdl}}
+\index{cb\_task\_hdl@{cb\_task\_hdl}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cb\_task\_hdl}{cb\_task\_hdl}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+x\+Task\+Handle \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::cb\+\_\+task\+\_\+hdl\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+task handle of call-\/back task 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}\label{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!data@{data}}
+\index{data@{data}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::data\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+the current data 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_aa12353ba771d82940b761093adee53be}\label{class_data_control_1_1_data_wrapper_aa12353ba771d82940b761093adee53be} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!default\_stack\_depth@{default\_stack\_depth}}
+\index{default\_stack\_depth@{default\_stack\_depth}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{default\_stack\_depth}{default\_stack\_depth}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const constexpr uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::default\+\_\+stack\+\_\+depth = 4096\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [protected]}}
+
+
+
+default stack depth 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_a44019614a9a3f58931a02835c9855914}\label{class_data_control_1_1_data_wrapper_a44019614a9a3f58931a02835c9855914} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!follower\_list@{follower\_list}}
+\index{follower\_list@{follower\_list}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{follower\_list}{follower\_list}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$\mbox{\hyperlink{struct_data_wrapper_1_1_follower}{Follower}}$>$ \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::follower\+\_\+list\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+list of all followers, each element contains the call-\/back function and ID of a follower 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}\label{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!logging\_en@{logging\_en}}
+\index{logging\_en@{logging\_en}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{logging\_en}{logging\_en}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::logging\+\_\+en\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+whether or not logging is enabled, false if disabled, true if enabled 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}\label{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!name@{name}}
+\index{name@{name}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const char\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+name of \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object, used in log statements 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a}\label{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!new\_data@{new\_data}}
+\index{new\_data@{new\_data}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{new\_data}{new\_data}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::new\+\_\+data\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+new data, overwrites current data after execution of all call-\/back functions 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_a7a2158d7c7c27ff46224f3f328e06119}\label{class_data_control_1_1_data_wrapper_a7a2158d7c7c27ff46224f3f328e06119} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!next\_id@{next\_id}}
+\index{next\_id@{next\_id}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{next\_id}{next\_id}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::next\+\_\+id\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+next follower ID to assign 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}\label{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!stack\_depth@{stack\_depth}}
+\index{stack\_depth@{stack\_depth}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{stack\_depth}{stack\_depth}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::stack\+\_\+depth\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+depth of task executing call-\/back functions 
+
+\Hypertarget{class_data_control_1_1_data_wrapper_ae07a80934a40d90998e4f8fb3cfc7e7b}\label{class_data_control_1_1_data_wrapper_ae07a80934a40d90998e4f8fb3cfc7e7b} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!TAG@{TAG}}
+\index{TAG@{TAG}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{TAG}{TAG}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const constexpr char\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::\+TAG = \"{}Data\+Control\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [protected]}}
+
+
+
+class tag, used in logging statements 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/development/esp/projects/idf\+\_\+4\+\_\+0/data\+\_\+control/components/data\+\_\+control/\mbox{\hyperlink{_data_wrapper_8hpp}{Data\+Wrapper.\+hpp}}\item 
+D\+:/development/esp/projects/idf\+\_\+4\+\_\+0/data\+\_\+control/components/data\+\_\+control/\mbox{\hyperlink{_data_wrapper_8cpp}{Data\+Wrapper.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,151 @@
+\doxysection{Data\+Control\+::Call\+Same\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_data_control_1_1_call_same}{}\label{class_data_control_1_1_call_same}\index{DataControl::CallSame$<$ T $>$@{DataControl::CallSame$<$ T $>$}}
+
+
+\doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} that executes callbacks when new data is the same as the current data.  
+
+
+
+
+{\ttfamily \#include $<$Call\+Same.\+hpp$>$}
+
+Inheritance diagram for Data\+Control\+::Call\+Same\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_data_control_1_1_call_same}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_data_control_1_1_call_same_a73b1902bf71e964b96bcdb19ff4a4804}{set}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a}{new\+\_\+data}})
+\begin{DoxyCompactList}\small\item\em Set value of data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_control_1_1_call_same_a84f0097cbf73a12e76d0283adcbcd53c}{cb\+\_\+routine}} ()
+\begin{DoxyCompactList}\small\item\em Call-\/back function routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511}{Data\+Wrapper}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a01d003ece9cdd1626f2b48e154d4bfba}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}})
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa967175d5ddb2610428f7a95e053b95e}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}, bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}})
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a9cd288f92d0dcb8c02947be757fc64fe}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}, bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}}, const char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}{name}})
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow}} (std\+::function$<$ void(T)$>$ cb)
+\begin{DoxyCompactList}\small\item\em Follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5}{un\+\_\+follow}} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Un-\/follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get}} ()
+\begin{DoxyCompactList}\small\item\em Get current data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}{set\+\_\+cb\+\_\+task\+\_\+depth}} (uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}{stack\+\_\+depth}})
+\begin{DoxyCompactList}\small\item\em Set stack-\/depth of call-\/back task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_data_control_1_1_call_same_acd387ef6f2439cb9c51c82e1b693fe8d}{cb\+\_\+task}} (void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}})
+\begin{DoxyCompactList}\small\item\em Call-\/back task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}
+\begin{DoxyCompactList}\small\item\em the current data \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a}{new\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em new data, overwrites current data after execution of all call-\/back functions \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a7a2158d7c7c27ff46224f3f328e06119}{next\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em next follower ID to assign \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}{stack\+\_\+depth}}
+\begin{DoxyCompactList}\small\item\em depth of task executing call-\/back functions \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_data_wrapper_1_1_follower}{Follower}} $>$ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a44019614a9a3f58931a02835c9855914}{follower\+\_\+list}}
+\begin{DoxyCompactList}\small\item\em list of all followers, each element contains the call-\/back function and ID of a follower \end{DoxyCompactList}\item 
+x\+Task\+Handle \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a1b128bf5be3ec37632b5615b158aae78}{cb\+\_\+task\+\_\+hdl}}
+\begin{DoxyCompactList}\small\item\em task handle of call-\/back task \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a049b55ecc5cde9f4961af519dfc140b0}{cb\+\_\+task\+\_\+complete}}
+\begin{DoxyCompactList}\small\item\em whether or not the call-\/back task has completed, false if running, true if completed \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}{name}}
+\begin{DoxyCompactList}\small\item\em name of \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object, used in log statements \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}}
+\begin{DoxyCompactList}\small\item\em whether or not logging is enabled, false if disabled, true if enabled \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static const constexpr char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae07a80934a40d90998e4f8fb3cfc7e7b}{TAG}} = \"{}Data\+Control\"{}
+\begin{DoxyCompactList}\small\item\em class tag, used in logging statements \end{DoxyCompactList}\item 
+static const constexpr uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa12353ba771d82940b761093adee53be}{default\+\_\+stack\+\_\+depth}} = 4096
+\begin{DoxyCompactList}\small\item\em default stack depth \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Data\+Control\+::\+Call\+Same$<$ T $>$}
+\doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} that executes callbacks when new data is the same as the current data. 
+
+For further information see base class \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} documentation.
+
+\begin{DoxyAuthor}{Author}
+Myles Parfeniuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_data_control_1_1_call_same_a84f0097cbf73a12e76d0283adcbcd53c}\label{class_data_control_1_1_call_same_a84f0097cbf73a12e76d0283adcbcd53c} 
+\index{DataControl::CallSame$<$ T $>$@{DataControl::CallSame$<$ T $>$}!cb\_routine@{cb\_routine}}
+\index{cb\_routine@{cb\_routine}!DataControl::CallSame$<$ T $>$@{DataControl::CallSame$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cb\_routine()}{cb\_routine()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Call\+Same\+::cb\+\_\+routine}
+
+
+
+Call-\/back function routine. 
+
+This function should not be called directly. It is called from the call-\/back task and executes the call-\/back functions of all followers on this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object\textquotesingle{}s follower list.
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_call_same_acd387ef6f2439cb9c51c82e1b693fe8d}\label{class_data_control_1_1_call_same_acd387ef6f2439cb9c51c82e1b693fe8d} 
+\index{DataControl::CallSame$<$ T $>$@{DataControl::CallSame$<$ T $>$}!cb\_task@{cb\_task}}
+\index{cb\_task@{cb\_task}!DataControl::CallSame$<$ T $>$@{DataControl::CallSame$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cb\_task()}{cb\_task()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Call\+Same\+::cb\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Call-\/back task. 
+
+This task is created to run the call-\/back routine whenever this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set and the new data is the same as the current data. Upon completion of the call-\/back routine this task is deleted.
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_call_same_a73b1902bf71e964b96bcdb19ff4a4804}\label{class_data_control_1_1_call_same_a73b1902bf71e964b96bcdb19ff4a4804} 
+\index{DataControl::CallSame$<$ T $>$@{DataControl::CallSame$<$ T $>$}!set@{set}}
+\index{set@{set}!DataControl::CallSame$<$ T $>$@{DataControl::CallSame$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Call\+Same\+::set (\begin{DoxyParamCaption}\item[{T}]{new\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Set value of data. 
+
+Overwrite current data with a new value. When this function is called, if the new data is the same as the current data all followers within this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object\textquotesingle{}s follower list will have their call-\/backs executed. Upon completion of call-\/back executions, the current data value will be over-\/written with the data passed into this function. If the \doxylink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get()} method is called within a callback it will return the current data, the input parameter of a call-\/back is the new data that is to overwrite the current data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+data} & the new value to over-\/write current data with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/development/esp/projects/idf\+\_\+4\+\_\+0/data\+\_\+control/components/data\+\_\+control/cb\+\_\+types/\mbox{\hyperlink{_call_same_8hpp}{Call\+Same.\+hpp}}\item 
+D\+:/development/esp/projects/idf\+\_\+4\+\_\+0/data\+\_\+control/components/data\+\_\+control/cb\+\_\+types/\mbox{\hyperlink{_call_same_8cpp}{Call\+Same.\+cpp}}\end{DoxyCompactItemize}
