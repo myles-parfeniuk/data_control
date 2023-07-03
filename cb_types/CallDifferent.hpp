@@ -5,7 +5,7 @@ namespace DataControl {
 
 /**
 *
-* @brief DataWrapper that executes callbacks when new data is different from current data.
+* @brief DataWrapper that executes callbacks when set() method is called and new data is different from current data.
 *
 * For further information see base class DataWrapper documentation. 
 *
