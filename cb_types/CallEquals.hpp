@@ -66,6 +66,7 @@ class CallEquals : public DataWrapper<T>
     */
         void set_compare_data(T new_compare_data);
 
+    private:
     /**
     * @brief Call-back function routine.
     * 
@@ -75,8 +76,6 @@ class CallEquals : public DataWrapper<T>
     * @return void, nothing to return
     */
         void cb_routine();
-
-    private:
     
     /**
     * @brief Call-back task.

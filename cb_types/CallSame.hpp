@@ -29,6 +29,8 @@ class CallSame : public DataWrapper<T>
     * @return void, nothing to return
     */
         void set(T new_data);
+
+    private:
     /**
     * @brief Call-back function routine.
     * 
@@ -38,7 +40,6 @@ class CallSame : public DataWrapper<T>
     * @return void, nothing to return
     */
         void cb_routine();
-    private:
 
      /**
     * @brief Call-back task.
