@@ -1,0 +1,195 @@
+\chapter{README}
+\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e}{}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e}\index{README@{README}}
+
+
+
+
+{\bfseries{Table of Contents}}\begin{adjustwidth}{1em}{0em}
+
+\begin{DoxyEnumerate}
+\item \href{\#about}{\texttt{ about}}  
+\item \href{\#getting-started}{\texttt{ getting started}} 
+\begin{DoxyItemize}
+\item \href{\#adding to project}{\texttt{ adding to project}} 
+\end{DoxyItemize}
+\item \href{\#usage}{\texttt{ usage}} 
+\begin{DoxyItemize}
+\item \href{\#quick start}{\texttt{ quick start}} 
+\item \href{\#quick example}{\texttt{ quick example}} 
+\end{DoxyItemize}
+\item \href{\#license}{\texttt{ license}} 
+\item \href{\#contact}{\texttt{ contact}} 
+\end{DoxyEnumerate}\end{adjustwidth}
+\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md0}{}\doxysubsection{\texorpdfstring{About}{About}}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md0}
+\doxylink{namespace_data_control}{Data\+Control} is a C++ component written for esp-\/idf version 4.\+0, intended to simplify the management of data and actions associated with that data. For example, one might desire to read the output of a temperature sensor and execute several functions to perform tasks like changing fan speed, turning on an led, etc... This component simplifies that process by allowing call-\/back functions to easily be associated with a piece of data and executed whenever it is set.
+
+It was originally inspired by an in-\/house component I used at a workplace; however, this component has been re-\/written without using that component as a reference. Its functionality shares some similarities, but the implementation is completely different. 
+
+(\href{\#readme-top}{\texttt{ back to top}})\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{\texorpdfstring{Getting Started}{Getting Started}}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md1}
+\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{Adding to Project}{Adding to Project}}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item Create a \"{}components\"{} directory in the root workspace directory of your esp-\/idf project if it does not exist already
+\item Cd into the newly created components directory and clone the repository 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ components}
+\DoxyCodeLine{git\ clone\ https://github.com/myles-\/parfeniuk/data\_control.git}
+
+\end{DoxyCode}
+
+\item You may have to edit project CMake\+Lists.\+txt file to include the component 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{idf\_component\_register(SRC\_DIRS\ "{}."{}\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INCLUDE\_DIRS\ "{}"{}\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRES\ data\_control)}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+(\href{\#readme-top}{\texttt{ back to top}})\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md3}
+\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Quick Start}{Quick Start}}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md4}
+This is intended to be a quick guide, full documentation generated with Doxygen can be found in the documentation directory.
+
+To use\+:
+
+
+\begin{DoxyEnumerate}
+\item Instantiate a data wrapper object of any type. The data wrapper object can be declared as Call\+Always, Call\+Different, Call\+Same, or Call\+Equals.
+
+Example syntax\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//integer\ data\ with\ initial\ value\ of\ 0,\ callbacks\ executed\ every\ time\ set()\ method\ is\ called\ (call\ always)}}
+\DoxyCodeLine{\mbox{\hyperlink{class_data_control_1_1_call_always}{DataControl::CallAlways<int16\_t>}}\ press\_count(0);\ }
+\DoxyCodeLine{\textcolor{comment}{//bool\ data\ with\ initial\ value\ of\ false,\ callbacks\ executed\ every\ time\ set()\ method\ is\ called\ and\ new\ data\ doesn't\ match\ current\ data\ (call\ different)}}
+\DoxyCodeLine{\mbox{\hyperlink{class_data_control_1_1_call_different}{DataControl::CallDifferent<bool>}}\ button\_pressed(\textcolor{keyword}{false});}
+
+\end{DoxyCode}
+
+\item Register any desired call back functions by calling the follow() method. These can be instantiated as lambda functions as well.
+
+Example syntax\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*in\ led\_control.cpp*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{button\_pressed.follow(}
+\DoxyCodeLine{\ \textcolor{comment}{//lambda\ call-\/back\ function}}
+\DoxyCodeLine{\ [](\textcolor{keywordtype}{bool}\ new\_data)}
+\DoxyCodeLine{\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//turn\ on\ an\ led\ when\ a\ button\ is\ held}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}(new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ turn\_on\_led\_one();\ \textcolor{comment}{//turn\ on\ led}}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ turn\_off\_led\_one();\ \textcolor{comment}{//turn\ off\ led}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{press\_count.follow(}
+\DoxyCodeLine{\ \textcolor{comment}{//lambda\ call-\/back\ function}}
+\DoxyCodeLine{\ [](int16\_t\ new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//turn\ on\ an\ led\ after\ 100\ presses}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}(new\_data\ >=\ 100)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ turn\_on\_led\_two();\ }
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*in\ log\_maker.cpp*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ press\_count.follow(}
+\DoxyCodeLine{\ \textcolor{comment}{//lambda\ call-\/back\ function}}
+\DoxyCodeLine{\ [\&press\_count](int16\_t\ new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//print\ the\ new\ and\ current\ press\ count}}
+\DoxyCodeLine{\ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}Current\ Press\ Count:\ \%d\ |\ New\ Press\ Count:\ \%d"{}},\ press\_count.get(),\ new\_data);}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+\item Update the data within data wrapper object using set() method as desired, and all call-\/backs previously registered with the follow() method will be executed automatically.
+
+Example syntax\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*in\ button\_driver.cpp*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//when\ a\ button\ press\ is\ detected:}}
+\DoxyCodeLine{button\_pressed.set(\textcolor{keyword}{true});\ \textcolor{comment}{//set\ button\_pressed\ as\ true}}
+\DoxyCodeLine{press\_count.set(press\_count.get()\ +\ 1);\ \textcolor{comment}{//increment\ press\_count\ by\ 1}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//when\ the\ button\ is\ no\ longer\ being\ pressed:}}
+\DoxyCodeLine{button\_pressed.set(\textcolor{keyword}{false});\ \textcolor{comment}{//set\ button\_pressed\ as\ false}}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Quick Example}{Quick Example}}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md5}
+A quick example that generates some terminal output which can be seen in the gif below.
+
+Code\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*main.cpp*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//standard\ library\ includes}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}\ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//in-\/house\ component\ includes}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_data_control_8hpp}{DataControl.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//esp-\/idf\ component\ includes}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \textcolor{keywordtype}{void}\ app\_main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ uint16\_t\ counter\_id\ =\ 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_always}{DataControl::CallAlways<int16\_t>}}\ counter(0);\ \textcolor{comment}{//initialize\ data\ with\ value\ of\ 0}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_different}{DataControl::CallDifferent<bool>}}\ over\_five(\textcolor{keyword}{false});\ \textcolor{comment}{//initialize\ data\ with\ value\ of\ false}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_different}{DataControl::CallDifferent<bool>}}\ over\_ten(\textcolor{keyword}{false});\ \textcolor{comment}{//initialize\ data\ with\ value\ of\ false}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//register\ callbacks}}
+\DoxyCodeLine{\ \ \ \ counter\_id\ =\ counter.follow(}
+\DoxyCodeLine{\ \ \ \ [\&counter](int16\_t\ new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ESP\_LOGI(\textcolor{stringliteral}{"{}Follower0"{}},\ \textcolor{stringliteral}{"{}|\ Current\ Count:\ \%d\ |\ New\ Count:\ \%d\ |"{}},\ counter.get(),\ new\_data);\ \textcolor{comment}{//print\ current\ and\ new\ counts}}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ over\_five.follow(}
+\DoxyCodeLine{\ \ \ \ [](\textcolor{keywordtype}{bool}\ new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ESP\_LOGE(\textcolor{stringliteral}{"{}Follower1"{}},\ \textcolor{stringliteral}{"{}Count\ is\ now\ over\ five."{}});}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ over\_ten.follow(}
+\DoxyCodeLine{\ \ \ \ [\&counter,\ counter\_id](\textcolor{keywordtype}{bool}\ new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ counter.un\_follow(counter\_id);\ \textcolor{comment}{//un-\/follow\ counter\ when\ count\ exceeds\ ten}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ESP\_LOGE(\textcolor{stringliteral}{"{}Follower2"{}},\ \textcolor{stringliteral}{"{}Count\ is\ now\ over\ ten,\ counter\ un-\/followed."{}});}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{while}(1)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ counter.set(counter.get()\ +\ 1);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vTaskDelay(500/portTICK\_PERIOD\_MS);\ \textcolor{comment}{//delay\ for\ 0.5\ seconds}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(counter.get()\ >\ 5)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ over\_five.set(\textcolor{keyword}{true});\ \textcolor{comment}{//set\ over\_five\ true\ after\ 5\ iterations\ of\ loop}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(counter.get()\ >\ 10)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ over\_ten.set(\textcolor{keyword}{true});\ \textcolor{comment}{//set\ over\_ten\ true\ after\ 10\ iterations\ of\ loop}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Terminal Output\+:
+
+
+
+(\href{\#readme-top}{\texttt{ back to top}})\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{\texorpdfstring{License}{License}}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md6}
+Distributed under the MIT License. See {\ttfamily LICENSE.\+md} for more information.
+
+(\href{\#readme-top}{\texttt{ back to top}})\hypertarget{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{\texorpdfstring{Contact}{Contact}}\label{md__d_1_2development_2esp_2git__hub_2components_2data__control_2_r_e_a_d_m_e_autotoc_md7}
+Myles Parfeniuk -\/ \href{mailto:myles.parfenyuk@gmail.com}{\texttt{ myles.\+parfenyuk@gmail.\+com}}
+
+Project Link\+: \href{https://github.com/myles-parfeniuk/data_control}{\texttt{ https\+://github.\+com/myles-\/parfeniuk/data\+\_\+control}}
+
+(\href{\#readme-top}{\texttt{ back to top}})
