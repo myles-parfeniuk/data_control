@@ -29,8 +29,12 @@ struct \mbox{\hyperlink{struct_data_wrapper_1_1_follower}{Follower}}
 \begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow}} (std\+::function$<$ void(T)$>$ cb)
 \begin{DoxyCompactList}\small\item\em Follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5}{un\+\_\+follow}} (uint16\+\_\+t follower\+\_\+id)
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a79090a72dbbab83ed081194465494861}{un\+\_\+follow}} (uint16\+\_\+t follower\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Un-\/follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a87ba78fe9b88854524689970de6c22c8}{pause}} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Pause follower callback. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4e521a23968de496d73752f8122dc746}{un\+\_\+pause}} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em un-\/pause follower callback \end{DoxyCompactList}\item 
 T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get}} ()
 \begin{DoxyCompactList}\small\item\em Get current data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}{set\+\_\+cb\+\_\+task\+\_\+depth}} (uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}{stack\+\_\+depth}})
@@ -159,6 +163,27 @@ Get current data.
 \begin{DoxyReturn}{Returns}
 the current data 
 \end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_data_wrapper_a87ba78fe9b88854524689970de6c22c8}\label{class_data_control_1_1_data_wrapper_a87ba78fe9b88854524689970de6c22c8} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!pause@{pause}}
+\index{pause@{pause}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Data\+Wrapper\+::pause (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Pause follower callback. 
+
+Temporarily stop triggering callback for respective follower when this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set. Re-\/enable callback by calling the \doxylink{class_data_control_1_1_data_wrapper_a4e521a23968de496d73752f8122dc746}{un\+\_\+pause()} method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower owning the callback to be paused. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if follower successfully paused, false if otherwise 
+\end{DoxyReturn}
 \Hypertarget{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}\label{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5} 
 \index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!set\_cb\_task\_depth@{set\_cb\_task\_depth}}
 \index{set\_cb\_task\_depth@{set\_cb\_task\_depth}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
@@ -178,18 +203,18 @@ Set stack-\/depth of call-\/back task.
 \begin{DoxyReturn}{Returns}
 void, nothing to return 
 \end{DoxyReturn}
-\Hypertarget{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5}\label{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5} 
+\Hypertarget{class_data_control_1_1_data_wrapper_a79090a72dbbab83ed081194465494861}\label{class_data_control_1_1_data_wrapper_a79090a72dbbab83ed081194465494861} 
 \index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!un\_follow@{un\_follow}}
 \index{un\_follow@{un\_follow}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{un\_follow()}{un\_follow()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-void Data\+Wrapper\+::un\+\_\+follow (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+bool Data\+Wrapper\+::un\+\_\+follow (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
 
 
 
 Un-\/follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. 
 
-Stop triggering callback when this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set.
+Stop triggering callback for respective follower permanently when this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set.
 
 
 \begin{DoxyParams}{Parameters}
@@ -197,7 +222,28 @@ Stop triggering callback when this \doxylink{class_data_control_1_1_data_wrapper
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-void, nothing to return 
+true if follower successfully un-\/followed, false if otherwise 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_data_wrapper_a4e521a23968de496d73752f8122dc746}\label{class_data_control_1_1_data_wrapper_a4e521a23968de496d73752f8122dc746} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!un\_pause@{un\_pause}}
+\index{un\_pause@{un\_pause}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{un\_pause()}{un\_pause()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Data\+Wrapper\+::un\+\_\+pause (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+un-\/pause follower callback 
+
+Re-\/enable callback for respective follower when this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower owning the callback to be un-\/paused. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if follower successfully un-\/paused, false if otherwise 
 \end{DoxyReturn}
 
 

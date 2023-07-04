@@ -11,7 +11,9 @@ contains information about a follower
 std\+::function$<$ void(T)$>$ \mbox{\hyperlink{struct_data_wrapper_1_1_follower_a7040a02256173e154be8746e94d66be3}{cb}}
 \begin{DoxyCompactList}\small\item\em call-\/back function of follower \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{struct_data_wrapper_1_1_follower_a6559f6bcb3243860046c4222337b7017}{f\+\_\+id}}
-\begin{DoxyCompactList}\small\item\em unique follower ID \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em unique follower ID \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{struct_data_wrapper_1_1_follower_a5a2fa3aa099f6a5ed7be96abe32323cc}{paused}}
+\begin{DoxyCompactList}\small\item\em pauses calls to follower callback function, if true this follower\textquotesingle{}s call-\/back will not be executed \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -44,6 +46,18 @@ uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Contro
 
 
 unique follower ID 
+
+\Hypertarget{struct_data_wrapper_1_1_follower_a5a2fa3aa099f6a5ed7be96abe32323cc}\label{struct_data_wrapper_1_1_follower_a5a2fa3aa099f6a5ed7be96abe32323cc} 
+\index{DataControl::DataWrapper$<$ T $>$::Follower$<$ T $>$@{DataControl::DataWrapper$<$ T $>$::Follower$<$ T $>$}!paused@{paused}}
+\index{paused@{paused}!DataControl::DataWrapper$<$ T $>$::Follower$<$ T $>$@{DataControl::DataWrapper$<$ T $>$::Follower$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{paused}{paused}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$typename T $>$ \\
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper}}$<$ T $>$\+::\+Follower$<$ T $>$\+::paused}
+
+
+
+pauses calls to follower callback function, if true this follower\textquotesingle{}s call-\/back will not be executed 
 
 
 

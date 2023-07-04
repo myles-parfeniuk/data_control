@@ -24,26 +24,28 @@
 \DoxyCodeLine{00020\ \ \ \ \ \{}
 \DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.empty())}
 \DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>follower\_list.size();\ i++)}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>follower\_list.at(i).cb(this-\/>new\_data);\ \textcolor{comment}{//call\ all\ follower\ call-\/back\ functions}}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00028\ \ \ \ \ \}}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ this-\/>data\ =\ this-\/>new\_data;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>follower\_list.size();\ i++)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.at(i).paused)\ \textcolor{comment}{//if\ follower\ is\ not\ paused\ \ }}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>follower\_list.at(i).cb(this-\/>new\_data);\ \textcolor{comment}{//call\ follower\ call-\/back\ function}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
 \DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00032\ \ \ \ \ this-\/>data\ =\ this-\/>new\_data;}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00038\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_same_acd387ef6f2439cb9c51c82e1b693fe8d}{CallSame<T>::cb\_task}}(\textcolor{keywordtype}{void}\ *data)\{}
-\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_same}{CallSame}}\ *local\_data\ =\ (\mbox{\hyperlink{class_data_control_1_1_call_same}{CallSame}}\ *)data;\ }
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ local\_data-\/>\mbox{\hyperlink{class_data_control_1_1_call_same_a84f0097cbf73a12e76d0283adcbcd53c}{cb\_routine}}();}
-\DoxyCodeLine{00042\ \ \ \ \ vTaskDelete(NULL);\ \ \textcolor{comment}{//self-\/delete\ task}}
-\DoxyCodeLine{00043\ \ \}}
+\DoxyCodeLine{00036\ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00040\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_same_acd387ef6f2439cb9c51c82e1b693fe8d}{CallSame<T>::cb\_task}}(\textcolor{keywordtype}{void}\ *data)\{}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_same}{CallSame}}\ *local\_data\ =\ (\mbox{\hyperlink{class_data_control_1_1_call_same}{CallSame}}\ *)data;\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ local\_data-\/>\mbox{\hyperlink{class_data_control_1_1_call_same_a84f0097cbf73a12e76d0283adcbcd53c}{cb\_routine}}();}
+\DoxyCodeLine{00044\ \ \ \ \ vTaskDelete(NULL);\ \ \textcolor{comment}{//self-\/delete\ task}}
+\DoxyCodeLine{00045\ \ \}}
 
 \end{DoxyCode}

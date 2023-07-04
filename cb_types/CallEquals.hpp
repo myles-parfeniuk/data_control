@@ -46,13 +46,28 @@ class CallEquals : public DataWrapper<T>
     /**
     * @brief Set value of comparison data. 
     * 
-    * Overwrite current comparison data with a new value. The comparison data is checked against the new data whenever the set() method is called. 
+    * Overwrite current comparison data with a new value. If the callback routine is executing, the compare data will not be over-written
+    * until it has completed. The set_compare_data_from_cb() method can be called to over-write the compare data immediately. 
+    * The comparison data is checked against the new data whenever the set() method is called. 
     * If the new data matches the comparison data all follower callbacks will be executed. 
     * 
     * @param new_compare_data the new comparison value to over-write current comparison data with. 
     * @return void, nothing to return
     */
         void set_compare_data(T new_compare_data);
+
+    /**
+    * @brief Set value of comparison data from context of call-back function. 
+    * 
+    * Overwrite current comparison data with a new value immediately, does not wait for call-back routine to complete.
+    * This method should be called instead of set_compare_data() if within the context of a follower call-back function.  
+    * The comparison data is checked against the new data whenever the set() method is called. 
+    * If the new data matches the comparison data all follower callbacks will be executed. 
+    * 
+    * @param new_compare_data the new comparison value to over-write current comparison data with. 
+    * @return void, nothing to return
+    */
+        void set_compare_data_from_cb(T new_compare_data);
 
     private:
     /**

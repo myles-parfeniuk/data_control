@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['readme_0',['README',['../md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e.html',1,'']]],
-  ['readme_2emd_1',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]]
+  ['pause_0',['pause',['../class_data_control_1_1_data_wrapper.html#a87ba78fe9b88854524689970de6c22c8',1,'DataControl::DataWrapper']]],
+  ['paused_1',['paused',['../struct_data_wrapper_1_1_follower.html#a5a2fa3aa099f6a5ed7be96abe32323cc',1,'DataWrapper::Follower']]]
 ];

@@ -23,7 +23,9 @@ Inheritance diagram for Data\+Control\+::Call\+Equals\texorpdfstring{$<$}{<} T \
 void \mbox{\hyperlink{class_data_control_1_1_call_equals_a8fc556035771341b6a39146eea949790}{set}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a}{new\+\_\+data}})
 \begin{DoxyCompactList}\small\item\em Set value of data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_data_control_1_1_call_equals_ae5c3669631df069d7ae1ac89527f57cf}{set\+\_\+compare\+\_\+data}} (T new\+\_\+compare\+\_\+data)
-\begin{DoxyCompactList}\small\item\em Set value of comparison data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set value of comparison data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_control_1_1_call_equals_ad91be286de652dc0957fd269ec167741}{set\+\_\+compare\+\_\+data\+\_\+from\+\_\+cb}} (T new\+\_\+compare\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Set value of comparison data from context of call-\/back function. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,8 +35,12 @@ void \mbox{\hyperlink{class_data_control_1_1_call_equals_ae5c3669631df069d7ae1ac
 \begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow}} (std\+::function$<$ void(T)$>$ cb)
 \begin{DoxyCompactList}\small\item\em Follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5}{un\+\_\+follow}} (uint16\+\_\+t follower\+\_\+id)
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a79090a72dbbab83ed081194465494861}{un\+\_\+follow}} (uint16\+\_\+t follower\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Un-\/follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a87ba78fe9b88854524689970de6c22c8}{pause}} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Pause follower callback. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4e521a23968de496d73752f8122dc746}{un\+\_\+pause}} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em un-\/pause follower callback \end{DoxyCompactList}\item 
 T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get}} ()
 \begin{DoxyCompactList}\small\item\em Get current data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}{set\+\_\+cb\+\_\+task\+\_\+depth}} (uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}{stack\+\_\+depth}})
@@ -192,7 +198,29 @@ void Call\+Equals\+::set\+\_\+compare\+\_\+data (\begin{DoxyParamCaption}\item[{
 
 Set value of comparison data. 
 
-Overwrite current comparison data with a new value. The comparison data is checked against the new data whenever the \doxylink{class_data_control_1_1_call_equals_a8fc556035771341b6a39146eea949790}{set()} method is called. If the new data matches the comparison data all follower callbacks will be executed.
+Overwrite current comparison data with a new value. If the callback routine is executing, the compare data will not be over-\/written until it has completed. The \doxylink{class_data_control_1_1_call_equals_ad91be286de652dc0957fd269ec167741}{set\+\_\+compare\+\_\+data\+\_\+from\+\_\+cb()} method can be called to over-\/write the compare data immediately. The comparison data is checked against the new data whenever the \doxylink{class_data_control_1_1_call_equals_a8fc556035771341b6a39146eea949790}{set()} method is called. If the new data matches the comparison data all follower callbacks will be executed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+compare\+\_\+data} & the new comparison value to over-\/write current comparison data with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\Hypertarget{class_data_control_1_1_call_equals_ad91be286de652dc0957fd269ec167741}\label{class_data_control_1_1_call_equals_ad91be286de652dc0957fd269ec167741} 
+\index{DataControl::CallEquals$<$ T $>$@{DataControl::CallEquals$<$ T $>$}!set\_compare\_data\_from\_cb@{set\_compare\_data\_from\_cb}}
+\index{set\_compare\_data\_from\_cb@{set\_compare\_data\_from\_cb}!DataControl::CallEquals$<$ T $>$@{DataControl::CallEquals$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{set\_compare\_data\_from\_cb()}{set\_compare\_data\_from\_cb()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Call\+Equals\+::set\+\_\+compare\+\_\+data\+\_\+from\+\_\+cb (\begin{DoxyParamCaption}\item[{T}]{new\+\_\+compare\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Set value of comparison data from context of call-\/back function. 
+
+Overwrite current comparison data with a new value immediately, does not wait for call-\/back routine to complete. This method should be called instead of \doxylink{class_data_control_1_1_call_equals_ae5c3669631df069d7ae1ac89527f57cf}{set\+\_\+compare\+\_\+data()} if within the context of a follower call-\/back function. ~\newline
+ The comparison data is checked against the new data whenever the \doxylink{class_data_control_1_1_call_equals_a8fc556035771341b6a39146eea949790}{set()} method is called. If the new data matches the comparison data all follower callbacks will be executed.
 
 
 \begin{DoxyParams}{Parameters}

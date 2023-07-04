@@ -118,9 +118,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaace46d4f8c57627f43a718ca1a4583d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d">follow</a> (std::function&lt; void(T)&gt; cb)</td></tr>
 <tr class="memdesc:aaace46d4f8c57627f43a718ca1a4583d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object.  <br /></td></tr>
 <tr class="separator:aaace46d4f8c57627f43a718ca1a4583d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d0fa75129e6973cc421499172ce3bd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a6d0fa75129e6973cc421499172ce3bd5">un_follow</a> (uint16_t follower_id)</td></tr>
-<tr class="memdesc:a6d0fa75129e6973cc421499172ce3bd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Un-follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object.  <br /></td></tr>
-<tr class="separator:a6d0fa75129e6973cc421499172ce3bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79090a72dbbab83ed081194465494861"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a79090a72dbbab83ed081194465494861">un_follow</a> (uint16_t follower_id)</td></tr>
+<tr class="memdesc:a79090a72dbbab83ed081194465494861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Un-follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object.  <br /></td></tr>
+<tr class="separator:a79090a72dbbab83ed081194465494861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ba78fe9b88854524689970de6c22c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a87ba78fe9b88854524689970de6c22c8">pause</a> (uint16_t follower_id)</td></tr>
+<tr class="memdesc:a87ba78fe9b88854524689970de6c22c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pause follower callback.  <br /></td></tr>
+<tr class="separator:a87ba78fe9b88854524689970de6c22c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e521a23968de496d73752f8122dc746"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a4e521a23968de496d73752f8122dc746">un_pause</a> (uint16_t follower_id)</td></tr>
+<tr class="memdesc:a4e521a23968de496d73752f8122dc746"><td class="mdescLeft">&#160;</td><td class="mdescRight">un-pause follower callback  <br /></td></tr>
+<tr class="separator:a4e521a23968de496d73752f8122dc746"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee43e40ca8569976ee7ef896760df181"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181">get</a> ()</td></tr>
 <tr class="memdesc:aee43e40ca8569976ee7ef896760df181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current data.  <br /></td></tr>
 <tr class="separator:aee43e40ca8569976ee7ef896760df181"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -293,6 +299,36 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="a87ba78fe9b88854524689970de6c22c8" name="a87ba78fe9b88854524689970de6c22c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ba78fe9b88854524689970de6c22c8">&#9670;&#160;</a></span>pause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DataWrapper::pause </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>follower_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pause follower callback. </p>
+<p>Temporarily stop triggering callback for respective follower when this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set. Re-enable callback by calling the <a class="el" href="class_data_control_1_1_data_wrapper.html#a4e521a23968de496d73752f8122dc746" title="un-pause follower callback">un_pause()</a> method.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">follower_id</td><td>The ID of the follower owning the callback to be paused. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if follower successfully paused, false if otherwise </dd></dl>
+
+</div>
+</div>
 <a id="a562e8ea4af67aaa36f70851af63974b5" name="a562e8ea4af67aaa36f70851af63974b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a562e8ea4af67aaa36f70851af63974b5">&#9670;&#160;</a></span>set_cb_task_depth()</h2>
 
@@ -322,8 +358,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a6d0fa75129e6973cc421499172ce3bd5" name="a6d0fa75129e6973cc421499172ce3bd5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d0fa75129e6973cc421499172ce3bd5">&#9670;&#160;</a></span>un_follow()</h2>
+<a id="a79090a72dbbab83ed081194465494861" name="a79090a72dbbab83ed081194465494861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79090a72dbbab83ed081194465494861">&#9670;&#160;</a></span>un_follow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -331,7 +367,7 @@ template&lt;typename T &gt; </div>
 template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void DataWrapper::un_follow </td>
+          <td class="memname">bool DataWrapper::un_follow </td>
           <td>(</td>
           <td class="paramtype">uint16_t&#160;</td>
           <td class="paramname"><em>follower_id</em></td><td>)</td>
@@ -341,14 +377,44 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Un-follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object. </p>
-<p>Stop triggering callback when this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set.</p>
+<p>Stop triggering callback for respective follower permanently when this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">follower_id</td><td>The ID of the follower to remove from the follower list. Returned when <a class="el" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d" title="Follow DataWrapper object.">follow()</a> is called. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>void, nothing to return </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if follower successfully un-followed, false if otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a4e521a23968de496d73752f8122dc746" name="a4e521a23968de496d73752f8122dc746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e521a23968de496d73752f8122dc746">&#9670;&#160;</a></span>un_pause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DataWrapper::un_pause </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>follower_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>un-pause follower callback </p>
+<p>Re-enable callback for respective follower when this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">follower_id</td><td>The ID of the follower owning the callback to be un-paused. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if follower successfully un-paused, false if otherwise </dd></dl>
 
 </div>
 </div>

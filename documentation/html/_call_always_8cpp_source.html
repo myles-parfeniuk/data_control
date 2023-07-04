@@ -97,29 +97,31 @@ $(function() {
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordflow">if</span>(!this-&gt;follower_list.empty())</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">for</span>(i = 0; i &lt; this-&gt;follower_list.size(); i++)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            this-&gt;follower_list.at(i).cb(this-&gt;new_data); <span class="comment">//call all follower call-back functions</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        }</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    this-&gt;data = this-&gt;new_data;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="comment">//loop through all followers</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordflow">for</span>(i = 0; i &lt; this-&gt;follower_list.size(); i++)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            <span class="keywordflow">if</span>(!this-&gt;follower_list.at(i).paused) <span class="comment">//if follower is not paused</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                this-&gt;follower_list.at(i).cb(this-&gt;new_data); <span class="comment">//call follower call-back function</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    this-&gt;cb_task_complete = <span class="keyword">true</span>;  </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    this-&gt;data = this-&gt;new_data;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    this-&gt;cb_task_complete = <span class="keyword">true</span>;  </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_always.html#a2b9d397a408a555a00f9ed4a9f316a43">   35</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_always.html#a2b9d397a408a555a00f9ed4a9f316a43">CallAlways&lt;T&gt;::cb_task</a>(<span class="keywordtype">void</span> *data){</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_class" href="class_data_control_1_1_call_always.html">CallAlways</a> *local_data = (<a class="code hl_class" href="class_data_control_1_1_call_always.html">CallAlways</a> *)data; </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    local_data-&gt;<a class="code hl_function" href="class_data_control_1_1_call_always.html#a781337f7355b1897cd2a7bfecdef2487">cb_routine</a>();</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    vTaskDelete(NULL);  <span class="comment">//self-delete task</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_always.html#a2b9d397a408a555a00f9ed4a9f316a43">   37</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_always.html#a2b9d397a408a555a00f9ed4a9f316a43">CallAlways&lt;T&gt;::cb_task</a>(<span class="keywordtype">void</span> *data){</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="class_data_control_1_1_call_always.html">CallAlways</a> *local_data = (<a class="code hl_class" href="class_data_control_1_1_call_always.html">CallAlways</a> *)data; </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    local_data-&gt;<a class="code hl_function" href="class_data_control_1_1_call_always.html#a781337f7355b1897cd2a7bfecdef2487">cb_routine</a>();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    vTaskDelete(NULL);  <span class="comment">//self-delete task</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> }</div>
 <div class="ttc" id="a_call_always_8hpp_html"><div class="ttname"><a href="_call_always_8hpp.html">CallAlways.hpp</a></div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_always_html"><div class="ttname"><a href="class_data_control_1_1_call_always.html">DataControl::CallAlways</a></div><div class="ttdoc">DataWrapper that executes callbacks whenever set() method is called.</div><div class="ttdef"><b>Definition</b> CallAlways.hpp:17</div></div>
-<div class="ttc" id="aclass_data_control_1_1_call_always_html_a2b9d397a408a555a00f9ed4a9f316a43"><div class="ttname"><a href="class_data_control_1_1_call_always.html#a2b9d397a408a555a00f9ed4a9f316a43">DataControl::CallAlways::cb_task</a></div><div class="ttdeci">static void cb_task(void *data)</div><div class="ttdoc">Call-back task.</div><div class="ttdef"><b>Definition</b> CallAlways.cpp:35</div></div>
+<div class="ttc" id="aclass_data_control_1_1_call_always_html_a2b9d397a408a555a00f9ed4a9f316a43"><div class="ttname"><a href="class_data_control_1_1_call_always.html#a2b9d397a408a555a00f9ed4a9f316a43">DataControl::CallAlways::cb_task</a></div><div class="ttdeci">static void cb_task(void *data)</div><div class="ttdoc">Call-back task.</div><div class="ttdef"><b>Definition</b> CallAlways.cpp:37</div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_always_html_a320cd65fa7c4f7f5dcd214042e99c9ce"><div class="ttname"><a href="class_data_control_1_1_call_always.html#a320cd65fa7c4f7f5dcd214042e99c9ce">DataControl::CallAlways::set</a></div><div class="ttdeci">void set(T new_data)</div><div class="ttdoc">Set value of data.</div><div class="ttdef"><b>Definition</b> CallAlways.cpp:6</div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_always_html_a781337f7355b1897cd2a7bfecdef2487"><div class="ttname"><a href="class_data_control_1_1_call_always.html#a781337f7355b1897cd2a7bfecdef2487">DataControl::CallAlways::cb_routine</a></div><div class="ttdeci">void cb_routine()</div><div class="ttdoc">Call-back function routine.</div><div class="ttdef"><b>Definition</b> CallAlways.cpp:15</div></div>
 <div class="ttc" id="anamespace_data_control_html"><div class="ttname"><a href="namespace_data_control.html">DataControl</a></div><div class="ttdef"><b>Definition</b> CallAlways.hpp:4</div></div>

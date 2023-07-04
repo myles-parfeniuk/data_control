@@ -20,9 +20,11 @@ void CallSame<T>::set(T new_data)
     {
         if(!this->follower_list.empty())
         {
+            //loop through all followers
             for(i = 0; i < this->follower_list.size(); i++)
             {
-                this->follower_list.at(i).cb(this->new_data); //call all follower call-back functions
+                if(!this->follower_list.at(i).paused) //if follower is not paused  
+                    this->follower_list.at(i).cb(this->new_data); //call follower call-back function
             }
         }
     }

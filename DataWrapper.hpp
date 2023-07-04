@@ -64,12 +64,33 @@ class DataWrapper {
   /**
   * @brief Un-follow DataWrapper object
   * 
-  * Stop triggering callback when this DataWrapper object is set.
+  * Stop triggering callback for respective follower permanently when this DataWrapper object is set.
   * 
   * @param follower_id The ID of the follower to remove from the follower list. Returned when follow() is called. 
-  * @return void, nothing to return
+  * @return true if follower successfully un-followed, false if otherwise
   */
-    void un_follow(uint16_t follower_id);
+    bool un_follow(uint16_t follower_id);
+
+  /**
+  * @brief Pause follower callback 
+  * 
+  * Temporarily stop triggering callback for respective follower when this DataWrapper object is set.
+  * Re-enable callback by calling the un_pause() method. 
+  * 
+  * @param follower_id The ID of the follower owning the callback to be paused. 
+  * @return true if follower successfully paused, false if otherwise
+  */
+    bool pause(uint16_t follower_id);
+
+  /**
+  * @brief un-pause follower callback 
+  * 
+  * Re-enable callback for respective follower when this DataWrapper object is set.
+  * 
+  * @param follower_id The ID of the follower owning the callback to be un-paused. 
+  * @return true if follower successfully un-paused, false if otherwise
+  */
+    bool un_pause(uint16_t follower_id);
 
   /**
   * @brief Get current data. 
