@@ -37,37 +37,16 @@ class DataWrapper {
     DataWrapper();
 
   /**
-  * @brief Construct a DataWrapper object.
-  *
-  * Construct a DataWrapper with initial value. 
-  *
-  * @param data initial value of data
-  * @return void, nothing to return
-  */
-    DataWrapper(T data);
-
-  /**
-  * @brief Construct a DataWrapper object. 
-  * 
-  * Construct a DataWrapper with initial value and logging status. Enabling logs may be desirable for debugging purposes. 
-  *        
-  * @param data initial value of data
-  * @param logging_en logging status, true to enable logging, false to disable
-  * @return void, nothing to return
-  */
-    DataWrapper(T data, bool logging_en);
-
-  /**
   * @brief Construct a DataWrapper object. 
   * 
   * Construct a DataWrapper with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes. 
   * 
   * @param data initial value of data
-  * @param logging_en logging status, true to enable logging, false to disable
-  * @param name name of data wrapper object, printed out with logs to aid debugging
+  * @param logging_en logging status, true to enable logging, false to disable (optional, default false)
+  * @param name name of data wrapper object, printed out with logs to aid debugging (optional, default "unamed")
   * @return void, nothing to return
   */
-    DataWrapper(T data, bool logging_en, const char *name);
+    DataWrapper(T data, bool logging_en = false, const char *name = "unamed");
 
   /**
   * @brief Follow DataWrapper object.

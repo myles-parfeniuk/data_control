@@ -19,19 +19,13 @@ Inheritance diagram for Data\+Control\+::Call\+Different\texorpdfstring{$<$}{<} 
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_data_control_1_1_call_different_ade070629e521048e33ef3d8504d601e7}{set}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a}{new\+\_\+data}})
-\begin{DoxyCompactList}\small\item\em Set value of data. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_data_control_1_1_call_different_a882054138c590a351454aed8e69cf974}{cb\+\_\+routine}} ()
-\begin{DoxyCompactList}\small\item\em Call-\/back function routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set value of data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511}{Data\+Wrapper}} ()
 \begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a01d003ece9cdd1626f2b48e154d4bfba}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}})
-\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa967175d5ddb2610428f7a95e053b95e}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}, bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}})
-\begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a9cd288f92d0dcb8c02947be757fc64fe}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}, bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}}, const char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}{name}})
+\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0beae71b238414eacc3dbf3a1e09eddf}{Data\+Wrapper}} (T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}}, bool \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\+\_\+en}}=false, const char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}{name}}=\"{}unamed\"{})
 \begin{DoxyCompactList}\small\item\em Construct a \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow}} (std\+::function$<$ void(T)$>$ cb)
 \begin{DoxyCompactList}\small\item\em Follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. \end{DoxyCompactList}\item 
@@ -41,6 +35,11 @@ T \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896
 \begin{DoxyCompactList}\small\item\em Get current data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}{set\+\_\+cb\+\_\+task\+\_\+depth}} (uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}{stack\+\_\+depth}})
 \begin{DoxyCompactList}\small\item\em Set stack-\/depth of call-\/back task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_data_control_1_1_call_different_a882054138c590a351454aed8e69cf974}{cb\+\_\+routine}} ()
+\begin{DoxyCompactList}\small\item\em Call-\/back function routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -95,7 +94,7 @@ Myles Parfeniuk
 \index{cb\_routine@{cb\_routine}!DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{cb\_routine()}{cb\_routine()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-void Call\+Different\+::cb\+\_\+routine}
+void Call\+Different\+::cb\+\_\+routine\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -147,5 +146,5 @@ void, nothing to return
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/development/esp/git\+\_\+hub/components/data\+\_\+control/cb\+\_\+types/\mbox{\hyperlink{_call_different_8hpp}{Call\+Different.\+hpp}}\item 
-D\+:/development/esp/git\+\_\+hub/components/data\+\_\+control/cb\+\_\+types/\mbox{\hyperlink{_call_different_8cpp}{Call\+Different.\+cpp}}\end{DoxyCompactItemize}
+D\+:/development/esp/projects/idf\+\_\+4\+\_\+0/data\+\_\+control/components/data\+\_\+control/cb\+\_\+types/\mbox{\hyperlink{_call_different_8hpp}{Call\+Different.\+hpp}}\item 
+D\+:/development/esp/projects/idf\+\_\+4\+\_\+0/data\+\_\+control/components/data\+\_\+control/cb\+\_\+types/\mbox{\hyperlink{_call_different_8cpp}{Call\+Different.\+cpp}}\end{DoxyCompactItemize}

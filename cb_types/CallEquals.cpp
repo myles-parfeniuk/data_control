@@ -3,36 +3,15 @@
 using namespace DataControl;
 
 template <typename T>
-CallEquals<T>::CallEquals(T data, T compare_data)
-{
-    this->next_id = 0;
-    this->stack_depth = this->default_stack_depth;
-    this->cb_task_complete = true;
-    this->name = "unamed";
-    this->logging_en = false;
-    this->compare_data = compare_data;
-}
-
-template <typename T>
-CallEquals<T>::CallEquals(T data, T compare_data, bool logging_en)
-{
-    this->next_id = 0;
-    this->stack_depth = this->default_stack_depth;
-    this->cb_task_complete = true;
-    this->name = "unamed";
-    this->logging_en = logging_en;
-    this->compare_data = compare_data;
-}
-
-template <typename T>
-CallEquals<T>::CallEquals(T data, T compare_data ,bool logging_en, const char *name)
+CallEquals<T>::CallEquals(T data, T compare_data ,bool logging_en, const char *name):
+compare_data(compare_data)
 {
     this->next_id = 0;
     this->stack_depth = this->default_stack_depth;
     this->cb_task_complete = true;
     this->name = name;
     this->logging_en = logging_en;
-    this->compare_data = compare_data;
+    this->data = data;
 }
 
 
@@ -49,8 +28,7 @@ void CallEquals<T>::set(T new_data)
  void CallEquals<T>::cb_routine(){
     static uint16_t i = 0;
     this->cb_task_complete = false;
-    
-    if(this->data == this->compare_data)
+    if(this->new_data == this->compare_data)
     {
         if(!this->follower_list.empty())
         {

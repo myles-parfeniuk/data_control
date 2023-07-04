@@ -1,5 +1,5 @@
 \doxysection{Data\+Wrapper.\+cpp}
-\hypertarget{_data_wrapper_8cpp_source}{}\label{_data_wrapper_8cpp_source}\index{D:/development/esp/git\_hub/components/data\_control/DataWrapper.cpp@{D:/development/esp/git\_hub/components/data\_control/DataWrapper.cpp}}
+\hypertarget{_data_wrapper_8cpp_source}{}\label{_data_wrapper_8cpp_source}\index{D:/development/esp/projects/idf\_4\_0/data\_control/components/data\_control/DataWrapper.cpp@{D:/development/esp/projects/idf\_4\_0/data\_control/components/data\_control/DataWrapper.cpp}}
 \mbox{\hyperlink{_data_wrapper_8cpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_data_wrapper_8hpp}{DataWrapper.hpp}}"{}}}
@@ -25,74 +25,62 @@
 \DoxyCodeLine{00024\ \}}
 \DoxyCodeLine{00025\ }
 \DoxyCodeLine{00026\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00027\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511}{DataWrapper<T>::\ DataWrapper}}(T\ data):}
-\DoxyCodeLine{00028\ data(data),\ next\_id(0),\ stack\_depth(default\_stack\_depth),\ cb\_task\_complete(true),\ name(\textcolor{stringliteral}{"{}unamed"{}}),\ logging\_en(false)\ }
+\DoxyCodeLine{00027\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511}{DataWrapper<T>::\ DataWrapper}}(T\ data,\ \textcolor{keywordtype}{bool}\ logging\_en,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ name):}
+\DoxyCodeLine{00028\ data(data),\ next\_id(0),\ stack\_depth(default\_stack\_depth),\ cb\_task\_complete(true),\ name(name),\ logging\_en(logging\_en)}
 \DoxyCodeLine{00029\ \{}
 \DoxyCodeLine{00030\ \}}
 \DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00033\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511}{DataWrapper<T>::\ DataWrapper}}(T\ data,\ \textcolor{keywordtype}{bool}\ logging\_en):}
-\DoxyCodeLine{00034\ data(data),\ next\_id(0),\ stack\_depth(default\_stack\_depth),\ cb\_task\_complete(true),\ name(\textcolor{stringliteral}{"{}unamed"{}}),\ logging\_en(logging\_en)}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00034\ T\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{DataWrapper<T>::get}}()}
 \DoxyCodeLine{00035\ \{}
-\DoxyCodeLine{00036\ \}}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00039\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a4fa5d8de610e5b150ef54c7b4d511511}{DataWrapper<T>::\ DataWrapper}}(T\ data,\ \textcolor{keywordtype}{bool}\ logging\_en,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ name):}
-\DoxyCodeLine{00040\ data(data),\ next\_id(0),\ stack\_depth(default\_stack\_depth),\ cb\_task\_complete(true),\ name(name),\ logging\_en(logging\_en)}
-\DoxyCodeLine{00041\ \{}
-\DoxyCodeLine{00042\ \}}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00046\ T\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{DataWrapper<T>::get}}()}
-\DoxyCodeLine{00047\ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ data;\ }
-\DoxyCodeLine{00049\ \}}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00052\ \ uint16\_t\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{DataWrapper<T>::follow}}(std::function<\textcolor{keywordtype}{void}(T)>\ cb)}
-\DoxyCodeLine{00053\ \ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{struct_data_wrapper_1_1_follower}{Follower}}\ follower\ =\ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{struct_data_wrapper_1_1_follower_a7040a02256173e154be8746e94d66be3}{cb}}\ =\ cb,}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ .f\_id\ =\ next\_id,}
-\DoxyCodeLine{00057\ \ \ \ \ \};}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ next\_id++;\ }
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Follow:\ \%d"{}},\ name,\ follower.\mbox{\hyperlink{struct_data_wrapper_1_1_follower_a6559f6bcb3243860046c4222337b7017}{f\_id}});}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ data;\ }
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00040\ \ uint16\_t\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{DataWrapper<T>::follow}}(std::function<\textcolor{keywordtype}{void}(T)>\ cb)}
+\DoxyCodeLine{00041\ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{struct_data_wrapper_1_1_follower}{Follower}}\ follower\ =\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{struct_data_wrapper_1_1_follower_a7040a02256173e154be8746e94d66be3}{cb}}\ =\ cb,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ .f\_id\ =\ next\_id,}
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ next\_id++;\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Follow:\ \%d"{}},\ name,\ follower.\mbox{\hyperlink{struct_data_wrapper_1_1_follower_a6559f6bcb3243860046c4222337b7017}{f\_id}});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ follower\_list.push\_back(follower);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ follower.\mbox{\hyperlink{struct_data_wrapper_1_1_follower_a6559f6bcb3243860046c4222337b7017}{f\_id}};}
+\DoxyCodeLine{00055\ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00058\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5}{DataWrapper<T>::un\_follow}}(uint16\_t\ follower\_id)\{}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{while}(!cb\_task\_complete);}
 \DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ follower\_list.push\_back(follower);}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ follower.\mbox{\hyperlink{struct_data_wrapper_1_1_follower_a6559f6bcb3243860046c4222337b7017}{f\_id}};}
-\DoxyCodeLine{00067\ \ \}}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00070\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a6d0fa75129e6973cc421499172ce3bd5}{DataWrapper<T>::un\_follow}}(uint16\_t\ follower\_id)\{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{if}(!follower\_list.empty())\{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ follower\_list.size();\ i++)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unfollow:\ \%d"{}},\ name,\ follower\_list.at(i).f\_id);}
 \DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{while}(!cb\_task\_complete);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ follower\_list.erase(follower\_list.begin()\ +\ i);\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{if}(!follower\_list.empty())\{}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ follower\_list.size();\ i++)}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unfollow:\ \%d"{}},\ name,\ follower\_list.at(i).f\_id);}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ follower\_list.erase(follower\_list.begin()\ +\ i);\ }
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ \}}
-\DoxyCodeLine{00089\ \ \}}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}{DataWrapper<T>::\ set\_cb\_task\_depth}}(uint16\_t\ stack\_depth)\{}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{while}(!cb\_task\_complete);}
-\DoxyCodeLine{00094\ \ \ \ \ this-\/>stack\_depth\ =\ stack\_depth;}
-\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f70851af63974b5}{DataWrapper<T>::\ set\_cb\_task\_depth}}(uint16\_t\ stack\_depth)\{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{while}(!cb\_task\_complete);}
+\DoxyCodeLine{00082\ \ \ \ \ this-\/>stack\_depth\ =\ stack\_depth;}
+\DoxyCodeLine{00083\ \}}
 
 \end{DoxyCode}

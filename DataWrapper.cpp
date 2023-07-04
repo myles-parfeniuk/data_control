@@ -24,18 +24,6 @@ next_id(0), stack_depth(default_stack_depth), cb_task_complete(true), name("unam
 }
 
 template <typename T>
-DataWrapper<T>:: DataWrapper(T data):
-data(data), next_id(0), stack_depth(default_stack_depth), cb_task_complete(true), name("unamed"), logging_en(false) 
-{
-}
-
-template <typename T>
-DataWrapper<T>:: DataWrapper(T data, bool logging_en):
-data(data), next_id(0), stack_depth(default_stack_depth), cb_task_complete(true), name("unamed"), logging_en(logging_en)
-{
-}
-
-template <typename T>
 DataWrapper<T>:: DataWrapper(T data, bool logging_en, const char * name):
 data(data), next_id(0), stack_depth(default_stack_depth), cb_task_complete(true), name(name), logging_en(logging_en)
 {

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DataControl: D:/development/esp/git_hub/components/data_control/DataWrapper.cpp Source File</title>
+<title>DataControl: D:/development/esp/projects/idf_4_0/data_control/components/data_control/DataWrapper.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_ebea21e7cbc239e4b984a419d2ec33b9.html">development</a></li><li class="navelem"><a class="el" href="dir_b863e9f3f6c94b2d3cb436a1803a91a6.html">esp</a></li><li class="navelem"><a class="el" href="dir_ab2f9013d83f80ccfdedff2b7767711f.html">git_hub</a></li><li class="navelem"><a class="el" href="dir_c7c515f2b75fe18a55f7883a91c2bd7d.html">components</a></li><li class="navelem"><a class="el" href="dir_6c1421fc75f9f52923801248a2ea84a7.html">data_control</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_ebea21e7cbc239e4b984a419d2ec33b9.html">development</a></li><li class="navelem"><a class="el" href="dir_b863e9f3f6c94b2d3cb436a1803a91a6.html">esp</a></li><li class="navelem"><a class="el" href="dir_30c49896e9df5fa0e1b6353aaa90d22f.html">projects</a></li><li class="navelem"><a class="el" href="dir_cddef6e43394aee2466b21d24867c2e7.html">idf_4_0</a></li><li class="navelem"><a class="el" href="dir_5998f8efd7f266856c3dc2e1f0ee900d.html">data_control</a></li><li class="navelem"><a class="el" href="dir_5c8e682c955ca6a6e544c9fa1b793883.html">components</a></li><li class="navelem"><a class="el" href="dir_09876b489f2acca9dde93506a4fc9e47.html">data_control</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -100,82 +100,70 @@ $(function() {
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#a01d003ece9cdd1626f2b48e154d4bfba">   27</a></span><a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a4fa5d8de610e5b150ef54c7b4d511511">DataWrapper&lt;T&gt;:: DataWrapper</a>(T data):</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>data(data), next_id(0), stack_depth(default_stack_depth), cb_task_complete(true), name(<span class="stringliteral">&quot;unamed&quot;</span>), logging_en(false) </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#a0beae71b238414eacc3dbf3a1e09eddf">   27</a></span><a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a4fa5d8de610e5b150ef54c7b4d511511">DataWrapper&lt;T&gt;:: DataWrapper</a>(T data, <span class="keywordtype">bool</span> logging_en, <span class="keyword">const</span> <span class="keywordtype">char</span> * name):</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>data(data), next_id(0), stack_depth(default_stack_depth), cb_task_complete(true), name(name), logging_en(logging_en)</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#aa967175d5ddb2610428f7a95e053b95e">   33</a></span><a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a4fa5d8de610e5b150ef54c7b4d511511">DataWrapper&lt;T&gt;:: DataWrapper</a>(T data, <span class="keywordtype">bool</span> logging_en):</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>data(data), next_id(0), stack_depth(default_stack_depth), cb_task_complete(true), name(<span class="stringliteral">&quot;unamed&quot;</span>), logging_en(logging_en)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181">   34</a></span>T <a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181">DataWrapper&lt;T&gt;::get</a>()</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#a9cd288f92d0dcb8c02947be757fc64fe">   39</a></span><a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a4fa5d8de610e5b150ef54c7b4d511511">DataWrapper&lt;T&gt;:: DataWrapper</a>(T data, <span class="keywordtype">bool</span> logging_en, <span class="keyword">const</span> <span class="keywordtype">char</span> * name):</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>data(data), next_id(0), stack_depth(default_stack_depth), cb_task_complete(true), name(name), logging_en(logging_en)</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181">   46</a></span>T <a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181">DataWrapper&lt;T&gt;::get</a>()</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">return</span> data; </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d">   52</a></span> uint16_t <a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d">DataWrapper&lt;T&gt;::follow</a>(std::function&lt;<span class="keywordtype">void</span>(T)&gt; cb)</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_struct" href="struct_data_wrapper_1_1_follower.html">Follower</a> follower = {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        .<a class="code hl_variable" href="struct_data_wrapper_1_1_follower.html#a7040a02256173e154be8746e94d66be3">cb</a> = cb,</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        .f_id = next_id,</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    };</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    next_id++; </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">if</span>(logging_en)</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        ESP_LOGI(TAG, <span class="stringliteral">&quot;%s -&gt; Follow: %d&quot;</span>, name, follower.<a class="code hl_variable" href="struct_data_wrapper_1_1_follower.html#a6559f6bcb3243860046c4222337b7017">f_id</a>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> data; </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d">   40</a></span> uint16_t <a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d">DataWrapper&lt;T&gt;::follow</a>(std::function&lt;<span class="keywordtype">void</span>(T)&gt; cb)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_struct" href="struct_data_wrapper_1_1_follower.html">Follower</a> follower = {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        .<a class="code hl_variable" href="struct_data_wrapper_1_1_follower.html#a7040a02256173e154be8746e94d66be3">cb</a> = cb,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        .f_id = next_id,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    };</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    next_id++; </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">if</span>(logging_en)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        ESP_LOGI(TAG, <span class="stringliteral">&quot;%s -&gt; Follow: %d&quot;</span>, name, follower.<a class="code hl_variable" href="struct_data_wrapper_1_1_follower.html#a6559f6bcb3243860046c4222337b7017">f_id</a>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    follower_list.push_back(follower);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> follower.<a class="code hl_variable" href="struct_data_wrapper_1_1_follower.html#a6559f6bcb3243860046c4222337b7017">f_id</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#a6d0fa75129e6973cc421499172ce3bd5">   58</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a6d0fa75129e6973cc421499172ce3bd5">DataWrapper&lt;T&gt;::un_follow</a>(uint16_t follower_id){</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">static</span> uint16_t i = 0;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">while</span>(!cb_task_complete);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    follower_list.push_back(follower);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">return</span> follower.<a class="code hl_variable" href="struct_data_wrapper_1_1_follower.html#a6559f6bcb3243860046c4222337b7017">f_id</a>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> }</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#a6d0fa75129e6973cc421499172ce3bd5">   70</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a6d0fa75129e6973cc421499172ce3bd5">DataWrapper&lt;T&gt;::un_follow</a>(uint16_t follower_id){</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">if</span>(!follower_list.empty()){</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">for</span>(i = 0; i &lt; follower_list.size(); i++)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keywordflow">if</span>(follower_list.at(i).f_id == follower_id){</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                <span class="keywordflow">if</span>(logging_en)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                    ESP_LOGI(TAG, <span class="stringliteral">&quot;%s -&gt; Unfollow: %d&quot;</span>, name, follower_list.at(i).f_id);</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">static</span> uint16_t i = 0;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">while</span>(!cb_task_complete);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                follower_list.erase(follower_list.begin() + i); </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        }</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">if</span>(!follower_list.empty()){</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">for</span>(i = 0; i &lt; follower_list.size(); i++)</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">if</span>(follower_list.at(i).f_id == follower_id){</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                <span class="keywordflow">if</span>(logging_en)</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    ESP_LOGI(TAG, <span class="stringliteral">&quot;%s -&gt; Unfollow: %d&quot;</span>, name, follower_list.at(i).f_id);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                follower_list.erase(follower_list.begin() + i); </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            }</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        }</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> }</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#a562e8ea4af67aaa36f70851af63974b5">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a562e8ea4af67aaa36f70851af63974b5">DataWrapper&lt;T&gt;:: set_cb_task_depth</a>(uint16_t stack_depth){</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">while</span>(!cb_task_complete);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    this-&gt;stack_depth = stack_depth;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="class_data_control_1_1_data_wrapper.html#a562e8ea4af67aaa36f70851af63974b5">   80</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a562e8ea4af67aaa36f70851af63974b5">DataWrapper&lt;T&gt;:: set_cb_task_depth</a>(uint16_t stack_depth){</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">while</span>(!cb_task_complete);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    this-&gt;stack_depth = stack_depth;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}</div>
 <div class="ttc" id="a_data_wrapper_8hpp_html"><div class="ttname"><a href="_data_wrapper_8hpp.html">DataWrapper.hpp</a></div></div>
 <div class="ttc" id="aclass_data_control_1_1_data_wrapper_html"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a></div><div class="ttdoc">Base DataWrapper class.</div><div class="ttdef"><b>Definition</b> DataWrapper.hpp:26</div></div>
 <div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a4fa5d8de610e5b150ef54c7b4d511511"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a4fa5d8de610e5b150ef54c7b4d511511">DataControl::DataWrapper::DataWrapper</a></div><div class="ttdeci">DataWrapper()</div><div class="ttdoc">Construct a new DataWrapper object.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:21</div></div>
-<div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a562e8ea4af67aaa36f70851af63974b5"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a562e8ea4af67aaa36f70851af63974b5">DataControl::DataWrapper::set_cb_task_depth</a></div><div class="ttdeci">void set_cb_task_depth(uint16_t stack_depth)</div><div class="ttdoc">Set stack-depth of call-back task.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:92</div></div>
-<div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a6d0fa75129e6973cc421499172ce3bd5"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a6d0fa75129e6973cc421499172ce3bd5">DataControl::DataWrapper::un_follow</a></div><div class="ttdeci">void un_follow(uint16_t follower_id)</div><div class="ttdoc">Un-follow DataWrapper object.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:70</div></div>
-<div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_aaace46d4f8c57627f43a718ca1a4583d"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d">DataControl::DataWrapper::follow</a></div><div class="ttdeci">uint16_t follow(std::function&lt; void(T)&gt; cb)</div><div class="ttdoc">Follow DataWrapper object.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:52</div></div>
-<div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_aee43e40ca8569976ee7ef896760df181"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181">DataControl::DataWrapper::get</a></div><div class="ttdeci">T get()</div><div class="ttdoc">Get current data.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:46</div></div>
+<div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a562e8ea4af67aaa36f70851af63974b5"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a562e8ea4af67aaa36f70851af63974b5">DataControl::DataWrapper::set_cb_task_depth</a></div><div class="ttdeci">void set_cb_task_depth(uint16_t stack_depth)</div><div class="ttdoc">Set stack-depth of call-back task.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:80</div></div>
+<div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a6d0fa75129e6973cc421499172ce3bd5"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a6d0fa75129e6973cc421499172ce3bd5">DataControl::DataWrapper::un_follow</a></div><div class="ttdeci">void un_follow(uint16_t follower_id)</div><div class="ttdoc">Un-follow DataWrapper object.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:58</div></div>
+<div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_aaace46d4f8c57627f43a718ca1a4583d"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d">DataControl::DataWrapper::follow</a></div><div class="ttdeci">uint16_t follow(std::function&lt; void(T)&gt; cb)</div><div class="ttdoc">Follow DataWrapper object.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:40</div></div>
+<div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_aee43e40ca8569976ee7ef896760df181"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181">DataControl::DataWrapper::get</a></div><div class="ttdeci">T get()</div><div class="ttdoc">Get current data.</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:34</div></div>
 <div class="ttc" id="anamespace_data_control_html"><div class="ttname"><a href="namespace_data_control.html">DataControl</a></div><div class="ttdef"><b>Definition</b> CallAlways.hpp:4</div></div>
 <div class="ttc" id="astruct_data_wrapper_1_1_follower_html"><div class="ttname"><a href="struct_data_wrapper_1_1_follower.html">DataControl::DataWrapper::Follower</a></div><div class="ttdoc">contains information about a follower</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:14</div></div>
 <div class="ttc" id="astruct_data_wrapper_1_1_follower_html_a6559f6bcb3243860046c4222337b7017"><div class="ttname"><a href="struct_data_wrapper_1_1_follower.html#a6559f6bcb3243860046c4222337b7017">DataControl::DataWrapper::Follower::f_id</a></div><div class="ttdeci">uint16_t f_id</div><div class="ttdoc">unique follower ID</div><div class="ttdef"><b>Definition</b> DataWrapper.cpp:16</div></div>

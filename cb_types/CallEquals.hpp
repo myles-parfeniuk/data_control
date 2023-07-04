@@ -15,20 +15,8 @@ namespace DataControl {
 template <typename T>
 class CallEquals : public DataWrapper<T>
 {
-    public:
-        CallEquals(T data, T compare_data);
-    /**
-    * @brief Construct a CallEquals DataWrapper object. 
-    * 
-    * Construct a CallEquals DataWrapper object with initial value, comparison data, and logging status. Enabling logs may be desirable for debugging purposes. 
-    *        
-    * @param data initial value of data
-    * @param compare_data initial value of comparison data
-    * @param logging_en logging status, true to enable logging, false to disable
-    * @return void, nothing to return
-    */
-        CallEquals(T data, T compare_data, bool logging_en);
-
+    public: 
+    
     /**
     * @brief Construct a CallEquals DataWrapper object. 
     * 
@@ -36,11 +24,11 @@ class CallEquals : public DataWrapper<T>
     * 
     * @param data initial value of data
     * @param compare_data initial value of comparison data
-    * @param logging_en logging status, true to enable logging, false to disable
-    * @param name name of data wrapper object, printed out with logs to aid debugging
+    * @param logging_en logging status, true to enable logging, false to disable (optional, default false)
+    * @param name name of data wrapper object, printed out with logs to aid debugging (optional, default "unamed")
     * @return void, nothing to return
     */
-        CallEquals(T data, T compare_data ,bool logging_en, const char *name);
+        CallEquals(T data, T compare_data , bool logging_en = false, const char *name = "unamed");
         
     /**
     * @brief Set value of data. 

@@ -6,7 +6,7 @@ var searchData=
   ['calldifferent_3',['CallDifferent',['../class_data_control_1_1_call_different.html',1,'DataControl']]],
   ['calldifferent_2ecpp_4',['CallDifferent.cpp',['../_call_different_8cpp.html',1,'']]],
   ['calldifferent_2ehpp_5',['CallDifferent.hpp',['../_call_different_8hpp.html',1,'']]],
-  ['callequals_6',['CallEquals',['../class_data_control_1_1_call_equals.html#a865ef561ceb175a78aca19ed9fbc04f8',1,'DataControl::CallEquals::CallEquals(T data, T compare_data)'],['../class_data_control_1_1_call_equals.html#abc84ac69c9887553557c64a4260ea7a0',1,'DataControl::CallEquals::CallEquals(T data, T compare_data, bool logging_en)'],['../class_data_control_1_1_call_equals.html#a6dd471279de3bf0d6690debb37b9e8eb',1,'DataControl::CallEquals::CallEquals(T data, T compare_data, bool logging_en, const char *name)'],['../class_data_control_1_1_call_equals.html',1,'DataControl::CallEquals&lt; T &gt;']]],
+  ['callequals_6',['CallEquals',['../class_data_control_1_1_call_equals.html#a7cfcf5c817f2656db5d92b4bef65afe5',1,'DataControl::CallEquals::CallEquals()'],['../class_data_control_1_1_call_equals.html',1,'DataControl::CallEquals&lt; T &gt;']]],
   ['callequals_2ecpp_7',['CallEquals.cpp',['../_call_equals_8cpp.html',1,'']]],
   ['callequals_2ehpp_8',['CallEquals.hpp',['../_call_equals_8hpp.html',1,'']]],
   ['callsame_9',['CallSame',['../class_data_control_1_1_call_same.html',1,'DataControl']]],

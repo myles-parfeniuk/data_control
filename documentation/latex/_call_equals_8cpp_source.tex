@@ -1,5 +1,5 @@
 \doxysection{Call\+Equals.\+cpp}
-\hypertarget{_call_equals_8cpp_source}{}\label{_call_equals_8cpp_source}\index{D:/development/esp/git\_hub/components/data\_control/cb\_types/CallEquals.cpp@{D:/development/esp/git\_hub/components/data\_control/cb\_types/CallEquals.cpp}}
+\hypertarget{_call_equals_8cpp_source}{}\label{_call_equals_8cpp_source}\index{D:/development/esp/projects/idf\_4\_0/data\_control/components/data\_control/cb\_types/CallEquals.cpp@{D:/development/esp/projects/idf\_4\_0/data\_control/components/data\_control/cb\_types/CallEquals.cpp}}
 \mbox{\hyperlink{_call_equals_8cpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_call_equals_8hpp}{CallEquals.hpp}}"{}}}
@@ -7,86 +7,64 @@
 \DoxyCodeLine{00003\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_data_control}{DataControl}};}
 \DoxyCodeLine{00004\ }
 \DoxyCodeLine{00005\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00006\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a865ef561ceb175a78aca19ed9fbc04f8}{CallEquals<T>::CallEquals}}(T\ data,\ T\ compare\_data)}
-\DoxyCodeLine{00007\ \{}
-\DoxyCodeLine{00008\ \ \ \ \ this-\/>next\_id\ =\ 0;}
-\DoxyCodeLine{00009\ \ \ \ \ this-\/>stack\_depth\ =\ this-\/>default\_stack\_depth;}
-\DoxyCodeLine{00010\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00011\ \ \ \ \ this-\/>name\ =\ \textcolor{stringliteral}{"{}unamed"{}};}
-\DoxyCodeLine{00012\ \ \ \ \ this-\/>logging\_en\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00013\ \ \ \ \ this-\/>compare\_data\ =\ compare\_data;}
-\DoxyCodeLine{00014\ \}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00017\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a865ef561ceb175a78aca19ed9fbc04f8}{CallEquals<T>::CallEquals}}(T\ data,\ T\ compare\_data,\ \textcolor{keywordtype}{bool}\ logging\_en)}
-\DoxyCodeLine{00018\ \{}
-\DoxyCodeLine{00019\ \ \ \ \ this-\/>next\_id\ =\ 0;}
-\DoxyCodeLine{00020\ \ \ \ \ this-\/>stack\_depth\ =\ this-\/>default\_stack\_depth;}
-\DoxyCodeLine{00021\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00022\ \ \ \ \ this-\/>name\ =\ \textcolor{stringliteral}{"{}unamed"{}};}
-\DoxyCodeLine{00023\ \ \ \ \ this-\/>logging\_en\ =\ logging\_en;}
-\DoxyCodeLine{00024\ \ \ \ \ this-\/>compare\_data\ =\ compare\_data;}
-\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00006\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a7cfcf5c817f2656db5d92b4bef65afe5}{CallEquals<T>::CallEquals}}(T\ data,\ T\ compare\_data\ ,\textcolor{keywordtype}{bool}\ logging\_en,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name):}
+\DoxyCodeLine{00007\ compare\_data(compare\_data)}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ this-\/>\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a7a2158d7c7c27ff46224f3f328e06119}{next\_id}}\ =\ 0;}
+\DoxyCodeLine{00010\ \ \ \ \ this-\/>\mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa8a84530810dc340ddf38c57693edd65}{stack\_depth}}\ =\ this-\/>\mbox{\hyperlink{class_data_control_1_1_data_wrapper_aa12353ba771d82940b761093adee53be}{default\_stack\_depth}};}
+\DoxyCodeLine{00011\ \ \ \ \ this-\/>\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a049b55ecc5cde9f4961af519dfc140b0}{cb\_task\_complete}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00012\ \ \ \ \ this-\/>name\ =\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}{name}};}
+\DoxyCodeLine{00013\ \ \ \ \ this-\/>logging\_en\ =\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\_en}};}
+\DoxyCodeLine{00014\ \ \ \ \ this-\/>data\ =\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}};}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a8fc556035771341b6a39146eea949790}{CallEquals<T>::set}}(T\ new\_data)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ this-\/>new\_data\ =\ new\_data;\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ xTaskCreate(\&cb\_task,\ \textcolor{stringliteral}{"{}cb\_task"{}},\ this-\/>stack\_depth,\ \textcolor{keyword}{this},\ 4,\ \&this-\/>cb\_task\_hdl);}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
 \DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00028\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a865ef561ceb175a78aca19ed9fbc04f8}{CallEquals<T>::CallEquals}}(T\ data,\ T\ compare\_data\ ,\textcolor{keywordtype}{bool}\ logging\_en,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name)}
-\DoxyCodeLine{00029\ \{}
-\DoxyCodeLine{00030\ \ \ \ \ this-\/>next\_id\ =\ 0;}
-\DoxyCodeLine{00031\ \ \ \ \ this-\/>stack\_depth\ =\ this-\/>default\_stack\_depth;}
-\DoxyCodeLine{00032\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00033\ \ \ \ \ this-\/>name\ =\ name;}
-\DoxyCodeLine{00034\ \ \ \ \ this-\/>logging\_en\ =\ logging\_en;}
-\DoxyCodeLine{00035\ \ \ \ \ this-\/>compare\_data\ =\ compare\_data;}
-\DoxyCodeLine{00036\ \}}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a8fc556035771341b6a39146eea949790}{CallEquals<T>::set}}(T\ new\_data)}
-\DoxyCodeLine{00041\ \{}
-\DoxyCodeLine{00042\ \ \ \ \ this-\/>new\_data\ =\ new\_data;\ }
+\DoxyCodeLine{00027\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00028\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ace99aabb3ad6bb5caee41a8c76286806}{CallEquals<T>::cb\_routine}}()\{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>new\_data\ ==\ this-\/>compare\_data)}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.empty())}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>follower\_list.size();\ i++)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>follower\_list.at(i).cb(this-\/>new\_data);\ \textcolor{comment}{//call\ all\ follower\ call-\/back\ functions}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ this-\/>data\ =\ this-\/>new\_data;}
 \DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ xTaskCreate(\&cb\_task,\ \textcolor{stringliteral}{"{}cb\_task"{}},\ this-\/>stack\_depth,\ \textcolor{keyword}{this},\ 4,\ \&this-\/>cb\_task\_hdl);}
-\DoxyCodeLine{00045\ \}}
-\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00044\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};\ \ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \}}
 \DoxyCodeLine{00047\ }
 \DoxyCodeLine{00048\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00049\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ace99aabb3ad6bb5caee41a8c76286806}{CallEquals<T>::cb\_routine}}()\{}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
-\DoxyCodeLine{00051\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00052\ \ \ \ \ }
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>data\ ==\ this-\/>compare\_data)}
-\DoxyCodeLine{00054\ \ \ \ \ \{}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.empty())}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>follower\_list.size();\ i++)}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>follower\_list.at(i).cb(this-\/>new\_data);\ \textcolor{comment}{//call\ all\ follower\ call-\/back\ functions}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00062\ \ \ \ \ \}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ this-\/>data\ =\ this-\/>new\_data;}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};\ \ }
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \}}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00071\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ae5c3669631df069d7ae1ac89527f57cf}{CallEquals<T>::set\_compare\_data}}(T\ new\_compare\_data)}
-\DoxyCodeLine{00072\ \ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{while}(!this-\/>cb\_task\_complete);}
-\DoxyCodeLine{00074\ \ \ \ \ this-\/>compare\_data\ =\ new\_compare\_data;\ }
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00079\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00080\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_afe81c3995e9a5812ea75ffb97d3baf33}{CallEquals<T>::cb\_task}}(\textcolor{keywordtype}{void}\ *data)}
-\DoxyCodeLine{00081\ \ \{}
-\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_equals}{CallEquals}}\ *local\_data\ =\ (\mbox{\hyperlink{class_data_control_1_1_call_equals}{CallEquals}}\ *)data;\ }
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ local\_data-\/>\mbox{\hyperlink{class_data_control_1_1_call_equals_ace99aabb3ad6bb5caee41a8c76286806}{cb\_routine}}();}
-\DoxyCodeLine{00085\ \ \ \ \ vTaskDelete(NULL);\ \ \textcolor{comment}{//self-\/delete\ task}}
-\DoxyCodeLine{00086\ \ \}}
+\DoxyCodeLine{00049\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ae5c3669631df069d7ae1ac89527f57cf}{CallEquals<T>::set\_compare\_data}}(T\ new\_compare\_data)}
+\DoxyCodeLine{00050\ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{while}(!this-\/>cb\_task\_complete);}
+\DoxyCodeLine{00052\ \ \ \ \ this-\/>compare\_data\ =\ new\_compare\_data;\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00058\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_afe81c3995e9a5812ea75ffb97d3baf33}{CallEquals<T>::cb\_task}}(\textcolor{keywordtype}{void}\ *data)}
+\DoxyCodeLine{00059\ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_equals}{CallEquals}}\ *local\_data\ =\ (\mbox{\hyperlink{class_data_control_1_1_call_equals}{CallEquals}}\ *)data;\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ local\_data-\/>\mbox{\hyperlink{class_data_control_1_1_call_equals_ace99aabb3ad6bb5caee41a8c76286806}{cb\_routine}}();}
+\DoxyCodeLine{00063\ \ \ \ \ vTaskDelete(NULL);\ \ \textcolor{comment}{//self-\/delete\ task}}
+\DoxyCodeLine{00064\ \ \}}
 
 \end{DoxyCode}
