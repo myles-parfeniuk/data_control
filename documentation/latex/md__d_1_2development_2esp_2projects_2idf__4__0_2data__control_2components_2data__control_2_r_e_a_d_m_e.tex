@@ -7,119 +7,235 @@
 {\bfseries{Table of Contents}}\begin{adjustwidth}{1em}{0em}
 
 \begin{DoxyEnumerate}
-\item \href{\#about}{\texttt{ about}}  
-\item \href{\#getting-started}{\texttt{ getting started}} 
+\item \href{\#About}{\texttt{ About}}  
+\item \href{\#Getting Started}{\texttt{ Getting Started}} 
 \begin{DoxyItemize}
-\item \href{\#adding to project}{\texttt{ adding to project}} 
+\item \href{\#Adding to Project}{\texttt{ Adding to Project}} 
 \end{DoxyItemize}
-\item \href{\#usage}{\texttt{ usage}} 
+\item \href{Usage}{\texttt{ Usage}} 
 \begin{DoxyItemize}
-\item \href{\#quick start}{\texttt{ quick start}} 
-\item \href{\#quick example}{\texttt{ quick example}} 
+\item \href{\#Quick Start}{\texttt{ Quick Start}} 
+\begin{DoxyItemize}
+\item \href{\#Instantiating a DataWrapper Object}{\texttt{ Instantiating a Data\+Wrapper Object}} 
+\item \href{\#Registering Callback with a DataWrapper Object}{\texttt{ Registering Callback with a Data\+Wrapper Object}} 
+\item \href{Modifying Data}{\texttt{ Modifying Data}} 
+\item \href{Unfollowing, Pausing, and Unpausing a Callbacks}{\texttt{ Unfollowing, Pausing, and Unpausing a Callbacks}} 
 \end{DoxyItemize}
-\item \href{\#license}{\texttt{ license}} 
-\item \href{\#contact}{\texttt{ contact}} 
+\item \href{\#Quick Example}{\texttt{ Quick Example}} 
+\item \href{\#More Examples}{\texttt{ More Examples}} 
+\end{DoxyItemize}
+\item \href{\#License}{\texttt{ License}} 
+\item \href{\#Contact}{\texttt{ Contact}} 
 \end{DoxyEnumerate}\end{adjustwidth}
-\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md0}{}\doxysubsection{\texorpdfstring{About}{About}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md0}
-\doxylink{namespace_data_control}{Data\+Control} is a C++ component written for esp-\/idf version 4.\+0, intended to simplify the management of data and actions associated with that data. For example, one might desire to read the output of a temperature sensor and execute several functions to perform tasks like changing fan speed, turning on an led, etc... This component simplifies that process by allowing call-\/back functions to easily be associated with a piece of data and executed whenever it is set.
+\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md0}{}\doxysection{\texorpdfstring{About}{About}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md0}
+\doxylink{namespace_data_control}{Data\+Control} is a C++ component written for esp-\/idf version 4.\+0, intended to simplify the management of data and actions associated with that data.
 
-It was originally inspired by an in-\/house component I used at a workplace; however, this component has been re-\/written without using that component as a reference. Its functionality shares some similarities, but the implementation is completely different. 
+{\bfseries{What does it do?}}
+\begin{DoxyItemize}
+\item Allows the creation of Data\+Wrapper objects implemented as a template class, used to store data of any type.
+\item Call-\/back functions can be registered to Data\+Wrapper objects.
+\item Call-\/back functions will be executed when the data of Data\+Wrapper object is modified.
+\end{DoxyItemize}
 
-(\href{\#readme-top}{\texttt{ back to top}})\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{\texorpdfstring{Getting Started}{Getting Started}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md1}
-\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{Adding to Project}{Adding to Project}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md2}
+{\bfseries{Why would I want to use it?}}
+
+In embedded system applications it\textquotesingle{}s often required to take some sort of action that is associated with a piece of data. ~\newline
+ For example, we might want to\+:
+
+
+\begin{DoxyItemize}
+\item Turn on an LED and power on a peripheral when a push-\/button is pressed
+\item Adjust the PWM of a fan and write its speed to an OLED or LCD after sampling its tach signal
+\item Write the distance measured by a sensor to an OLED or LCD and move a stepper motor, after taking a distance reading
+\end{DoxyItemize}
+
+Firmware can become large and complicated due to actions like these, especially in the context of a large system where several actions may need to be associated with one piece of data. \doxylink{namespace_data_control}{Data\+Control} is intended to remedy this issue.
+
+Now, in the context of the above examples, with \doxylink{namespace_data_control}{Data\+Control} we can\+:
+
+
+\begin{DoxyItemize}
+\item Store the status of the button in a Data\+Wrapper object within a \"{}\+Button\"{} class, register 2 different call-\/backs to Data\+Wrapper in separate classes (for ex. \"{}\+Led\+Backend\"{} \& \"{}\+My\+Peripheral\"{})
+\item Store the speed of the fan in a Data\+Wrapper object within a \"{}\+Fan\"{} class, register 2 different call-\/backs to Data\+Wrapper in separate classes (for ex. \"{}\+Oled\+Backend\"{} \& \"{}\+PWMBackend\"{})
+\item Store the distance measured by the sensor in a Data\+Wrapper object within a \"{}\+Distance\+Sensor\"{} class, register 2 different call-\/backs to Data\+Wrapper in separate classes (for ex. \"{}\+Oled\+Backend\"{} \& \"{}\+Stepper\+Backend\"{})
+\end{DoxyItemize}
+
+This leads to well organized firmware that is much easier to work with, especially as a system expands and grows.
+
+It was originally inspired by an in-\/house component I used at a workplace; however, this component has been re-\/written without using that component as a reference. ~\newline
+ Its functionality shares some similarities, but the implementation is different.\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Getting Started}{Getting Started}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md1}
+\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{\texorpdfstring{Adding to Project}{Adding to Project}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md2}
 
 \begin{DoxyEnumerate}
-\item Create a \"{}components\"{} directory in the root workspace directory of your esp-\/idf project if it does not exist already
-\item Cd into the newly created components directory and clone the repository 
+\item Create a \"{}components\"{} directory in the root workspace directory of your esp-\/idf project if it does not exist already. ~\newline
+
+
+In workspace directory\+: ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir\ components}
+
+\end{DoxyCode}
+
+\item Cd into the components directory and clone the \doxylink{namespace_data_control}{Data\+Control} repo. ~\newline
+
+
+
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd\ components}
 \DoxyCodeLine{git\ clone\ https://github.com/myles-\/parfeniuk/data\_control.git}
 
 \end{DoxyCode}
 
-\item You may have to edit project CMake\+Lists.\+txt file to include the component 
+\item You may have to edit project CMake\+Lists.\+txt file to include the components. ~\newline
+
+
+For example\+: ~\newline
+ 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{idf\_component\_register(SRC\_DIRS\ "{}."{}\ }
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INCLUDE\_DIRS\ "{}"{}\ }
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REQUIRES\ data\_control)}
+\DoxyCodeLine{INCLUDE\_DIRS\ "{}"{}\ }
+\DoxyCodeLine{REQUIRES\ data\_control)}
 
 \end{DoxyCode}
 
-\end{DoxyEnumerate}
-
-(\href{\#readme-top}{\texttt{ back to top}})\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md3}
-\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Quick Start}{Quick Start}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md4}
-This is intended to be a quick guide, full documentation generated with Doxygen can be found in the documentation directory.
-
-To use\+:
+\end{DoxyEnumerate}\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md3}
+\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{\texorpdfstring{Quick Start}{Quick Start}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md4}
+This is intended to be a quick-\/guide, api documentation generated with doxygen can be found in the documentation directory of the master repo. ~\newline
+\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Instantiating a Data\+Wrapper Object}{Instantiating a DataWrapper Object}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md5}
+To instantiate a Data\+Wrapper, instantiate one of its sub-\/classes. The differences are as follows\+:
 
 
-\begin{DoxyEnumerate}
-\item Instantiate a data wrapper object of any type. The data wrapper object can be declared as Call\+Always, Call\+Different, Call\+Same, or Call\+Equals.
+\begin{DoxyItemize}
+\item Call\+Always will execute follower callback functions {\itshape always}
+\item Call\+Different will only execute follower callback functions if the current data is {\itshape different} from the new data set()
+\item Call\+Same will only execute follower callback functions if the current data is the {\itshape same} as the new data set()
+\item Call\+Equals will only execute follower callback functions if the new data set() {\itshape equals} its compare\+\_\+data member ~\newline
 
-Example syntax\+: 
+
+Example syntax\+: ~\newline
+
+\end{DoxyItemize}
+
+
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{comment}{//integer\ data\ with\ initial\ value\ of\ 0,\ callbacks\ executed\ every\ time\ set()\ method\ is\ called\ (call\ always)}}
-\DoxyCodeLine{\mbox{\hyperlink{class_data_control_1_1_call_always}{DataControl::CallAlways<int16\_t>}}\ press\_count(0);\ }
+\DoxyCodeLine{\mbox{\hyperlink{class_data_control_1_1_call_always}{DataControl::CallAlways<int16\_t>}}\ number(0);\ }
 \DoxyCodeLine{\textcolor{comment}{//bool\ data\ with\ initial\ value\ of\ false,\ callbacks\ executed\ every\ time\ set()\ method\ is\ called\ and\ new\ data\ doesn't\ match\ current\ data\ (call\ different)}}
-\DoxyCodeLine{\mbox{\hyperlink{class_data_control_1_1_call_different}{DataControl::CallDifferent<bool>}}\ button\_pressed(\textcolor{keyword}{false});}
+\DoxyCodeLine{\mbox{\hyperlink{class_data_control_1_1_call_different}{DataControl::CallDifferent<bool>}}\ my\_bool(\textcolor{keyword}{false});}
 
 \end{DoxyCode}
 
-\item Register any desired call back functions by calling the follow() method. These can be instantiated as lambda functions as well.
+
+Another example using the second example from the About section\+: ~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*inside\ Fan\ class\ definition*/}}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\mbox{\hyperlink{class_data_control_1_1_call_always}{DataControl::CallAlways<int16\_t>}}\ fan\_speed(0);}
+
+\end{DoxyCode}
+\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{Registering Callback with a Data\+Wrapper Object}{Registering Callback with a DataWrapper Object}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md6}
+To register any desired call back functions, call the follow() method.
 
 Example syntax\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{comment}{/*in\ led\_control.cpp*/}}
-\DoxyCodeLine{}
-\DoxyCodeLine{button\_pressed.follow(}
-\DoxyCodeLine{\ \textcolor{comment}{//lambda\ call-\/back\ function}}
-\DoxyCodeLine{\ [](\textcolor{keywordtype}{bool}\ new\_data)}
+\DoxyCodeLine{number.follow(}
+\DoxyCodeLine{\ \textcolor{comment}{//lambda\ call-\/back\ function\ that\ executes\ whenever\ set()\ is\ called\ on\ number}}
+\DoxyCodeLine{\ [\&number](int16\_t\ new\_data)}
 \DoxyCodeLine{\ \{}
-\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//turn\ on\ an\ led\ when\ a\ button\ is\ held}}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}(new\_data)\{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ turn\_on\_led\_one();\ \textcolor{comment}{//turn\ on\ led}}
-\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ turn\_off\_led\_one();\ \textcolor{comment}{//turn\ off\ led}}
-\DoxyCodeLine{\ \ \ \ \}}
-\DoxyCodeLine{\});}
-\DoxyCodeLine{}
-\DoxyCodeLine{press\_count.follow(}
-\DoxyCodeLine{\ \textcolor{comment}{//lambda\ call-\/back\ function}}
-\DoxyCodeLine{\ [](int16\_t\ new\_data)\{}
-\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//turn\ on\ an\ led\ after\ 100\ presses}}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}(new\_data\ >=\ 100)\{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ turn\_on\_led\_two();\ }
-\DoxyCodeLine{\ \ \ \ \}}
-\DoxyCodeLine{\});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{comment}{/*in\ log\_maker.cpp*/}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ press\_count.follow(}
-\DoxyCodeLine{\ \textcolor{comment}{//lambda\ call-\/back\ function}}
-\DoxyCodeLine{\ [\&press\_count](int16\_t\ new\_data)\{}
-\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//print\ the\ new\ and\ current\ press\ count}}
-\DoxyCodeLine{\ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}Current\ Press\ Count:\ \%d\ |\ New\ Press\ Count:\ \%d"{}},\ press\_count.get(),\ new\_data);}
-\DoxyCodeLine{\});}
+\DoxyCodeLine{\ \ \ ESP\_LOGI(\textcolor{stringliteral}{"{}Current\ Number:\ \%d,\ New\ Number:\ \%d"{}},\ number.get(),\ new\_data);}
+\DoxyCodeLine{\ \});}
 
 \end{DoxyCode}
 
-\item Update the data within data wrapper object using set() method as desired, and all call-\/backs previously registered with the follow() method will be executed automatically.
+
+Using the same fan example, it makes for good organization to register the callbacks within the class constructors\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//in\ main.cpp}}
+\DoxyCodeLine{Fan\ *fan\ =\ \textcolor{keyword}{new}\ Fan(\textcolor{comment}{/*init\ vals*/});\ \textcolor{comment}{//instantiate\ fan}}
+\DoxyCodeLine{PWMBackend\ *pwm\ =\ PWMBackend(*fan);\ \textcolor{comment}{//instantiate\ pwm\ with\ reference\ to\ fan}}
+\DoxyCodeLine{OledBackend\ *oled\ =\ OledBackend(*fan);\ \textcolor{comment}{//instantiate\ oled\ with\ reference\ to\ fan}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//PWMBackend\ constructor\ in\ PWMBackend.cpp}}
+\DoxyCodeLine{PWMBackend::\ PWMBackend(Fan\ \&fan):}
+\DoxyCodeLine{fan(fan)\ \textcolor{comment}{//initialize\ fan\ member\ as\ reference\ to\ fan}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ fan-\/>fan\_speed.follow(}
+\DoxyCodeLine{\ \ [\&fan](int16\_t\ new\_speed)\{}
+\DoxyCodeLine{\ \ \ \ set\_pwm(new\_speed);\ \textcolor{comment}{//set\ new\ pwm\ whenever\ new\ fan\ speed\ reading\ is\ taken}}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//OledBackend\ constructor\ in\ Oled.cpp}}
+\DoxyCodeLine{OledBackend::\ OledBackend(Fan\ \&fan):}
+\DoxyCodeLine{fan(fan)\ \textcolor{comment}{//initialize\ fan\ member\ as\ reference\ to\ fan}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ fan-\/>fan\_speed.follow(}
+\DoxyCodeLine{\ \ [\&fan](int16\_t\ new\_speed)\{}
+\DoxyCodeLine{\ \ \ \ draw\_speed(new\_speed);\ \textcolor{comment}{//draw\ speed\ to\ OLED\ when\ new\ fan\ speed\ reading\ is\ taken}}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Modifying Data}{Modifying Data}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md7}
+Update the data within data wrapper object by calling the set() method, and all call-\/backs previously registered with the follow() method will be executed automatically. The call-\/backs will be executed in the order they were registered.
 
 Example syntax\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{comment}{/*in\ button\_driver.cpp*/}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{comment}{//when\ a\ button\ press\ is\ detected:}}
-\DoxyCodeLine{button\_pressed.set(\textcolor{keyword}{true});\ \textcolor{comment}{//set\ button\_pressed\ as\ true}}
-\DoxyCodeLine{press\_count.set(press\_count.get()\ +\ 1);\ \textcolor{comment}{//increment\ press\_count\ by\ 1}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{comment}{//when\ the\ button\ is\ no\ longer\ being\ pressed:}}
-\DoxyCodeLine{button\_pressed.set(\textcolor{keyword}{false});\ \textcolor{comment}{//set\ button\_pressed\ as\ false}}
+\DoxyCodeLine{\textcolor{comment}{//in\ a\ loop}}
+\DoxyCodeLine{\ number.set(number.get()\ +\ 1);\ \textcolor{comment}{//increment\ number\ by\ one}}
 
 \end{DoxyCode}
 
-\end{DoxyEnumerate}\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Quick Example}{Quick Example}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md5}
+
+Again, same example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//inside\ a\ task\ within\ Fan.cpp}}
+\DoxyCodeLine{fan\_speed.set(0);}
+\DoxyCodeLine{\textcolor{keywordflow}{while}(1)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ fan\_speed.set(take\_tach\_reading());\ \textcolor{comment}{//set\ fan\ speed\ as\ result\ of\ new\ reading}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//after\ set\ is\ called,\ pwm's\ callback\ function\ will\ execute\ first\ (it\ was\ instantiated\ first),\ and\ oled's\ will\ execute\ second\ (it\ was\ instantiated\ second)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ vTaskDelay(200/portTICK\_PERIOD\_MS);\ \textcolor{comment}{//delay\ for\ 200ms\ }}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{Unfollowing, Pausing, and Unpausing a Callbacks}{Unfollowing, Pausing, and Unpausing a Callbacks}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md8}
+If it is desired to stop executed a callback, its ID must be saved when it is registered. ~\newline
+
+
+Example syntax\+: ~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint16\_t\ follower\_id\ =\ 0;\ \textcolor{comment}{//callback\ function\ ID}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ follower\_id\ =\ number.follow(}
+\DoxyCodeLine{\ \ \textcolor{comment}{//lambda\ call-\/back\ function\ that\ executes\ whenever\ set()\ is\ called\ on\ number}}
+\DoxyCodeLine{\ \ [\&number](int16\_t\ new\_data)}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ ESP\_LOGI(\textcolor{stringliteral}{"{}Current\ Number:\ \%d,\ New\ Number:\ \%d"{}},\ number.get(),\ new\_data);}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ number.pause(follower\_id);\ \textcolor{comment}{//temporarily\ pauses\ this\ callback\ until\ un\_pause\ is\ called,\ a\ paused\ callback\ never\ executes}}
+\DoxyCodeLine{\ \ number.un\_pause(follower\_id);\ \textcolor{comment}{//un-\/pauses\ the\ callback\ such\ that\ it\ executes\ as\ normal}}
+\DoxyCodeLine{\ \ number.unfollow(follower\_id);\ \textcolor{comment}{//un-\/registers\ callback\ permanently\ }}
+
+\end{DoxyCode}
+\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{\texorpdfstring{Quick Example}{Quick Example}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md9}
 A quick example that generates some terminal output which can be seen in the gif below.
 
 Code\+: 
@@ -173,7 +289,6 @@ Code\+:
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(counter.get()\ >\ 10)\{}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ over\_ten.set(\textcolor{keyword}{true});\ \textcolor{comment}{//set\ over\_ten\ true\ after\ 10\ iterations\ of\ loop}}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \}}
 \DoxyCodeLine{\}}
 
@@ -182,14 +297,16 @@ Code\+:
 
 Terminal Output\+:
 
+\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{\texorpdfstring{More Examples}{More Examples}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md10}
+Examples are available in the \doxylink{namespace_data_control}{Data\+Control} directory of my esp\+\_\+idf\+\_\+cpp\+\_\+examples repo\+: ~\newline
 
 
-(\href{\#readme-top}{\texttt{ back to top}})\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{\texorpdfstring{License}{License}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md6}
-Distributed under the MIT License. See {\ttfamily LICENSE.\+md} for more information.
+\href{https://github.com/myles-parfeniuk/esp_idf_cpp_examples}{\texttt{ https\+://github.\+com/myles-\/parfeniuk/esp\+\_\+idf\+\_\+cpp\+\_\+examples}}
 
-(\href{\#readme-top}{\texttt{ back to top}})\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{\texorpdfstring{Contact}{Contact}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md7}
+My other component Button\+Driver also utilizes \doxylink{namespace_data_control}{Data\+Control}\+:
+
+\href{https://github.com/myles-parfeniuk/button_driver}{\texttt{ https\+://github.\+com/myles-\/parfeniuk/button\+\_\+driver}}\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md11}{}\doxysection{\texorpdfstring{License}{License}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md11}
+Distributed under the MIT License. See {\ttfamily LICENSE.\+md} for more information.\hypertarget{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md12}{}\doxysection{\texorpdfstring{Contact}{Contact}}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control_2components_2data__control_2_r_e_a_d_m_e_autotoc_md12}
 Myles Parfeniuk -\/ \href{mailto:myles.parfenyuk@gmail.com}{\texttt{ myles.\+parfenyuk@gmail.\+com}}
 
-Project Link\+: \href{https://github.com/myles-parfeniuk/data_control}{\texttt{ https\+://github.\+com/myles-\/parfeniuk/data\+\_\+control}}
-
-(\href{\#readme-top}{\texttt{ back to top}})
+Project Link\+: \href{https://github.com/myles-parfeniuk/data_control}{\texttt{ https\+://github.\+com/myles-\/parfeniuk/data\+\_\+control}} 

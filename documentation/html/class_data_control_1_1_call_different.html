@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">DataControl<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">DataControl<span id="projectnumber">&#160;1.01</span>
    </div>
-   <div id="projectbrief">Monitoring variables and executing callbacks.</div>
+   <div id="projectbrief">Monitoring data and executing callbacks.</div>
   </td>
  </tr>
  </tbody>
@@ -130,15 +130,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a882054138c590a351454aed8e69cf974"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_call_different.html#a882054138c590a351454aed8e69cf974">cb_routine</a> ()</td></tr>
-<tr class="memdesc:a882054138c590a351454aed8e69cf974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call-back function routine.  <br /></td></tr>
-<tr class="separator:a882054138c590a351454aed8e69cf974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adde003d6d01697701071c1fbb83b27be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_call_different.html#adde003d6d01697701071c1fbb83b27be">cb_task</a> ()</td></tr>
+<tr class="separator:adde003d6d01697701071c1fbb83b27be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
-<tr class="memitem:a2093af9630b668a0b72129d7820d8c2b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_call_different.html#a2093af9630b668a0b72129d7820d8c2b">cb_task</a> (void *<a class="el" href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">data</a>)</td></tr>
-<tr class="memdesc:a2093af9630b668a0b72129d7820d8c2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call-back task.  <br /></td></tr>
-<tr class="separator:a2093af9630b668a0b72129d7820d8c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad11447bb3f668de3d6f18020d751efea"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_call_different.html#ad11447bb3f668de3d6f18020d751efea">cb_task_trampoline</a> (void *<a class="el" href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">data</a>)</td></tr>
+<tr class="separator:ad11447bb3f668de3d6f18020d751efea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -184,8 +182,8 @@ class DataControl::CallDifferent&lt; T &gt;</div><p><a class="el" href="class_da
 <p>For further information see base class <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> documentation.</p>
 <dl class="section author"><dt>Author</dt><dd>Myles Parfeniuk </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a882054138c590a351454aed8e69cf974" name="a882054138c590a351454aed8e69cf974"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a882054138c590a351454aed8e69cf974">&#9670;&#160;</a></span>cb_routine()</h2>
+<a id="adde003d6d01697701071c1fbb83b27be" name="adde003d6d01697701071c1fbb83b27be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adde003d6d01697701071c1fbb83b27be">&#9670;&#160;</a></span>cb_task()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +194,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CallDifferent::cb_routine</td>
+          <td class="memname">void CallDifferent::cb_task</td>
         </tr>
       </table>
   </td>
@@ -206,14 +204,10 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Call-back function routine. </p>
-<p>This function should not be called directly. It is called from the call-back task and executes the call-back functions of all followers on this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object's follower list.</p>
-<dl class="section return"><dt>Returns</dt><dd>void, nothing to return </dd></dl>
-
 </div>
 </div>
-<a id="a2093af9630b668a0b72129d7820d8c2b" name="a2093af9630b668a0b72129d7820d8c2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2093af9630b668a0b72129d7820d8c2b">&#9670;&#160;</a></span>cb_task()</h2>
+<a id="ad11447bb3f668de3d6f18020d751efea" name="ad11447bb3f668de3d6f18020d751efea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad11447bb3f668de3d6f18020d751efea">&#9670;&#160;</a></span>cb_task_trampoline()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +218,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CallDifferent::cb_task </td>
+          <td class="memname">void CallDifferent::cb_task_trampoline </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -237,10 +231,6 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Call-back task. </p>
-<p>This task is created to run the call-back routine whenever this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set and the new data is different from the current data. Upon completion of the call-back routine this task is deleted.</p>
-<dl class="section return"><dt>Returns</dt><dd>void, nothing to return </dd></dl>
 
 </div>
 </div>
@@ -263,8 +253,7 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set value of data. </p>
-<p>Overwrite current data with a new value. When this function is called, if the new data is different from the current data all followers within this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object's follower list will have their call-backs executed. Upon completion of call-back executions, the current data value will be over-written with the data passed into this function. If the <a class="el" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181" title="Get current data.">get()</a> method is called within a callback it will return the current data, the input parameter of a call-back is the new data that is to overwrite the current data.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Overwrite current data with a new value. When this function is called, any followers registered to this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object will have their call-backs executed. Upon completion of call-back executions, the current data value will be over-written with the data passed into this function. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">new_data</td><td>the new value to over-write current data with. </td></tr>
   </table>

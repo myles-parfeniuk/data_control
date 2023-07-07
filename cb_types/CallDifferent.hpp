@@ -20,36 +20,33 @@ class CallDifferent : public DataWrapper<T>
     /**
     * @brief Set value of data. 
     * 
-    * Overwrite current data with a new value. When this function is called, if the new data is different from the current data all followers within this DataWrapper 
-    * object's follower list will have their call-backs executed. Upon completion of call-back executions, the current data value will be over-written with
-    * the data passed into this function. If the get() method is called within a callback it will return the current data, the input parameter of a call-back 
-    * is the new data that is to overwrite the current data. 
-    * 
+    * Overwrite current data with a new value. When this function is called, any followers registered to this DataWrapper object will have their call-backs executed. 
+    * Upon completion of call-back executions, the current data value will be over-written with the data passed into this function. 
     * @param new_data the new value to over-write current data with. 
     * @return void, nothing to return
     */
         void set(T new_data);
 
     private:
-    /**
-    * @brief Call-back function routine.
-    * 
-    * This function should not be called directly. It is called from the call-back task and executes the call-back
-    * functions of all followers on this DataWrapper object's follower list. 
-    * 
-    * @return void, nothing to return
-    */
-        void cb_routine();
-
-    /**
+    /*
     * @brief Call-back task.
     * 
-    * This task is created to run the call-back routine whenever this DataWrapper object is set and the new data is different from the current data. Upon completion of the call-back routine
-    * this task is deleted. 
+    * Task responsible for executing the call-back functions of followers registered to this DataWrapper object.
+    * Executes follower callback if and only if the new data is different from the previous data. 
+    * This task is started when set() is called, and self-deletes upon completion. 
     * 
     * @return void, nothing to return
     */
-        static void cb_task(void *data);
-};
+        void cb_task();
 
+   /*
+    * @brief Launches Call-back task.
+    * 
+    * This function is used to get around the fact xTaskCreate() from the freertos api requires a static task function.
+    * To prevent having to write the callback task from the context of a static function, this serves as a trampoline to launch the cb_task()
+    * from the DataWrapper object passed into xTaskCreate().
+    * @return void, nothing to return
+    */
+        static void cb_task_trampoline(void *data);
+};
 };

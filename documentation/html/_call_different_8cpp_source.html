@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">DataControl<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">DataControl<span id="projectnumber">&#160;1.01</span>
    </div>
-   <div id="projectbrief">Monitoring variables and executing callbacks.</div>
+   <div id="projectbrief">Monitoring data and executing callbacks.</div>
   </td>
  </tr>
  </tbody>
@@ -86,12 +86,12 @@ $(function() {
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    this-&gt;new_data = new_data; </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    xTaskCreate(&amp;cb_task, <span class="stringliteral">&quot;cb_task&quot;</span>, this-&gt;stack_depth, <span class="keyword">this</span>, 4, &amp;this-&gt;cb_task_hdl);</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    xTaskCreate(&amp;cb_task_trampoline, <span class="stringliteral">&quot;cb_task&quot;</span>, this-&gt;stack_depth, <span class="keyword">this</span>, 4, &amp;this-&gt;cb_task_hdl);</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_different.html#a882054138c590a351454aed8e69cf974">   15</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_different.html#a882054138c590a351454aed8e69cf974">CallDifferent&lt;T&gt;::cb_routine</a>(){</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_different.html#adde003d6d01697701071c1fbb83b27be">   15</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_different.html#adde003d6d01697701071c1fbb83b27be">CallDifferent&lt;T&gt;::cb_task</a>(){</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">static</span> uint16_t i = 0;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    this-&gt;cb_task_complete = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    </div>
@@ -116,16 +116,16 @@ $(function() {
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_different.html#a2093af9630b668a0b72129d7820d8c2b">   40</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_different.html#a2093af9630b668a0b72129d7820d8c2b">CallDifferent&lt;T&gt;::cb_task</a>(<span class="keywordtype">void</span> *data){</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_different.html#ad11447bb3f668de3d6f18020d751efea">   40</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_different.html#ad11447bb3f668de3d6f18020d751efea">CallDifferent&lt;T&gt;::cb_task_trampoline</a>(<span class="keywordtype">void</span> *data){</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="class_data_control_1_1_call_different.html">CallDifferent</a> *local_data = (<a class="code hl_class" href="class_data_control_1_1_call_different.html">CallDifferent</a> *)data; </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    local_data-&gt;<a class="code hl_function" href="class_data_control_1_1_call_different.html#a882054138c590a351454aed8e69cf974">cb_routine</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    local_data-&gt;cb_routine();</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    vTaskDelete(NULL);  <span class="comment">//self-delete task</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> }</div>
 <div class="ttc" id="a_call_different_8hpp_html"><div class="ttname"><a href="_call_different_8hpp.html">CallDifferent.hpp</a></div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_different_html"><div class="ttname"><a href="class_data_control_1_1_call_different.html">DataControl::CallDifferent</a></div><div class="ttdoc">DataWrapper that executes callbacks when set() method is called and new data is different from curren...</div><div class="ttdef"><b>Definition</b> CallDifferent.hpp:17</div></div>
-<div class="ttc" id="aclass_data_control_1_1_call_different_html_a2093af9630b668a0b72129d7820d8c2b"><div class="ttname"><a href="class_data_control_1_1_call_different.html#a2093af9630b668a0b72129d7820d8c2b">DataControl::CallDifferent::cb_task</a></div><div class="ttdeci">static void cb_task(void *data)</div><div class="ttdoc">Call-back task.</div><div class="ttdef"><b>Definition</b> CallDifferent.cpp:40</div></div>
-<div class="ttc" id="aclass_data_control_1_1_call_different_html_a882054138c590a351454aed8e69cf974"><div class="ttname"><a href="class_data_control_1_1_call_different.html#a882054138c590a351454aed8e69cf974">DataControl::CallDifferent::cb_routine</a></div><div class="ttdeci">void cb_routine()</div><div class="ttdoc">Call-back function routine.</div><div class="ttdef"><b>Definition</b> CallDifferent.cpp:15</div></div>
+<div class="ttc" id="aclass_data_control_1_1_call_different_html_ad11447bb3f668de3d6f18020d751efea"><div class="ttname"><a href="class_data_control_1_1_call_different.html#ad11447bb3f668de3d6f18020d751efea">DataControl::CallDifferent::cb_task_trampoline</a></div><div class="ttdeci">static void cb_task_trampoline(void *data)</div><div class="ttdef"><b>Definition</b> CallDifferent.cpp:40</div></div>
+<div class="ttc" id="aclass_data_control_1_1_call_different_html_adde003d6d01697701071c1fbb83b27be"><div class="ttname"><a href="class_data_control_1_1_call_different.html#adde003d6d01697701071c1fbb83b27be">DataControl::CallDifferent::cb_task</a></div><div class="ttdeci">void cb_task()</div><div class="ttdef"><b>Definition</b> CallDifferent.cpp:15</div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_different_html_ade070629e521048e33ef3d8504d601e7"><div class="ttname"><a href="class_data_control_1_1_call_different.html#ade070629e521048e33ef3d8504d601e7">DataControl::CallDifferent::set</a></div><div class="ttdeci">void set(T new_data)</div><div class="ttdoc">Set value of data.</div><div class="ttdef"><b>Definition</b> CallDifferent.cpp:6</div></div>
 <div class="ttc" id="anamespace_data_control_html"><div class="ttname"><a href="namespace_data_control.html">DataControl</a></div><div class="ttdef"><b>Definition</b> CallAlways.hpp:4</div></div>
 </div><!-- fragment --></div><!-- contents -->

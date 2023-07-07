@@ -7,12 +7,12 @@ void CallSame<T>::set(T new_data)
 {
     this->new_data = new_data; 
 
-    xTaskCreate(&cb_task, "cb_task", this->stack_depth, this, 4, &this->cb_task_hdl);
+    xTaskCreate(&cb_task_trampoline, "cb_task", this->stack_depth, this, 4, &this->cb_task_hdl);
 }
 
 
  template <typename T>
- void CallSame<T>::cb_routine(){
+ void CallSame<T>::cb_task(){
     static uint16_t i = 0;
     this->cb_task_complete = false;
     
@@ -37,7 +37,7 @@ void CallSame<T>::set(T new_data)
 
 
  template <typename T>
- void CallSame<T>::cb_task(void *data){
+ void CallSame<T>::cb_task_trampoline(void *data){
     CallSame *local_data = (CallSame *)data; 
 
     local_data->cb_routine();

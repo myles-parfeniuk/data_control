@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">DataControl<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">DataControl<span id="projectnumber">&#160;1.01</span>
    </div>
-   <div id="projectbrief">Monitoring variables and executing callbacks.</div>
+   <div id="projectbrief">Monitoring data and executing callbacks.</div>
   </td>
  </tr>
  </tbody>
@@ -130,15 +130,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a781337f7355b1897cd2a7bfecdef2487"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_call_always.html#a781337f7355b1897cd2a7bfecdef2487">cb_routine</a> ()</td></tr>
-<tr class="memdesc:a781337f7355b1897cd2a7bfecdef2487"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call-back function routine.  <br /></td></tr>
-<tr class="separator:a781337f7355b1897cd2a7bfecdef2487"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31e28dbe71a040fab784d687df15c8af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_call_always.html#a31e28dbe71a040fab784d687df15c8af">cb_task</a> ()</td></tr>
+<tr class="separator:a31e28dbe71a040fab784d687df15c8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
-<tr class="memitem:a2b9d397a408a555a00f9ed4a9f316a43"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_call_always.html#a2b9d397a408a555a00f9ed4a9f316a43">cb_task</a> (void *<a class="el" href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">data</a>)</td></tr>
-<tr class="memdesc:a2b9d397a408a555a00f9ed4a9f316a43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call-back task.  <br /></td></tr>
-<tr class="separator:a2b9d397a408a555a00f9ed4a9f316a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad12ba41e6460de225c6cb46ae578d75a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_call_always.html#ad12ba41e6460de225c6cb46ae578d75a">cb_task_trampoline</a> (void *<a class="el" href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">data</a>)</td></tr>
+<tr class="separator:ad12ba41e6460de225c6cb46ae578d75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -184,8 +182,8 @@ class DataControl::CallAlways&lt; T &gt;</div><p><a class="el" href="class_data_
 <p>For further information see base class <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> documentation.</p>
 <dl class="section author"><dt>Author</dt><dd>Myles Parfeniuk </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a781337f7355b1897cd2a7bfecdef2487" name="a781337f7355b1897cd2a7bfecdef2487"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a781337f7355b1897cd2a7bfecdef2487">&#9670;&#160;</a></span>cb_routine()</h2>
+<a id="a31e28dbe71a040fab784d687df15c8af" name="a31e28dbe71a040fab784d687df15c8af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31e28dbe71a040fab784d687df15c8af">&#9670;&#160;</a></span>cb_task()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +194,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CallAlways::cb_routine</td>
+          <td class="memname">void CallAlways::cb_task</td>
         </tr>
       </table>
   </td>
@@ -206,14 +204,10 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Call-back function routine. </p>
-<p>This function should not be called directly. It is called from the call-back task and executes the call-back functions of all followers on this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object's follower list.</p>
-<dl class="section return"><dt>Returns</dt><dd>void, nothing to return </dd></dl>
-
 </div>
 </div>
-<a id="a2b9d397a408a555a00f9ed4a9f316a43" name="a2b9d397a408a555a00f9ed4a9f316a43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b9d397a408a555a00f9ed4a9f316a43">&#9670;&#160;</a></span>cb_task()</h2>
+<a id="ad12ba41e6460de225c6cb46ae578d75a" name="ad12ba41e6460de225c6cb46ae578d75a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad12ba41e6460de225c6cb46ae578d75a">&#9670;&#160;</a></span>cb_task_trampoline()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +218,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CallAlways::cb_task </td>
+          <td class="memname">void CallAlways::cb_task_trampoline </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -237,10 +231,6 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Call-back task. </p>
-<p>This task is created to run the call-back routine whenever this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set. Upon completion of the call-back routine this task is deleted.</p>
-<dl class="section return"><dt>Returns</dt><dd>void, nothing to return </dd></dl>
 
 </div>
 </div>
@@ -263,8 +253,7 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Set value of data. </p>
-<p>Overwrite current data with a new value. When this function is called, all followers within this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object's follower list will have their call-backs executed. Upon completion of call-back executions, the current data value will be over-written with the data passed into this function. If the <a class="el" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181" title="Get current data.">get()</a> method is called within a callback it will return the current data, the input parameter of a call-back is the new data that is to overwrite the current data.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Overwrite current data with a new value. When this function is called, any followers registered to this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object will have their call-backs executed. Upon completion of call-back executions, the current data value will be over-written with the data passed into this function. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">new_data</td><td>the new value to over-write current data with. </td></tr>
   </table>

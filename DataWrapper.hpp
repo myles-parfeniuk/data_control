@@ -13,7 +13,7 @@ namespace DataControl{
 *
 * @brief Base DataWrapper class
 *
-* Stores a variable/data and allows for execution of callback functions when it is changed. When changing the data
+* Stores a variable/data and allows for execution of callback functions when it is modified. When modifying the data
 * is desired, the set() method should be called, upon which any callbacks registered with the follow()
 * method will be executed, and the data updated. 
 * DataWrapper objects should not be instantiated directly, instead insatiate objects from derived classes
@@ -51,12 +51,12 @@ class DataWrapper {
   /**
   * @brief Follow DataWrapper object.
   *        
-  * Trigger callback when this DataWrapper object is set.
+  * Registers a call-back with this data wrapper object. Registered call-back functions are executed when the set() method is called on the same data wrapper object. 
   * The call-back function parameter should have a single input parameter of type T. This input will be the new value of the data being set. 
   * Calling the get() method from within the callback will return the current value. When all callbacks have been executed the current
   * value will over written with the new value.           
   * 
-  * @param cb the call-back function to be called when DataWrapper object is set, must take the form "void f(T new_data)"
+  * @param cb the call-back function to be called when DataWrapper object is set, must take the form "void my_callback(T new_data)"
   * @return follower ID, if un-following DataWrapper object is desired this return value must be saved
   */
     uint16_t follow(std::function<void(T)> cb); 

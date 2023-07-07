@@ -33,11 +33,8 @@ class CallEquals : public DataWrapper<T>
     /**
     * @brief Set value of data. 
     * 
-    * Overwrite current data with a new value. When this function is called, if the new data matches the comparison data all followers within this DataWrapper 
-    * object's follower list will have their call-backs executed. Upon completion of call-back executions, the current data value will be over-written with
-    * the data passed into this function. If the get() method is called within a callback it will return the current data, the input parameter of a call-back 
-    * is the new data that is to overwrite the current data. 
-    * 
+    * Overwrite current data with a new value. When this function is called, any followers registered to this DataWrapper object will have their call-backs executed. 
+    * Upon completion of call-back executions, the current data value will be over-written with the data passed into this function. 
     * @param new_data the new value to over-write current data with. 
     * @return void, nothing to return
     */
@@ -48,8 +45,6 @@ class CallEquals : public DataWrapper<T>
     * 
     * Overwrite current comparison data with a new value. If the callback routine is executing, the compare data will not be over-written
     * until it has completed. The set_compare_data_from_cb() method can be called to over-write the compare data immediately. 
-    * The comparison data is checked against the new data whenever the set() method is called. 
-    * If the new data matches the comparison data all follower callbacks will be executed. 
     * 
     * @param new_compare_data the new comparison value to over-write current comparison data with. 
     * @return void, nothing to return
@@ -61,8 +56,6 @@ class CallEquals : public DataWrapper<T>
     * 
     * Overwrite current comparison data with a new value immediately, does not wait for call-back routine to complete.
     * This method should be called instead of set_compare_data() if within the context of a follower call-back function.  
-    * The comparison data is checked against the new data whenever the set() method is called. 
-    * If the new data matches the comparison data all follower callbacks will be executed. 
     * 
     * @param new_compare_data the new comparison value to over-write current comparison data with. 
     * @return void, nothing to return
@@ -70,26 +63,29 @@ class CallEquals : public DataWrapper<T>
         void set_compare_data_from_cb(T new_compare_data);
 
     private:
-    /**
-    * @brief Call-back function routine.
-    * 
-    * This function should not be called directly. It is called from the call-back task and executes the call-back
-    * functions of all followers on this DataWrapper object's follower list. 
-    * 
-    * @return void, nothing to return
-    */
-        void cb_routine();
-    
-    /**
+  /**
     * @brief Call-back task.
     * 
-    * This task is created to run the call-back routine whenever this DataWrapper object is set and the new data matches the comparison data. Upon completion of the call-back routine
-    * this task is deleted. 
+    * Task responsible for executing the call-back functions of followers registered to this DataWrapper object.
+    * Executes follower callback if and only if the new data is equal to the comparison data. 
+    * This task is started when set() is called, and self-deletes upon completion. 
     * 
     * @return void, nothing to return
     */
-        static void cb_task(void *data);
-        T compare_data; ///< data to check against new_data when set() method is called
+        void cb_task();
+    
+   /*
+    * @brief Launches Call-back task.
+    * 
+    * This function is used to get around the fact xTaskCreate() from the freertos api requires a static task function.
+    * To prevent having to write the callback task from the context of a static function, this serves as a trampoline to launch the cb_task()
+    * from the DataWrapper object passed into xTaskCreate().
+    * @return void, nothing to return
+    */
+        static void cb_task_trampoline(void *data);
+    
+    T compare_data; ///< data to check against new_data when set() method is called
 };
 
 };
+

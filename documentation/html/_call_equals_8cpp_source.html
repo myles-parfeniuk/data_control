@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">DataControl<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">DataControl<span id="projectnumber">&#160;1.01</span>
    </div>
-   <div id="projectbrief">Monitoring variables and executing callbacks.</div>
+   <div id="projectbrief">Monitoring data and executing callbacks.</div>
   </td>
  </tr>
  </tbody>
@@ -99,12 +99,12 @@ $(function() {
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    this-&gt;new_data = new_data; </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    xTaskCreate(&amp;cb_task, <span class="stringliteral">&quot;cb_task&quot;</span>, this-&gt;stack_depth, <span class="keyword">this</span>, 4, &amp;this-&gt;cb_task_hdl);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    xTaskCreate(&amp;cb_task_trampoline, <span class="stringliteral">&quot;cb_task&quot;</span>, this-&gt;stack_depth, <span class="keyword">this</span>, 4, &amp;this-&gt;cb_task_hdl);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_equals.html#ace99aabb3ad6bb5caee41a8c76286806">   28</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_equals.html#ace99aabb3ad6bb5caee41a8c76286806">CallEquals&lt;T&gt;::cb_routine</a>(){</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_equals.html#a8f2f5870562aa1b337c138fcbbc4a177">   28</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_equals.html#a8f2f5870562aa1b337c138fcbbc4a177">CallEquals&lt;T&gt;::cb_task</a>(){</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">static</span> uint16_t i = 0;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    this-&gt;cb_task_complete = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">if</span>(this-&gt;new_data == this-&gt;compare_data)</div>
@@ -143,21 +143,21 @@ $(function() {
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_equals.html#afe81c3995e9a5812ea75ffb97d3baf33">   67</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_equals.html#afe81c3995e9a5812ea75ffb97d3baf33">CallEquals&lt;T&gt;::cb_task</a>(<span class="keywordtype">void</span> *data)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_equals.html#ad99d32c781735be97600055ecc588698">   67</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_equals.html#ad99d32c781735be97600055ecc588698">CallEquals&lt;T&gt;::cb_task_trampoline</a>(<span class="keywordtype">void</span> *data)</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> {</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_class" href="class_data_control_1_1_call_equals.html">CallEquals</a> *local_data = (<a class="code hl_class" href="class_data_control_1_1_call_equals.html">CallEquals</a> *)data; </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    local_data-&gt;<a class="code hl_function" href="class_data_control_1_1_call_equals.html#ace99aabb3ad6bb5caee41a8c76286806">cb_routine</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    local_data-&gt;cb_routine();</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    vTaskDelete(NULL);  <span class="comment">//self-delete task</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> }</div>
 <div class="ttc" id="a_call_equals_8hpp_html"><div class="ttname"><a href="_call_equals_8hpp.html">CallEquals.hpp</a></div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_equals_html"><div class="ttname"><a href="class_data_control_1_1_call_equals.html">DataControl::CallEquals</a></div><div class="ttdoc">DataWrapper that executes callbacks when set() method is called and new data matches comparison data.</div><div class="ttdef"><b>Definition</b> CallEquals.hpp:17</div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_equals_html_a7cfcf5c817f2656db5d92b4bef65afe5"><div class="ttname"><a href="class_data_control_1_1_call_equals.html#a7cfcf5c817f2656db5d92b4bef65afe5">DataControl::CallEquals::CallEquals</a></div><div class="ttdeci">CallEquals(T data, T compare_data, bool logging_en=false, const char *name=&quot;unamed&quot;)</div><div class="ttdoc">Construct a CallEquals DataWrapper object.</div><div class="ttdef"><b>Definition</b> CallEquals.cpp:6</div></div>
+<div class="ttc" id="aclass_data_control_1_1_call_equals_html_a8f2f5870562aa1b337c138fcbbc4a177"><div class="ttname"><a href="class_data_control_1_1_call_equals.html#a8f2f5870562aa1b337c138fcbbc4a177">DataControl::CallEquals::cb_task</a></div><div class="ttdeci">void cb_task()</div><div class="ttdoc">Call-back task.</div><div class="ttdef"><b>Definition</b> CallEquals.cpp:28</div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_equals_html_a8fc556035771341b6a39146eea949790"><div class="ttname"><a href="class_data_control_1_1_call_equals.html#a8fc556035771341b6a39146eea949790">DataControl::CallEquals::set</a></div><div class="ttdeci">void set(T new_data)</div><div class="ttdoc">Set value of data.</div><div class="ttdef"><b>Definition</b> CallEquals.cpp:19</div></div>
-<div class="ttc" id="aclass_data_control_1_1_call_equals_html_ace99aabb3ad6bb5caee41a8c76286806"><div class="ttname"><a href="class_data_control_1_1_call_equals.html#ace99aabb3ad6bb5caee41a8c76286806">DataControl::CallEquals::cb_routine</a></div><div class="ttdeci">void cb_routine()</div><div class="ttdoc">Call-back function routine.</div><div class="ttdef"><b>Definition</b> CallEquals.cpp:28</div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_equals_html_ad91be286de652dc0957fd269ec167741"><div class="ttname"><a href="class_data_control_1_1_call_equals.html#ad91be286de652dc0957fd269ec167741">DataControl::CallEquals::set_compare_data_from_cb</a></div><div class="ttdeci">void set_compare_data_from_cb(T new_compare_data)</div><div class="ttdoc">Set value of comparison data from context of call-back function.</div><div class="ttdef"><b>Definition</b> CallEquals.cpp:59</div></div>
+<div class="ttc" id="aclass_data_control_1_1_call_equals_html_ad99d32c781735be97600055ecc588698"><div class="ttname"><a href="class_data_control_1_1_call_equals.html#ad99d32c781735be97600055ecc588698">DataControl::CallEquals::cb_task_trampoline</a></div><div class="ttdeci">static void cb_task_trampoline(void *data)</div><div class="ttdef"><b>Definition</b> CallEquals.cpp:67</div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_equals_html_ae5c3669631df069d7ae1ac89527f57cf"><div class="ttname"><a href="class_data_control_1_1_call_equals.html#ae5c3669631df069d7ae1ac89527f57cf">DataControl::CallEquals::set_compare_data</a></div><div class="ttdeci">void set_compare_data(T new_compare_data)</div><div class="ttdoc">Set value of comparison data.</div><div class="ttdef"><b>Definition</b> CallEquals.cpp:51</div></div>
-<div class="ttc" id="aclass_data_control_1_1_call_equals_html_afe81c3995e9a5812ea75ffb97d3baf33"><div class="ttname"><a href="class_data_control_1_1_call_equals.html#afe81c3995e9a5812ea75ffb97d3baf33">DataControl::CallEquals::cb_task</a></div><div class="ttdeci">static void cb_task(void *data)</div><div class="ttdoc">Call-back task.</div><div class="ttdef"><b>Definition</b> CallEquals.cpp:67</div></div>
 <div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a049b55ecc5cde9f4961af519dfc140b0"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a049b55ecc5cde9f4961af519dfc140b0">DataControl::DataWrapper::cb_task_complete</a></div><div class="ttdeci">bool cb_task_complete</div><div class="ttdoc">whether or not the call-back task has completed, false if running, true if completed</div><div class="ttdef"><b>Definition</b> DataWrapper.hpp:118</div></div>
 <div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a0a056ad814647ada600f5ae36f4da4f3"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">DataControl::DataWrapper::data</a></div><div class="ttdeci">T data</div><div class="ttdoc">the current data</div><div class="ttdef"><b>Definition</b> DataWrapper.hpp:111</div></div>
 <div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a0c88ef8c3afe21f3d825dc62d5bf9b92"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a0c88ef8c3afe21f3d825dc62d5bf9b92">DataControl::DataWrapper::name</a></div><div class="ttdeci">const char * name</div><div class="ttdoc">name of DataWrapper object, used in log statements</div><div class="ttdef"><b>Definition</b> DataWrapper.hpp:119</div></div>

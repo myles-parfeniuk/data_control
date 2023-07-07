@@ -7,12 +7,12 @@ void CallAlways<T>::set(T new_data)
 {
     this->new_data = new_data; 
 
-    xTaskCreate(&cb_task, "cb_task", this->stack_depth, this, 4, &this->cb_task_hdl);
+    xTaskCreate(&cb_task_trampoline, "cb_task", this->stack_depth, this, 4, &this->cb_task_hdl);
 }
 
 
  template <typename T>
- void CallAlways<T>::cb_routine(){
+ void CallAlways<T>::cb_task(){
     static uint16_t i = 0;
     this->cb_task_complete = false;
 
@@ -34,9 +34,9 @@ void CallAlways<T>::set(T new_data)
 
 
  template <typename T>
- void CallAlways<T>::cb_task(void *data){
+ void CallAlways<T>::cb_task_trampoline(void *data){
     CallAlways *local_data = (CallAlways *)data; 
 
-    local_data->cb_routine();
+    local_data->cb_task();
     vTaskDelete(NULL);  //self-delete task
  }

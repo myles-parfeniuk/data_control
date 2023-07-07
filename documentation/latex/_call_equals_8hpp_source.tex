@@ -14,19 +14,29 @@
 \DoxyCodeLine{00019\ \ \ \ \ }
 \DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_equals}{CallEquals}}(T\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}},\ T\ \mbox{\hyperlink{class_data_control_1_1_call_equals_adc178153ca069f1a20490cc3b1a94dce}{compare\_data}}\ ,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143}{logging\_en}}\ =\ \textcolor{keyword}{false},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92}{name}}\ =\ \textcolor{stringliteral}{"{}unamed"{}});}
 \DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a8fc556035771341b6a39146eea949790}{set}}(T\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a}{new\_data}});}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ae5c3669631df069d7ae1ac89527f57cf}{set\_compare\_data}}(T\ new\_compare\_data);}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ad91be286de652dc0957fd269ec167741}{set\_compare\_data\_from\_cb}}(T\ new\_compare\_data);}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ace99aabb3ad6bb5caee41a8c76286806}{cb\_routine}}();}
-\DoxyCodeLine{00082\ \ \ \ \ }
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_afe81c3995e9a5812ea75ffb97d3baf33}{cb\_task}}(\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}});}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ T\ \mbox{\hyperlink{class_data_control_1_1_call_equals_adc178153ca069f1a20490cc3b1a94dce}{compare\_data}};\ }
-\DoxyCodeLine{00093\ \};}
-\DoxyCodeLine{00094\ }
-\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a8fc556035771341b6a39146eea949790}{set}}(T\ \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a}{new\_data}});}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ae5c3669631df069d7ae1ac89527f57cf}{set\_compare\_data}}(T\ new\_compare\_data);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ad91be286de652dc0957fd269ec167741}{set\_compare\_data\_from\_cb}}(T\ new\_compare\_data);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_a8f2f5870562aa1b337c138fcbbc4a177}{cb\_task}}();}
+\DoxyCodeLine{00076\ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ *\ @brief\ Launches\ Call-\/back\ task.}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ *\ }}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ *\ This\ function\ is\ used\ to\ get\ around\ the\ fact\ xTaskCreate()\ from\ the\ freertos\ api\ requires\ a\ static\ task\ function.}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ \ *\ To\ prevent\ having\ to\ write\ the\ callback\ task\ from\ the\ context\ of\ a\ static\ function,\ this\ serves\ as\ a\ trampoline\ to\ launch\ the\ cb\_task()}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ *\ from\ the\ DataWrapper\ object\ passed\ into\ xTaskCreate().}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ *\ @return\ void,\ nothing\ to\ return}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_equals_ad99d32c781735be97600055ecc588698}{cb\_task\_trampoline}}(\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}});}
+\DoxyCodeLine{00086\ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ T\ \mbox{\hyperlink{class_data_control_1_1_call_equals_adc178153ca069f1a20490cc3b1a94dce}{compare\_data}};\ }
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
 
 \end{DoxyCode}

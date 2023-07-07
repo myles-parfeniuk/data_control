@@ -42,13 +42,13 @@ void \mbox{\hyperlink{class_data_control_1_1_data_wrapper_a562e8ea4af67aaa36f708
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_data_control_1_1_call_different_a882054138c590a351454aed8e69cf974}{cb\+\_\+routine}} ()
-\begin{DoxyCompactList}\small\item\em Call-\/back function routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{class_data_control_1_1_call_different_adde003d6d01697701071c1fbb83b27be}{cb\+\_\+task}} ()
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_data_control_1_1_call_different_a2093af9630b668a0b72129d7820d8c2b}{cb\+\_\+task}} (void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}})
-\begin{DoxyCompactList}\small\item\em Call-\/back task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \mbox{\hyperlink{class_data_control_1_1_call_different_ad11447bb3f668de3d6f18020d751efea}{cb\+\_\+task\+\_\+trampoline}} (void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3}{data}})
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_data_control_1_1_data_wrapper}{Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}}
 \begin{DoxyCompactItemize}
@@ -93,38 +93,20 @@ Myles Parfeniuk
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_data_control_1_1_call_different_a882054138c590a351454aed8e69cf974}\label{class_data_control_1_1_call_different_a882054138c590a351454aed8e69cf974} 
-\index{DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}!cb\_routine@{cb\_routine}}
-\index{cb\_routine@{cb\_routine}!DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
-\doxysubsubsection{\texorpdfstring{cb\_routine()}{cb\_routine()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-void Call\+Different\+::cb\+\_\+routine\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Call-\/back function routine. 
-
-This function should not be called directly. It is called from the call-\/back task and executes the call-\/back functions of all followers on this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object\textquotesingle{}s follower list.
-
-\begin{DoxyReturn}{Returns}
-void, nothing to return 
-\end{DoxyReturn}
-\Hypertarget{class_data_control_1_1_call_different_a2093af9630b668a0b72129d7820d8c2b}\label{class_data_control_1_1_call_different_a2093af9630b668a0b72129d7820d8c2b} 
+\Hypertarget{class_data_control_1_1_call_different_adde003d6d01697701071c1fbb83b27be}\label{class_data_control_1_1_call_different_adde003d6d01697701071c1fbb83b27be} 
 \index{DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}!cb\_task@{cb\_task}}
 \index{cb\_task@{cb\_task}!DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{cb\_task()}{cb\_task()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-void Call\+Different\+::cb\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+void Call\+Different\+::cb\+\_\+task\hspace{0.3cm}{\ttfamily [private]}}
 
+\Hypertarget{class_data_control_1_1_call_different_ad11447bb3f668de3d6f18020d751efea}\label{class_data_control_1_1_call_different_ad11447bb3f668de3d6f18020d751efea} 
+\index{DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}!cb\_task\_trampoline@{cb\_task\_trampoline}}
+\index{cb\_task\_trampoline@{cb\_task\_trampoline}!DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cb\_task\_trampoline()}{cb\_task\_trampoline()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Call\+Different\+::cb\+\_\+task\+\_\+trampoline (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
-
-Call-\/back task. 
-
-This task is created to run the call-\/back routine whenever this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set and the new data is different from the current data. Upon completion of the call-\/back routine this task is deleted.
-
-\begin{DoxyReturn}{Returns}
-void, nothing to return 
-\end{DoxyReturn}
 \Hypertarget{class_data_control_1_1_call_different_ade070629e521048e33ef3d8504d601e7}\label{class_data_control_1_1_call_different_ade070629e521048e33ef3d8504d601e7} 
 \index{DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}!set@{set}}
 \index{set@{set}!DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
@@ -136,9 +118,7 @@ void Call\+Different\+::set (\begin{DoxyParamCaption}\item[{T}]{new\+\_\+data }\
 
 Set value of data. 
 
-Overwrite current data with a new value. When this function is called, if the new data is different from the current data all followers within this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object\textquotesingle{}s follower list will have their call-\/backs executed. Upon completion of call-\/back executions, the current data value will be over-\/written with the data passed into this function. If the \doxylink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get()} method is called within a callback it will return the current data, the input parameter of a call-\/back is the new data that is to overwrite the current data.
-
-
+Overwrite current data with a new value. When this function is called, any followers registered to this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object will have their call-\/backs executed. Upon completion of call-\/back executions, the current data value will be over-\/written with the data passed into this function. 
 \begin{DoxyParams}{Parameters}
 {\em new\+\_\+data} & the new value to over-\/write current data with. \\
 \hline

@@ -74,7 +74,7 @@ static const constexpr uint16\+\_\+t \mbox{\hyperlink{class_data_control_1_1_dat
 class Data\+Control\+::\+Data\+Wrapper$<$ T $>$}
 Base \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} class. 
 
-Stores a variable/data and allows for execution of callback functions when it is changed. When changing the data is desired, the set() method should be called, upon which any callbacks registered with the \doxylink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow()} method will be executed, and the data updated. \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} objects should not be instantiated directly, instead insatiate objects from derived classes of which definitions can be found in cb\+\_\+types/ directory. ~\newline
+Stores a variable/data and allows for execution of callback functions when it is modified. When modifying the data is desired, the set() method should be called, upon which any callbacks registered with the \doxylink{class_data_control_1_1_data_wrapper_aaace46d4f8c57627f43a718ca1a4583d}{follow()} method will be executed, and the data updated. \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} objects should not be instantiated directly, instead insatiate objects from derived classes of which definitions can be found in cb\+\_\+types/ directory. ~\newline
 
 
 \begin{DoxyAuthor}{Author}
@@ -138,12 +138,12 @@ uint16\+\_\+t Data\+Wrapper\+::follow (\begin{DoxyParamCaption}\item[{std\+::fun
 
 Follow \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object. 
 
-Trigger callback when this \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set. The call-\/back function parameter should have a single input parameter of type T. This input will be the new value of the data being set. Calling the \doxylink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get()} method from within the callback will return the current value. When all callbacks have been executed the current value will over written with the new value. ~\newline
+Registers a call-\/back with this data wrapper object. Registered call-\/back functions are executed when the set() method is called on the same data wrapper object. The call-\/back function parameter should have a single input parameter of type T. This input will be the new value of the data being set. Calling the \doxylink{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181}{get()} method from within the callback will return the current value. When all callbacks have been executed the current value will over written with the new value. ~\newline
 
 
 
 \begin{DoxyParams}{Parameters}
-{\em cb} & the call-\/back function to be called when \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set, must take the form \"{}void f(\+T new\+\_\+data)\"{} \\
+{\em cb} & the call-\/back function to be called when \doxylink{class_data_control_1_1_data_wrapper}{Data\+Wrapper} object is set, must take the form \"{}void my\+\_\+callback(\+T new\+\_\+data)\"{} \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

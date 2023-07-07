@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">DataControl<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">DataControl<span id="projectnumber">&#160;1.01</span>
    </div>
-   <div id="projectbrief">Monitoring variables and executing callbacks.</div>
+   <div id="projectbrief">Monitoring data and executing callbacks.</div>
   </td>
  </tr>
  </tbody>
@@ -176,7 +176,7 @@ Static Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class DataControl::DataWrapper&lt; T &gt;</div><p>Base <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> class. </p>
-<p>Stores a variable/data and allows for execution of callback functions when it is changed. When changing the data is desired, the set() method should be called, upon which any callbacks registered with the <a class="el" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d" title="Follow DataWrapper object.">follow()</a> method will be executed, and the data updated. <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> objects should not be instantiated directly, instead insatiate objects from derived classes of which definitions can be found in cb_types/ directory. <br  />
+<p>Stores a variable/data and allows for execution of callback functions when it is modified. When modifying the data is desired, the set() method should be called, upon which any callbacks registered with the <a class="el" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d" title="Follow DataWrapper object.">follow()</a> method will be executed, and the data updated. <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> objects should not be instantiated directly, instead insatiate objects from derived classes of which definitions can be found in cb_types/ directory. <br  />
 </p>
 <dl class="section author"><dt>Author</dt><dd>Myles Parfeniuk </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -268,11 +268,11 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object. </p>
-<p>Trigger callback when this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set. The call-back function parameter should have a single input parameter of type T. This input will be the new value of the data being set. Calling the <a class="el" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181" title="Get current data.">get()</a> method from within the callback will return the current value. When all callbacks have been executed the current value will over written with the new value. <br  />
+<p>Registers a call-back with this data wrapper object. Registered call-back functions are executed when the set() method is called on the same data wrapper object. The call-back function parameter should have a single input parameter of type T. This input will be the new value of the data being set. Calling the <a class="el" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181" title="Get current data.">get()</a> method from within the callback will return the current value. When all callbacks have been executed the current value will over written with the new value. <br  />
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cb</td><td>the call-back function to be called when <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set, must take the form "void f(T new_data)" </td></tr>
+    <tr><td class="paramname">cb</td><td>the call-back function to be called when <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set, must take the form "void my_callback(T new_data)" </td></tr>
   </table>
   </dd>
 </dl>

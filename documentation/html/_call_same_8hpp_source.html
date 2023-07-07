@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">DataControl<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">DataControl<span id="projectnumber">&#160;1.01</span>
    </div>
-   <div id="projectbrief">Monitoring variables and executing callbacks.</div>
+   <div id="projectbrief">Monitoring data and executing callbacks.</div>
   </td>
  </tr>
  </tbody>
@@ -86,20 +86,20 @@ $(function() {
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_data_control_1_1_call_same.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="class_data_control_1_1_call_same.html">CallSame</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_data_control_1_1_data_wrapper.html">DataWrapper</a>&lt;T&gt;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">using </span><a class="code hl_class" href="class_data_control_1_1_data_wrapper.html">DataWrapper</a>&lt;T&gt;<a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a4fa5d8de610e5b150ef54c7b4d511511">::DataWrapper</a>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_same.html#a73b1902bf71e964b96bcdb19ff4a4804">set</a>(T <a class="code hl_variable" href="class_data_control_1_1_data_wrapper.html#a128e5564edd2b7723c5781ac7fc3c68a">new_data</a>);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_same.html#a84f0097cbf73a12e76d0283adcbcd53c">cb_routine</a>();</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_same.html#acd387ef6f2439cb9c51c82e1b693fe8d">cb_task</a>(<span class="keywordtype">void</span> *<a class="code hl_variable" href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">data</a>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">using </span><a class="code hl_class" href="class_data_control_1_1_data_wrapper.html">DataWrapper</a>&lt;T&gt;<a class="code hl_function" href="class_data_control_1_1_data_wrapper.html#a4fa5d8de610e5b150ef54c7b4d511511">::DataWrapper</a>; <span class="comment">//inherit DataWrapper constructors</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_same.html#a73b1902bf71e964b96bcdb19ff4a4804">set</a>(T <a class="code hl_variable" href="class_data_control_1_1_data_wrapper.html#a128e5564edd2b7723c5781ac7fc3c68a">new_data</a>);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_same.html#a15539dfb81cbdbe2eac9c232d994ebea">cb_task</a>();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_data_control_1_1_call_same.html#a7e615e96081cb60ac3012be26b908445">cb_task_trampoline</a>(<span class="keywordtype">void</span> *<a class="code hl_variable" href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">data</a>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
 <div class="ttc" id="aclass_data_control_1_1_call_same_html"><div class="ttname"><a href="class_data_control_1_1_call_same.html">DataControl::CallSame</a></div><div class="ttdoc">DataWrapper that executes callbacks when set() method is called and new data is the same as the curre...</div><div class="ttdef"><b>Definition</b> CallSame.hpp:17</div></div>
+<div class="ttc" id="aclass_data_control_1_1_call_same_html_a15539dfb81cbdbe2eac9c232d994ebea"><div class="ttname"><a href="class_data_control_1_1_call_same.html#a15539dfb81cbdbe2eac9c232d994ebea">DataControl::CallSame::cb_task</a></div><div class="ttdeci">void cb_task()</div><div class="ttdoc">Call-back task.</div><div class="ttdef"><b>Definition</b> CallSame.cpp:15</div></div>
 <div class="ttc" id="aclass_data_control_1_1_call_same_html_a73b1902bf71e964b96bcdb19ff4a4804"><div class="ttname"><a href="class_data_control_1_1_call_same.html#a73b1902bf71e964b96bcdb19ff4a4804">DataControl::CallSame::set</a></div><div class="ttdeci">void set(T new_data)</div><div class="ttdoc">Set value of data.</div><div class="ttdef"><b>Definition</b> CallSame.cpp:6</div></div>
-<div class="ttc" id="aclass_data_control_1_1_call_same_html_a84f0097cbf73a12e76d0283adcbcd53c"><div class="ttname"><a href="class_data_control_1_1_call_same.html#a84f0097cbf73a12e76d0283adcbcd53c">DataControl::CallSame::cb_routine</a></div><div class="ttdeci">void cb_routine()</div><div class="ttdoc">Call-back function routine.</div><div class="ttdef"><b>Definition</b> CallSame.cpp:15</div></div>
-<div class="ttc" id="aclass_data_control_1_1_call_same_html_acd387ef6f2439cb9c51c82e1b693fe8d"><div class="ttname"><a href="class_data_control_1_1_call_same.html#acd387ef6f2439cb9c51c82e1b693fe8d">DataControl::CallSame::cb_task</a></div><div class="ttdeci">static void cb_task(void *data)</div><div class="ttdoc">Call-back task.</div><div class="ttdef"><b>Definition</b> CallSame.cpp:40</div></div>
+<div class="ttc" id="aclass_data_control_1_1_call_same_html_a7e615e96081cb60ac3012be26b908445"><div class="ttname"><a href="class_data_control_1_1_call_same.html#a7e615e96081cb60ac3012be26b908445">DataControl::CallSame::cb_task_trampoline</a></div><div class="ttdeci">static void cb_task_trampoline(void *data)</div><div class="ttdoc">Launches Call-back task.</div><div class="ttdef"><b>Definition</b> CallSame.cpp:40</div></div>
 <div class="ttc" id="aclass_data_control_1_1_data_wrapper_html"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a></div><div class="ttdoc">Base DataWrapper class.</div><div class="ttdef"><b>Definition</b> DataWrapper.hpp:26</div></div>
 <div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a0a056ad814647ada600f5ae36f4da4f3"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">DataControl::DataWrapper::data</a></div><div class="ttdeci">T data</div><div class="ttdoc">the current data</div><div class="ttdef"><b>Definition</b> DataWrapper.hpp:111</div></div>
 <div class="ttc" id="aclass_data_control_1_1_data_wrapper_html_a128e5564edd2b7723c5781ac7fc3c68a"><div class="ttname"><a href="class_data_control_1_1_data_wrapper.html#a128e5564edd2b7723c5781ac7fc3c68a">DataControl::DataWrapper::new_data</a></div><div class="ttdeci">T new_data</div><div class="ttdoc">new data, overwrites current data after execution of all call-back functions</div><div class="ttdef"><b>Definition</b> DataWrapper.hpp:112</div></div>

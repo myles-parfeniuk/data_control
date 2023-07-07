@@ -11,12 +11,12 @@
 \DoxyCodeLine{00007\ \{}
 \DoxyCodeLine{00008\ \ \ \ \ this-\/>new\_data\ =\ new\_data;\ }
 \DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \ \ \ \ xTaskCreate(\&cb\_task,\ \textcolor{stringliteral}{"{}cb\_task"{}},\ this-\/>stack\_depth,\ \textcolor{keyword}{this},\ 4,\ \&this-\/>cb\_task\_hdl);}
+\DoxyCodeLine{00010\ \ \ \ \ xTaskCreate(\&cb\_task\_trampoline,\ \textcolor{stringliteral}{"{}cb\_task"{}},\ this-\/>stack\_depth,\ \textcolor{keyword}{this},\ 4,\ \&this-\/>cb\_task\_hdl);}
 \DoxyCodeLine{00011\ \}}
 \DoxyCodeLine{00012\ }
 \DoxyCodeLine{00013\ }
 \DoxyCodeLine{00014\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00015\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_same_a84f0097cbf73a12e76d0283adcbcd53c}{CallSame<T>::cb\_routine}}()\{}
+\DoxyCodeLine{00015\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_same_a15539dfb81cbdbe2eac9c232d994ebea}{CallSame<T>::cb\_task}}()\{}
 \DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
 \DoxyCodeLine{00017\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00018\ \ \ \ \ }
@@ -41,10 +41,10 @@
 \DoxyCodeLine{00037\ }
 \DoxyCodeLine{00038\ }
 \DoxyCodeLine{00039\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00040\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_same_acd387ef6f2439cb9c51c82e1b693fe8d}{CallSame<T>::cb\_task}}(\textcolor{keywordtype}{void}\ *data)\{}
+\DoxyCodeLine{00040\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_same_a7e615e96081cb60ac3012be26b908445}{CallSame<T>::cb\_task\_trampoline}}(\textcolor{keywordtype}{void}\ *data)\{}
 \DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_same}{CallSame}}\ *local\_data\ =\ (\mbox{\hyperlink{class_data_control_1_1_call_same}{CallSame}}\ *)data;\ }
 \DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ local\_data-\/>\mbox{\hyperlink{class_data_control_1_1_call_same_a84f0097cbf73a12e76d0283adcbcd53c}{cb\_routine}}();}
+\DoxyCodeLine{00043\ \ \ \ \ local\_data-\/>cb\_routine();}
 \DoxyCodeLine{00044\ \ \ \ \ vTaskDelete(NULL);\ \ \textcolor{comment}{//self-\/delete\ task}}
 \DoxyCodeLine{00045\ \ \}}
 

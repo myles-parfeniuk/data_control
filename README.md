@@ -4,130 +4,222 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about">about</a>
+      <a href="#About">About</a>
     </li>
     <li>
-      <a href="#getting-started">getting started</a>
+      <a href="#Getting Started">Getting Started</a>
       <ul>
-        <li><a href="#adding to project">adding to project</a></li>
+        <li><a href="#Adding to Project">Adding to Project</a></li>
       </ul>
     </li>
-   <li><a href="#usage">usage</a></li>
+   <li><a href="Usage">Usage</a></li>
        <ul>
-        <li><a href="#quick start">quick start</a></li>
-        <li><a href="#quick example">quick example</a></li>
+        <li><a href="#Quick Start">Quick Start</a></li>
+          <ul>
+            <li><a href="#Instantiating a DataWrapper Object">Instantiating a DataWrapper Object</a></li>
+            <li><a href="#Registering Callback with a DataWrapper Object">Registering Callback with a DataWrapper Object</a></li>
+            <li><a href="Modifying Data">Modifying Data</a></li>
+            <li><a href="Unfollowing, Pausing, and Unpausing a Callbacks">Unfollowing, Pausing, and Unpausing a Callbacks</a></li>
+          </ul>
+        <li><a href="#Quick Example">Quick Example</a></li>
+        <li><a href="#More Examples">More Examples</a></li>
       </ul>
-  <li><a href="#license">license</a></li>
-  <li><a href="#contact">contact</a></li>
+  <li><a href="#License">License</a></li>
+  <li><a href="#Contact">Contact</a></li>
   </ol>
 </details>
 
 
 <!-- ABOUT -->
-## About
+# About
 
 DataControl is a C++ component written for esp-idf version 4.0, intended to simplify the management of data and actions associated with that data.
-For example, one might desire to read the output of a temperature sensor and execute several functions to perform tasks like changing fan speed,
-turning on an led, etc... This component simplifies that process by allowing call-back functions to easily be associated with a piece of data and
-executed whenever it is set. 
+
+**What does it do?**
+- Allows the creation of DataWrapper objects implemented as a template class, used to store data of any type.
+- Call-back functions can be registered to DataWrapper objects.
+- Call-back functions will be executed when the data of DataWrapper object is modified. 
+
+**Why would I want to use it?**
+
+In embedded system applications it's often required to take some sort of action that is associated with a piece of data.   
+For example, we might want to:
+
+- Turn on an LED and power on a peripheral when a push-button is pressed
+- Adjust the PWM of a fan and write its speed to an OLED or LCD after sampling its tach signal 
+- Write the distance measured by a sensor to an OLED or LCD and move a stepper motor, after taking a distance reading
+
+Firmware can become large and complicated due to actions like these, especially in the context of a large system where several actions
+may need to be associated with one piece of data. DataControl is intended to remedy this issue. 
+
+Now, in the context of the above examples, with DataControl we can:
+
+- Store the status of the button in a DataWrapper object within a "Button" class, register 2 different call-backs to DataWrapper in separate classes (for ex. "LedBackend" & "MyPeripheral")
+- Store the speed of the fan in a DataWrapper object within a "Fan" class, register 2 different call-backs to DataWrapper in separate classes (for ex. "OledBackend" & "PWMBackend")
+- Store the distance measured by the sensor in a DataWrapper object within a "DistanceSensor" class, register 2 different call-backs to DataWrapper in separate classes (for ex. "OledBackend" & "StepperBackend")
+
+This leads to well organized firmware that is much easier to work with, especially as a system expands and grows. 
 
 It was originally inspired by an in-house component I used at a workplace; however, this component has been re-written without using
-that component as a reference. Its functionality shares some similarities, but the implementation is completely different.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+that component as a reference.   
+Its functionality shares some similarities, but the implementation is different.
 
-## Getting Started
-### Adding to Project
+# Getting Started
 
-1. Create a "components" directory in the root workspace directory of your esp-idf project if it does not exist already
-2. Cd into the newly created components directory and clone the repository 
+## Adding to Project
+1. Create a "components" directory in the root workspace directory of your esp-idf project if it does not exist already.  
+
+   In workspace directory:     
+   ```sh
+   mkdir components
+   ```
+
+
+2. Cd into the components directory and clone the DataControl repo.  
+
    ```sh
    cd components
    git clone https://github.com/myles-parfeniuk/data_control.git
    ```
-3. You may have to edit project CMakeLists.txt file to include the component
-  ```sh
-  idf_component_register(SRC_DIRS "." 
-                    INCLUDE_DIRS "" 
-                    REQUIRES data_control)
-  ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+3. You may have to edit project CMakeLists.txt file to include the components.  
+   
+   For example:  
+   ```sh
+   idf_component_register(SRC_DIRS "." 
+   INCLUDE_DIRS "" 
+   REQUIRES data_control)
+   ```
 
 <!-- USAGE EXAMPLES -->
-## Usage
-### Quick Start
-This is intended to be a quick guide, full documentation generated with Doxygen can be found in the documentation directory.
+# Usage
+## Quick Start
+This is intended to be a quick-guide, api documentation generated with doxygen can be found in the documentation directory of the master repo.  
 
-To use:
+### Instantiating a DataWrapper Object
+To instantiate a DataWrapper, instantiate one of its sub-classes. The differences are as follows:
 
-1. Instantiate a data wrapper object of any type. The data wrapper object can be declared as CallAlways, CallDifferent, CallSame, or CallEquals. 
+* CallAlways will execute follower callback functions _always_
+* CallDifferent will only execute follower callback functions if the current data is _different_ from the new data set()
+* CallSame will only execute follower callback functions if the current data is the _same_ as the new data set()
+* CallEquals will only execute follower callback functions if the new data set() _equals_ its compare_data member  
 
-   Example syntax:
-```cpp
+   Example syntax:  
+
+```cpp  
     //integer data with initial value of 0, callbacks executed every time set() method is called (call always)
-    DataControl::CallAlways<int16_t> press_count(0); 
+    DataControl::CallAlways<int16_t> number(0); 
     //bool data with initial value of false, callbacks executed every time set() method is called and new data doesn't match current data (call different)
-    DataControl::CallDifferent<bool> button_pressed(false);
+    DataControl::CallDifferent<bool> my_bool(false);
 ```
-2. Register any desired call back functions by calling the follow() method. These can be instantiated as lambda functions as well. 
+
+Another example using the second example from the About section:  
+
+```cpp
+  /*inside Fan class definition*/
+  public:
+  DataControl::CallAlways<int16_t> fan_speed(0);
+```
+
+### Registering Callback with a DataWrapper Object
+To register any desired call back functions, call the follow() method. 
 
    Example syntax:
 ```cpp
-
-   /*in led_control.cpp*/
    
-   button_pressed.follow(
-    //lambda call-back function
-    [](bool new_data)
+   number.follow(
+    //lambda call-back function that executes whenever set() is called on number
+    [&number](int16_t new_data)
     {
-       //turn on an led when a button is held
-       if(new_data){
-            turn_on_led_one(); //turn on led
-       } else {
-            turn_off_led_one(); //turn off led
-       }
-   });
-
-   press_count.follow(
-    //lambda call-back function
-    [](int16_t new_data){
-       //turn on an led after 100 presses
-       if(new_data >= 100){
-            turn_on_led_two(); 
-       }
-   });
-
-   /*in log_maker.cpp*/
-
-    press_count.follow(
-    //lambda call-back function
-    [&press_count](int16_t new_data){
-       //print the new and current press count
-       ESP_LOGI(TAG, "Current Press Count: %d | New Press Count: %d", press_count.get(), new_data);
-   });
-
+      ESP_LOGI("Current Number: %d, New Number: %d", number.get(), new_data);
+    });
 ```
 
-3. Update the data within data wrapper object using set() method as desired, and all call-backs previously registered with the follow() method will be executed automatically.
+Using the same fan example, it makes for good organization to register the callbacks within the class constructors:
+
+```cpp
+//in main.cpp
+Fan *fan = new Fan(/*init vals*/); //instantiate fan
+PWMBackend *pwm = PWMBackend(*fan); //instantiate pwm with reference to fan
+OledBackend *oled = OledBackend(*fan); //instantiate oled with reference to fan
+
+//PWMBackend constructor in PWMBackend.cpp
+PWMBackend:: PWMBackend(Fan &fan):
+fan(fan) //initialize fan member as reference to fan
+{
+  fan->fan_speed.follow(
+  [&fan](int16_t new_speed){
+    set_pwm(new_speed); //set new pwm whenever new fan speed reading is taken
+  });
+
+}
+
+//OledBackend constructor in Oled.cpp
+OledBackend:: OledBackend(Fan &fan):
+fan(fan) //initialize fan member as reference to fan
+{
+  fan->fan_speed.follow(
+  [&fan](int16_t new_speed){
+    draw_speed(new_speed); //draw speed to OLED when new fan speed reading is taken
+  });
+
+}
+```
+### Modifying Data
+Update the data within data wrapper object by calling the set() method, and all call-backs previously registered with the follow() method will be executed automatically.
+The call-backs will be executed in the order they were registered. 
 
    Example syntax: 
 ```cpp
-   /*in button_driver.cpp*/
-
-   //when a button press is detected:
-   button_pressed.set(true); //set button_pressed as true
-   press_count.set(press_count.get() + 1); //increment press_count by 1
-
-   //when the button is no longer being pressed:
-   button_pressed.set(false); //set button_pressed as false
+  //in a loop
+   number.set(number.get() + 1); //increment number by one
 ```
 
-### Quick Example
+Again, same example:
+
+```cpp
+//inside a task within Fan.cpp
+fan_speed.set(0);
+while(1)
+{
+  fan_speed.set(take_tach_reading()); //set fan speed as result of new reading
+
+  //after set is called, pwm's callback function will execute first (it was instantiated first), and oled's will execute second (it was instantiated second)
+
+  vTaskDelay(200/portTICK_PERIOD_MS); //delay for 200ms 
+}
+```
+
+### Unfollowing, Pausing, and Unpausing a Callbacks
+
+If it is desired to stop executed a callback, its ID must be saved when it is registered.  
+
+Example syntax:  
+
+```cpp
+  uint16_t follower_id = 0; //callback function ID
+
+   follower_id = number.follow(
+    //lambda call-back function that executes whenever set() is called on number
+    [&number](int16_t new_data)
+    {
+      ESP_LOGI("Current Number: %d, New Number: %d", number.get(), new_data);
+    });
+
+
+    number.pause(follower_id); //temporarily pauses this callback until un_pause is called, a paused callback never executes
+    number.un_pause(follower_id); //un-pauses the callback such that it executes as normal
+    number.unfollow(follower_id); //un-registers callback permanently 
+```
+
+
+
+## Quick Example
 A quick example that generates some terminal output which can be seen in the gif below.
 
 Code:
 ```cpp
-
 /*main.cpp*/
 
 //standard library includes
@@ -177,7 +269,6 @@ extern "C" void app_main()
         if(counter.get() > 10){
             over_ten.set(true); //set over_ten true after 10 iterations of loop
         }
-
     }
 }
 ```
@@ -186,21 +277,21 @@ Terminal Output:
 
 ![image](DataControl_terminal_output.gif)
 
+## More Examples
+Examples are available in the DataControl directory of my esp_idf_cpp_examples repo:    
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+[https://github.com/myles-parfeniuk/esp_idf_cpp_examples](https://github.com/myles-parfeniuk/esp_idf_cpp_examples)
 
-<!-- LICENSE -->
-## License
+My other component ButtonDriver also utilizes DataControl:
+
+[https://github.com/myles-parfeniuk/button_driver](https://github.com/myles-parfeniuk/button_driver)
+
+# License
 
 Distributed under the MIT License. See `LICENSE.md` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CONTACT -->
-## Contact
+# Contact
 
 Myles Parfeniuk - myles.parfenyuk@gmail.com
 
 Project Link: [https://github.com/myles-parfeniuk/data_control](https://github.com/myles-parfeniuk/data_control)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
