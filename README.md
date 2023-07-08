@@ -1,37 +1,37 @@
+<a name="readme-top"></a>
 ![image](DataControl_banner.png)
-<!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#About">About</a>
+      <a href="#about">About</a>
     </li>
     <li>
-      <a href="#Getting Started">Getting Started</a>
+      <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#Adding to Project">Adding to Project</a></li>
+        <li><a href="#adding-to-project">Adding to Project</a></li>
       </ul>
     </li>
-   <li><a href="Usage">Usage</a></li>
-       <ul>
-        <li><a href="#Quick Start">Quick Start</a></li>
-          <ul>
-            <li><a href="#Instantiating a DataWrapper Object">Instantiating a DataWrapper Object</a></li>
-            <li><a href="#Registering Callback with a DataWrapper Object">Registering Callback with a DataWrapper Object</a></li>
-            <li><a href="Modifying Data">Modifying Data</a></li>
-            <li><a href="Unfollowing, Pausing, and Unpausing a Callbacks">Unfollowing, Pausing, and Unpausing a Callbacks</a></li>
-          </ul>
-        <li><a href="#Quick Example">Quick Example</a></li>
-        <li><a href="#More Examples">More Examples</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <ul>
+      <li><a href="#quick-start">Quick Start</a></li>
+      <ul>
+        <li><a href="#instantiating-a-datawrapper-object">Instantiating a DataWrapper Object</a></li>
+        <li><a href="#registering-callback-with-a-datawrapper-object">Registering Callback with a DataWrapper Object</a></li>
+        <li><a href="#modifying-data">Modifying Data</a></li>
+        <li><a href="#unfollowing-pausing-and-unpausing-a-callbacks">Unfollowing, Pausing, and Unpausing a Callbacks</a></li>
       </ul>
-  <li><a href="#License">License</a></li>
-  <li><a href="#Contact">Contact</a></li>
+      <li><a href="#quick-example">Quick Example</a></li>
+      <li><a href="#more-examples">More Examples</a></li>
+    </ul>
+    <li><a href="#program-flowchart">Program Flowchart</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
-
 <!-- ABOUT -->
-# About
+## About
 
 DataControl is a C++ component written for esp-idf version 4.0, intended to simplify the management of data and actions associated with that data.
 
@@ -40,23 +40,23 @@ DataControl is a C++ component written for esp-idf version 4.0, intended to simp
 - Call-back functions can be registered to DataWrapper objects.
 - Call-back functions will be executed when the data of DataWrapper object is modified. 
 
-**Why would I want to use it?**
+**Why is it useful?**
 
-In embedded system applications it's often required to take some sort of action that is associated with a piece of data.   
+In embedded applications it's often required to take some sort of action that is associated with a piece of data.   
 For example, we might want to:
 
-- Turn on an LED and power on a peripheral when a push-button is pressed
-- Adjust the PWM of a fan and write its speed to an OLED or LCD after sampling its tach signal 
-- Write the distance measured by a sensor to an OLED or LCD and move a stepper motor, after taking a distance reading
+- Detect the press of a button, then turn on an LED, and power on an external peripheral.
+- Sample a fan's tach signal, then adjust its PWM, and write its speed to an OLED.
 
-Firmware can become large and complicated due to actions like these, especially in the context of a large system where several actions
-may need to be associated with one piece of data. DataControl is intended to remedy this issue. 
+Firmware can become complicated due to actions like these, especially in the context of a large system where several actions
+may need to be associated with a single piece of data. DataControl is intended to remedy this issue. 
 
-Now, in the context of the above examples, with DataControl we can:
+In the context of the above examples, with DataControl we can:
 
-- Store the status of the button in a DataWrapper object within a "Button" class, register 2 different call-backs to DataWrapper in separate classes (for ex. "LedBackend" & "MyPeripheral")
-- Store the speed of the fan in a DataWrapper object within a "Fan" class, register 2 different call-backs to DataWrapper in separate classes (for ex. "OledBackend" & "PWMBackend")
-- Store the distance measured by the sensor in a DataWrapper object within a "DistanceSensor" class, register 2 different call-backs to DataWrapper in separate classes (for ex. "OledBackend" & "StepperBackend")
+- Store the status of the button within a DataWrapper as a member of a"Button" class, register 2 different call-backs to DataWrapper in separate classes (for ex. "LedBackend" and "ExtPeripheralBackend")
+- Store the speed of the fan within a DataWrapper object as a member of a "Fan" class, register 2 different call-backs to DataWrapper in separate classes (for ex. "OledBackend" & "PWMBackend")
+
+When the data is modified due to code within the scope of the Fan or Button class, a task will be created and execute any call-back functions registered in the "LedBackend", "ExtPeripheralBackend", "PWMBackend", and "OledBackend" implementations. Meaning, any "backend" objects will be notified of new data, without being aware of each other's existence. 
 
 This leads to well organized firmware that is much easier to work with, especially as a system expands and grows. 
 
@@ -64,9 +64,10 @@ It was originally inspired by an in-house component I used at a workplace; howev
 that component as a reference.   
 Its functionality shares some similarities, but the implementation is different.
 
-# Getting Started
+## Getting Started
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Adding to Project
+### Adding to Project
 1. Create a "components" directory in the root workspace directory of your esp-idf project if it does not exist already.  
 
    In workspace directory:     
@@ -91,13 +92,18 @@ Its functionality shares some similarities, but the implementation is different.
    INCLUDE_DIRS "" 
    REQUIRES data_control)
    ```
+   <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
-# Usage
-## Quick Start
-This is intended to be a quick-guide, api documentation generated with doxygen can be found in the documentation directory of the master repo.  
 
-### Instantiating a DataWrapper Object
+## Usage
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Quick Start
+This is intended to be a quick-guide, api documentation generated with doxygen can be found in the documentation directory of the master repo.  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+#### Instantiating a DataWrapper Object
 To instantiate a DataWrapper, instantiate one of its sub-classes. The differences are as follows:
 
 * CallAlways will execute follower callback functions _always_
@@ -121,8 +127,9 @@ Another example using the second example from the About section:
   public:
   DataControl::CallAlways<int16_t> fan_speed(0);
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Registering Callback with a DataWrapper Object
+#### Registering Callback with a DataWrapper Object
 To register any desired call back functions, call the follow() method. 
 
    Example syntax:
@@ -136,7 +143,7 @@ To register any desired call back functions, call the follow() method.
     });
 ```
 
-Using the same fan example, it makes for good organization to register the callbacks within the class constructors:
+Using the same fan example, it makes for good organization to register the call-back functions within the class constructors:
 
 ```cpp
 //in main.cpp
@@ -144,29 +151,31 @@ Fan *fan = new Fan(/*init vals*/); //instantiate fan
 PWMBackend *pwm = PWMBackend(*fan); //instantiate pwm with reference to fan
 OledBackend *oled = OledBackend(*fan); //instantiate oled with reference to fan
 
-//PWMBackend constructor in PWMBackend.cpp
+/*PWMBackend constructor in PWMBackend.cpp*/
 PWMBackend:: PWMBackend(Fan &fan):
 fan(fan) //initialize fan member as reference to fan
 {
   fan->fan_speed.follow(
-  [&fan](int16_t new_speed){
-    set_pwm(new_speed); //set new pwm whenever new fan speed reading is taken
+  [&this, &fan](int16_t new_speed){
+    this->pwm_control(new_speed); //set pwm according to new speed in PWMBackend method
   });
 
 }
 
-//OledBackend constructor in Oled.cpp
+/*OledBackend constructor in Oled.cpp*/
 OledBackend:: OledBackend(Fan &fan):
 fan(fan) //initialize fan member as reference to fan
 {
   fan->fan_speed.follow(
-  [&fan](int16_t new_speed){
-    draw_speed(new_speed); //draw speed to OLED when new fan speed reading is taken
+  [&this, &fan](int16_t new_speed){
+    this->draw_speed(new_speed); //draw speed to OLED in OledBackend method when new fan speed reading is taken
   });
 
 }
 ```
-### Modifying Data
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+#### Modifying Data
 Update the data within data wrapper object by calling the set() method, and all call-backs previously registered with the follow() method will be executed automatically.
 The call-backs will be executed in the order they were registered. 
 
@@ -190,17 +199,18 @@ while(1)
   vTaskDelay(200/portTICK_PERIOD_MS); //delay for 200ms 
 }
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Unfollowing, Pausing, and Unpausing a Callbacks
+#### Unfollowing, Pausing, and Unpausing a Callbacks
 
-If it is desired to stop executed a callback, its ID must be saved when it is registered.  
+If it is desired to stop executing a callback, its ID must be saved when it is registered.  
 
 Example syntax:  
 
 ```cpp
   uint16_t follower_id = 0; //callback function ID
 
-   follower_id = number.follow(
+   follower_id = number.follow(  //registering a call-back and saving its ID
     //lambda call-back function that executes whenever set() is called on number
     [&number](int16_t new_data)
     {
@@ -212,10 +222,11 @@ Example syntax:
     number.un_pause(follower_id); //un-pauses the callback such that it executes as normal
     number.unfollow(follower_id); //un-registers callback permanently 
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-## Quick Example
+### Quick Example
 A quick example that generates some terminal output which can be seen in the gif below.
 
 Code:
@@ -276,8 +287,9 @@ extern "C" void app_main()
 Terminal Output:
 
 ![image](DataControl_terminal_output.gif)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## More Examples
+### More Examples
 Examples are available in the DataControl directory of my esp_idf_cpp_examples repo:    
 
 [https://github.com/myles-parfeniuk/esp_idf_cpp_examples](https://github.com/myles-parfeniuk/esp_idf_cpp_examples)
@@ -285,13 +297,20 @@ Examples are available in the DataControl directory of my esp_idf_cpp_examples r
 My other component ButtonDriver also utilizes DataControl:
 
 [https://github.com/myles-parfeniuk/button_driver](https://github.com/myles-parfeniuk/button_driver)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# License
+## Program Flowchart
+![image](DataControl_flowchart.png)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## License
 
 Distributed under the MIT License. See `LICENSE.md` for more information.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# Contact
+## Contact
 
 Myles Parfeniuk - myles.parfenyuk@gmail.com
 
 Project Link: [https://github.com/myles-parfeniuk/data_control](https://github.com/myles-parfeniuk/data_control)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
