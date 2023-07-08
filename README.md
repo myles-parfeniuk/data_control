@@ -114,9 +114,11 @@ To instantiate a DataWrapper, instantiate one of its sub-classes. The difference
    Example syntax:  
 
 ```cpp  
-    //integer data with initial value of 0, callbacks executed every time set() method is called (call always)
+    /*integer data with initial value of 0,
+     callbacks executed every time set() method is called (call always)*/
     DataControl::CallAlways<int16_t> number(0); 
-    //bool data with initial value of false, callbacks executed every time set() method is called and new data doesn't match current data (call different)
+    /*bool data with initial value of false, 
+    callbacks executed every time set() method is called, and new data is different from current data (call different)*/
     DataControl::CallDifferent<bool> my_bool(false);
 ```
 
