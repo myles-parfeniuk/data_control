@@ -146,7 +146,7 @@ To register any desired call back functions, call the follow() method.
 Using the same fan example, it makes for good organization to register the call-back functions within the class constructors:
 
 ```cpp
-//in main.cpp
+/*in main.cpp*/
 Fan *fan = new Fan(/*init vals*/); //instantiate fan
 PWMBackend *pwm = PWMBackend(*fan); //instantiate pwm with reference to fan
 OledBackend *oled = OledBackend(*fan); //instantiate oled with reference to fan
@@ -157,7 +157,8 @@ fan(fan) //initialize fan member as reference to fan
 {
   fan->fan_speed.follow(
   [&this, &fan](int16_t new_speed){
-    this->pwm_control(new_speed); //set pwm according to new speed in PWMBackend method
+    //set pwm according to new speed with PWMBackend method
+    this->pwm_control(new_speed); 
   });
 
 }
@@ -168,7 +169,8 @@ fan(fan) //initialize fan member as reference to fan
 {
   fan->fan_speed.follow(
   [&this, &fan](int16_t new_speed){
-    this->draw_speed(new_speed); //draw speed to OLED in OledBackend method when new fan speed reading is taken
+    //draw speed to OLED with OledBackend method when new fan speed reading is taken
+    this->draw_speed(new_speed); 
   });
 
 }
@@ -181,20 +183,20 @@ The call-backs will be executed in the order they were registered.
 
    Example syntax: 
 ```cpp
-  //in a loop
    number.set(number.get() + 1); //increment number by one
 ```
 
 Again, same example:
 
 ```cpp
-//inside a task within Fan.cpp
+/*inside a task within Fan.cpp*/
 fan_speed.set(0);
 while(1)
 {
   fan_speed.set(take_tach_reading()); //set fan speed as result of new reading
 
-  //after set is called, pwm's callback function will execute first (it was instantiated first), and oled's will execute second (it was instantiated second)
+  /*after set is called, pwm's callback function will execute first (it was instantiated first),
+  * and oled's will execute second (it was instantiated second) */
 
   vTaskDelay(200/portTICK_PERIOD_MS); //delay for 200ms 
 }
@@ -217,10 +219,12 @@ Example syntax:
       ESP_LOGI("Current Number: %d, New Number: %d", number.get(), new_data);
     });
 
-
-    number.pause(follower_id); //temporarily pauses this callback until un_pause is called, a paused callback never executes
-    number.un_pause(follower_id); //un-pauses the callback such that it executes as normal
-    number.unfollow(follower_id); //un-registers callback permanently 
+    //temporarily pauses this callback until un_pause is called, a paused callback never executes
+    number.pause(follower_id);
+    //un-pauses the callback such that it executes as normal
+    number.un_pause(follower_id);
+    //un-registers callback permanently  
+    number.unfollow(follower_id); 
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -255,7 +259,8 @@ extern "C" void app_main()
     //register callbacks
     counter_id = counter.follow(
     [&counter](int16_t new_data){
-        ESP_LOGI("Follower0", "| Current Count: %d | New Count: %d |", counter.get(), new_data); //print current and new counts
+        //print current and new counts
+        ESP_LOGI("Follower0", "| Current Count: %d | New Count: %d |", counter.get(), new_data); 
     });
 
     over_five.follow(
