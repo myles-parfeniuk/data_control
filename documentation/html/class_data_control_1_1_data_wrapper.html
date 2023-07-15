@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">DataControl<span id="projectnumber">&#160;1.01</span>
+   <div id="projectname">DataControl<span id="projectnumber">&#160;1.02</span>
    </div>
    <div id="projectbrief">Monitoring data and executing callbacks.</div>
   </td>
@@ -70,12 +70,11 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespace_data_control.html">DataControl</a></li><li class="navelem"><a class="el" href="class_data_control_1_1_data_wrapper.html">DataWrapper</a></li>  </ul>
+<li class="navelem"><b>DataControl</b></li><li class="navelem"><a class="el" href="class_data_control_1_1_data_wrapper.html">DataWrapper</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
@@ -96,28 +95,18 @@ Inheritance diagram for DataControl::DataWrapper&lt; T &gt;:</div>
   <map id="DataControl::DataWrapper_3C_20T_20_3E_map" name="DataControl::DataWrapper_3C_20T_20_3E_map">
 <area href="class_data_control_1_1_call_always.html" title="DataWrapper that executes callbacks whenever set() method is called." alt="DataControl::CallAlways&lt; T &gt;" shape="rect" coords="0,56,191,80"/>
 <area href="class_data_control_1_1_call_different.html" title="DataWrapper that executes callbacks when set() method is called and new data is different from curren..." alt="DataControl::CallDifferent&lt; T &gt;" shape="rect" coords="201,56,392,80"/>
-<area href="class_data_control_1_1_call_equals.html" title="DataWrapper that executes callbacks when set() method is called and new data matches comparison data." alt="DataControl::CallEquals&lt; T &gt;" shape="rect" coords="402,56,593,80"/>
-<area href="class_data_control_1_1_call_same.html" title="DataWrapper that executes callbacks when set() method is called and new data is the same as the curre..." alt="DataControl::CallSame&lt; T &gt;" shape="rect" coords="603,56,794,80"/>
+<area href="class_data_control_1_1_call_same.html" title="DataWrapper that executes callbacks when set() method is called and new data is the same as the curre..." alt="DataControl::CallSame&lt; T &gt;" shape="rect" coords="402,56,593,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_data_wrapper_1_1_follower.html">Follower</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains information about a follower  <a href="struct_data_wrapper_1_1_follower.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4fa5d8de610e5b150ef54c7b4d511511"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a4fa5d8de610e5b150ef54c7b4d511511">DataWrapper</a> ()</td></tr>
-<tr class="memdesc:a4fa5d8de610e5b150ef54c7b4d511511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object.  <br /></td></tr>
-<tr class="separator:a4fa5d8de610e5b150ef54c7b4d511511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0beae71b238414eacc3dbf3a1e09eddf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a0beae71b238414eacc3dbf3a1e09eddf">DataWrapper</a> (T <a class="el" href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">data</a>, bool <a class="el" href="class_data_control_1_1_data_wrapper.html#ae43ba0a0f3557c05ec54fea975154143">logging_en</a>=false, const char *<a class="el" href="class_data_control_1_1_data_wrapper.html#a0c88ef8c3afe21f3d825dc62d5bf9b92">name</a>=&quot;unamed&quot;)</td></tr>
 <tr class="memdesc:a0beae71b238414eacc3dbf3a1e09eddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object.  <br /></td></tr>
 <tr class="separator:a0beae71b238414eacc3dbf3a1e09eddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaace46d4f8c57627f43a718ca1a4583d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d">follow</a> (std::function&lt; void(T)&gt; cb)</td></tr>
-<tr class="memdesc:aaace46d4f8c57627f43a718ca1a4583d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object.  <br /></td></tr>
-<tr class="separator:aaace46d4f8c57627f43a718ca1a4583d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db75e5847db5d2fab3503b9d4d0c90a"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a0db75e5847db5d2fab3503b9d4d0c90a">follow</a> (std::function&lt; void(T)&gt; cb, bool execute_immediately=false)</td></tr>
+<tr class="memdesc:a0db75e5847db5d2fab3503b9d4d0c90a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object.  <br /></td></tr>
+<tr class="separator:a0db75e5847db5d2fab3503b9d4d0c90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79090a72dbbab83ed081194465494861"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a79090a72dbbab83ed081194465494861">un_follow</a> (uint16_t follower_id)</td></tr>
 <tr class="memdesc:a79090a72dbbab83ed081194465494861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Un-follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object.  <br /></td></tr>
 <tr class="separator:a79090a72dbbab83ed081194465494861"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,78 +119,62 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aee43e40ca8569976ee7ef896760df181"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181">get</a> ()</td></tr>
 <tr class="memdesc:aee43e40ca8569976ee7ef896760df181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current data.  <br /></td></tr>
 <tr class="separator:aee43e40ca8569976ee7ef896760df181"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a562e8ea4af67aaa36f70851af63974b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a562e8ea4af67aaa36f70851af63974b5">set_cb_task_depth</a> (uint16_t <a class="el" href="class_data_control_1_1_data_wrapper.html#aa8a84530810dc340ddf38c57693edd65">stack_depth</a>)</td></tr>
-<tr class="memdesc:a562e8ea4af67aaa36f70851af63974b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set stack-depth of call-back task.  <br /></td></tr>
-<tr class="separator:a562e8ea4af67aaa36f70851af63974b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a0a056ad814647ada600f5ae36f4da4f3"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a0a056ad814647ada600f5ae36f4da4f3">data</a></td></tr>
-<tr class="memdesc:a0a056ad814647ada600f5ae36f4da4f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">the current data  <br /></td></tr>
+<tr class="memitem:a0a056ad814647ada600f5ae36f4da4f3"><td class="memItemLeft" align="right" valign="top"><a id="a0a056ad814647ada600f5ae36f4da4f3" name="a0a056ad814647ada600f5ae36f4da4f3"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr class="memdesc:a0a056ad814647ada600f5ae36f4da4f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">the current data <br /></td></tr>
 <tr class="separator:a0a056ad814647ada600f5ae36f4da4f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a128e5564edd2b7723c5781ac7fc3c68a"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a128e5564edd2b7723c5781ac7fc3c68a">new_data</a></td></tr>
-<tr class="memdesc:a128e5564edd2b7723c5781ac7fc3c68a"><td class="mdescLeft">&#160;</td><td class="mdescRight">new data, overwrites current data after execution of all call-back functions  <br /></td></tr>
+<tr class="memitem:a128e5564edd2b7723c5781ac7fc3c68a"><td class="memItemLeft" align="right" valign="top"><a id="a128e5564edd2b7723c5781ac7fc3c68a" name="a128e5564edd2b7723c5781ac7fc3c68a"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>new_data</b></td></tr>
+<tr class="memdesc:a128e5564edd2b7723c5781ac7fc3c68a"><td class="mdescLeft">&#160;</td><td class="mdescRight">new data, overwrites current data after execution of all call-back functions <br /></td></tr>
 <tr class="separator:a128e5564edd2b7723c5781ac7fc3c68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a2158d7c7c27ff46224f3f328e06119"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a7a2158d7c7c27ff46224f3f328e06119">next_id</a></td></tr>
-<tr class="memdesc:a7a2158d7c7c27ff46224f3f328e06119"><td class="mdescLeft">&#160;</td><td class="mdescRight">next follower ID to assign  <br /></td></tr>
-<tr class="separator:a7a2158d7c7c27ff46224f3f328e06119"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8a84530810dc340ddf38c57693edd65"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#aa8a84530810dc340ddf38c57693edd65">stack_depth</a></td></tr>
-<tr class="memdesc:aa8a84530810dc340ddf38c57693edd65"><td class="mdescLeft">&#160;</td><td class="mdescRight">depth of task executing call-back functions  <br /></td></tr>
-<tr class="separator:aa8a84530810dc340ddf38c57693edd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44019614a9a3f58931a02835c9855914"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_data_wrapper_1_1_follower.html">Follower</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a44019614a9a3f58931a02835c9855914">follower_list</a></td></tr>
-<tr class="memdesc:a44019614a9a3f58931a02835c9855914"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of all followers, each element contains the call-back function and ID of a follower  <br /></td></tr>
+<tr class="memitem:a2d99c003dade3bbbe57d2280a1d9d7e4"><td class="memItemLeft" align="right" valign="top"><a id="a2d99c003dade3bbbe57d2280a1d9d7e4" name="a2d99c003dade3bbbe57d2280a1d9d7e4"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>next_follower_id</b></td></tr>
+<tr class="memdesc:a2d99c003dade3bbbe57d2280a1d9d7e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">next follower ID to assign <br /></td></tr>
+<tr class="separator:a2d99c003dade3bbbe57d2280a1d9d7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44019614a9a3f58931a02835c9855914"><td class="memItemLeft" align="right" valign="top"><a id="a44019614a9a3f58931a02835c9855914" name="a44019614a9a3f58931a02835c9855914"></a>
+std::vector&lt; Follower &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>follower_list</b></td></tr>
+<tr class="memdesc:a44019614a9a3f58931a02835c9855914"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of followers <br /></td></tr>
 <tr class="separator:a44019614a9a3f58931a02835c9855914"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b128bf5be3ec37632b5615b158aae78"><td class="memItemLeft" align="right" valign="top">xTaskHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a1b128bf5be3ec37632b5615b158aae78">cb_task_hdl</a></td></tr>
-<tr class="memdesc:a1b128bf5be3ec37632b5615b158aae78"><td class="mdescLeft">&#160;</td><td class="mdescRight">task handle of call-back task  <br /></td></tr>
+<tr class="memitem:a1b9463da621594a3314f85838dba2a4d"><td class="memItemLeft" align="right" valign="top"><a id="a1b9463da621594a3314f85838dba2a4d" name="a1b9463da621594a3314f85838dba2a4d"></a>
+std::vector&lt; Follower &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>immediate_follower_list</b></td></tr>
+<tr class="memdesc:a1b9463da621594a3314f85838dba2a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of followers for which callbacks are executed immediately from the thread which set() was called <br /></td></tr>
+<tr class="separator:a1b9463da621594a3314f85838dba2a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b128bf5be3ec37632b5615b158aae78"><td class="memItemLeft" align="right" valign="top"><a id="a1b128bf5be3ec37632b5615b158aae78" name="a1b128bf5be3ec37632b5615b158aae78"></a>
+xTaskHandle&#160;</td><td class="memItemRight" valign="bottom"><b>cb_task_hdl</b></td></tr>
+<tr class="memdesc:a1b128bf5be3ec37632b5615b158aae78"><td class="mdescLeft">&#160;</td><td class="mdescRight">task handle of call-back task <br /></td></tr>
 <tr class="separator:a1b128bf5be3ec37632b5615b158aae78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a049b55ecc5cde9f4961af519dfc140b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a049b55ecc5cde9f4961af519dfc140b0">cb_task_complete</a></td></tr>
-<tr class="memdesc:a049b55ecc5cde9f4961af519dfc140b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether or not the call-back task has completed, false if running, true if completed  <br /></td></tr>
+<tr class="memitem:a049b55ecc5cde9f4961af519dfc140b0"><td class="memItemLeft" align="right" valign="top"><a id="a049b55ecc5cde9f4961af519dfc140b0" name="a049b55ecc5cde9f4961af519dfc140b0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>cb_task_complete</b></td></tr>
+<tr class="memdesc:a049b55ecc5cde9f4961af519dfc140b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether or not the call-back task has completed, false if running, true if completed <br /></td></tr>
 <tr class="separator:a049b55ecc5cde9f4961af519dfc140b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c88ef8c3afe21f3d825dc62d5bf9b92"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#a0c88ef8c3afe21f3d825dc62d5bf9b92">name</a></td></tr>
-<tr class="memdesc:a0c88ef8c3afe21f3d825dc62d5bf9b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object, used in log statements  <br /></td></tr>
+<tr class="memitem:a0c88ef8c3afe21f3d825dc62d5bf9b92"><td class="memItemLeft" align="right" valign="top"><a id="a0c88ef8c3afe21f3d825dc62d5bf9b92" name="a0c88ef8c3afe21f3d825dc62d5bf9b92"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="memdesc:a0c88ef8c3afe21f3d825dc62d5bf9b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object, used in log statements <br /></td></tr>
 <tr class="separator:a0c88ef8c3afe21f3d825dc62d5bf9b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae43ba0a0f3557c05ec54fea975154143"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#ae43ba0a0f3557c05ec54fea975154143">logging_en</a></td></tr>
-<tr class="memdesc:ae43ba0a0f3557c05ec54fea975154143"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether or not logging is enabled, false if disabled, true if enabled  <br /></td></tr>
+<tr class="memitem:ae43ba0a0f3557c05ec54fea975154143"><td class="memItemLeft" align="right" valign="top"><a id="ae43ba0a0f3557c05ec54fea975154143" name="ae43ba0a0f3557c05ec54fea975154143"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging_en</b></td></tr>
+<tr class="memdesc:ae43ba0a0f3557c05ec54fea975154143"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether or not logging is enabled, false if disabled, true if enabled <br /></td></tr>
 <tr class="separator:ae43ba0a0f3557c05ec54fea975154143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr class="memitem:ae07a80934a40d90998e4f8fb3cfc7e7b"><td class="memItemLeft" align="right" valign="top">static const constexpr char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#ae07a80934a40d90998e4f8fb3cfc7e7b">TAG</a> = &quot;DataControl&quot;</td></tr>
-<tr class="memdesc:ae07a80934a40d90998e4f8fb3cfc7e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">class tag, used in logging statements  <br /></td></tr>
+<tr class="memitem:ae07a80934a40d90998e4f8fb3cfc7e7b"><td class="memItemLeft" align="right" valign="top"><a id="ae07a80934a40d90998e4f8fb3cfc7e7b" name="ae07a80934a40d90998e4f8fb3cfc7e7b"></a>
+static const constexpr char *&#160;</td><td class="memItemRight" valign="bottom"><b>TAG</b> = &quot;DataControl&quot;</td></tr>
+<tr class="memdesc:ae07a80934a40d90998e4f8fb3cfc7e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">class tag, used in logging statements <br /></td></tr>
 <tr class="separator:ae07a80934a40d90998e4f8fb3cfc7e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa12353ba771d82940b761093adee53be"><td class="memItemLeft" align="right" valign="top">static const constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_control_1_1_data_wrapper.html#aa12353ba771d82940b761093adee53be">default_stack_depth</a> = 4096</td></tr>
-<tr class="memdesc:aa12353ba771d82940b761093adee53be"><td class="mdescLeft">&#160;</td><td class="mdescRight">default stack depth  <br /></td></tr>
-<tr class="separator:aa12353ba771d82940b761093adee53be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class DataControl::DataWrapper&lt; T &gt;</div><p>Base <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> class. </p>
-<p>Stores a variable/data and allows for execution of callback functions when it is modified. When modifying the data is desired, the set() method should be called, upon which any callbacks registered with the <a class="el" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d" title="Follow DataWrapper object.">follow()</a> method will be executed, and the data updated. <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> objects should not be instantiated directly, instead insatiate objects from derived classes of which definitions can be found in cb_types/ directory. <br  />
+<p>Stores a variable/data and allows for execution of callback functions when it is modified. When modifying the data is desired, the set() method should be called, upon which any callbacks registered with the <a class="el" href="class_data_control_1_1_data_wrapper.html#a0db75e5847db5d2fab3503b9d4d0c90a" title="Follow DataWrapper object.">follow()</a> method will be executed, and the data updated. <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> objects should not be instantiated directly, instead insatiate objects from derived classes of which definitions can be found in cb_types/ directory. <br  />
 </p>
 <dl class="section author"><dt>Author</dt><dd>Myles Parfeniuk </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a4fa5d8de610e5b150ef54c7b4d511511" name="a4fa5d8de610e5b150ef54c7b4d511511"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fa5d8de610e5b150ef54c7b4d511511">&#9670;&#160;</a></span>DataWrapper() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">DataWrapper::DataWrapper</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Construct a new <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object. </p>
-<p>Default <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> constructor. Data will be NULL until set is called if this constructor is used.</p>
-<dl class="section return"><dt>Returns</dt><dd>void, nothing to return </dd></dl>
-
-</div>
-</div>
 <a id="a0beae71b238414eacc3dbf3a1e09eddf" name="a0beae71b238414eacc3dbf3a1e09eddf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0beae71b238414eacc3dbf3a1e09eddf">&#9670;&#160;</a></span>DataWrapper() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0beae71b238414eacc3dbf3a1e09eddf">&#9670;&#160;</a></span>DataWrapper()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,8 +212,8 @@ template&lt;typename T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>initial value of data </td></tr>
-    <tr><td class="paramname">logging_en</td><td>logging status, true to enable logging, false to disable (optional, default false) </td></tr>
-    <tr><td class="paramname">name</td><td>name of data wrapper object, printed out with logs to aid debugging (optional, default "unamed") </td></tr>
+    <tr><td class="paramname">logging_en</td><td>logging status, true to enable debug logs, false to disable (optional, default false) </td></tr>
+    <tr><td class="paramname">name</td><td>name of data wrapper object, printed out with debug logs to aid debugging (optional, default "unamed") </td></tr>
   </table>
   </dd>
 </dl>
@@ -249,8 +222,8 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aaace46d4f8c57627f43a718ca1a4583d" name="aaace46d4f8c57627f43a718ca1a4583d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaace46d4f8c57627f43a718ca1a4583d">&#9670;&#160;</a></span>follow()</h2>
+<a id="a0db75e5847db5d2fab3503b9d4d0c90a" name="a0db75e5847db5d2fab3503b9d4d0c90a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db75e5847db5d2fab3503b9d4d0c90a">&#9670;&#160;</a></span>follow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,8 +234,18 @@ template&lt;typename T &gt; </div>
           <td class="memname">uint16_t DataWrapper::follow </td>
           <td>(</td>
           <td class="paramtype">std::function&lt; void(T)&gt;&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td class="paramname"><em>cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>execute_immediately</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -273,6 +256,7 @@ template&lt;typename T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cb</td><td>the call-back function to be called when <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set, must take the form "void my_callback(T new_data)" </td></tr>
+    <tr><td class="paramname">execute_immediately</td><td>if true the call-back is executed in the same thread in which set() was called, only recommended for short call-back functions </td></tr>
   </table>
   </dd>
 </dl>
@@ -329,35 +313,6 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a562e8ea4af67aaa36f70851af63974b5" name="a562e8ea4af67aaa36f70851af63974b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a562e8ea4af67aaa36f70851af63974b5">&#9670;&#160;</a></span>set_cb_task_depth()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void DataWrapper::set_cb_task_depth </td>
-          <td>(</td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>stack_depth</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set stack-depth of call-back task. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stack_depth</td><td>Size of stack-depth to set. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>void, nothing to return </dd></dl>
-
-</div>
-</div>
 <a id="a79090a72dbbab83ed081194465494861" name="a79090a72dbbab83ed081194465494861"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79090a72dbbab83ed081194465494861">&#9670;&#160;</a></span>un_follow()</h2>
 
@@ -377,10 +332,10 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Un-follow <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object. </p>
-<p>Stop triggering callback for respective follower permanently when this <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object is set.</p>
+<p>Stop triggering callback for respective follower permanently.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">follower_id</td><td>The ID of the follower to remove from the follower list. Returned when <a class="el" href="class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d" title="Follow DataWrapper object.">follow()</a> is called. </td></tr>
+    <tr><td class="paramname">follower_id</td><td>The ID of the follower to remove from the follower list. Returned when <a class="el" href="class_data_control_1_1_data_wrapper.html#a0db75e5847db5d2fab3503b9d4d0c90a" title="Follow DataWrapper object.">follow()</a> is called. </td></tr>
   </table>
   </dd>
 </dl>
@@ -418,296 +373,9 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a049b55ecc5cde9f4961af519dfc140b0" name="a049b55ecc5cde9f4961af519dfc140b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a049b55ecc5cde9f4961af519dfc140b0">&#9670;&#160;</a></span>cb_task_complete</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::cb_task_complete</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>whether or not the call-back task has completed, false if running, true if completed </p>
-
-</div>
-</div>
-<a id="a1b128bf5be3ec37632b5615b158aae78" name="a1b128bf5be3ec37632b5615b158aae78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b128bf5be3ec37632b5615b158aae78">&#9670;&#160;</a></span>cb_task_hdl</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">xTaskHandle <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::cb_task_hdl</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>task handle of call-back task </p>
-
-</div>
-</div>
-<a id="a0a056ad814647ada600f5ae36f4da4f3" name="a0a056ad814647ada600f5ae36f4da4f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a056ad814647ada600f5ae36f4da4f3">&#9670;&#160;</a></span>data</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::data</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>the current data </p>
-
-</div>
-</div>
-<a id="aa12353ba771d82940b761093adee53be" name="aa12353ba771d82940b761093adee53be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa12353ba771d82940b761093adee53be">&#9670;&#160;</a></span>default_stack_depth</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const constexpr uint16_t <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::default_stack_depth = 4096</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>default stack depth </p>
-
-</div>
-</div>
-<a id="a44019614a9a3f58931a02835c9855914" name="a44019614a9a3f58931a02835c9855914"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44019614a9a3f58931a02835c9855914">&#9670;&#160;</a></span>follower_list</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="struct_data_wrapper_1_1_follower.html">Follower</a>&gt; <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::follower_list</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>list of all followers, each element contains the call-back function and ID of a follower </p>
-
-</div>
-</div>
-<a id="ae43ba0a0f3557c05ec54fea975154143" name="ae43ba0a0f3557c05ec54fea975154143"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae43ba0a0f3557c05ec54fea975154143">&#9670;&#160;</a></span>logging_en</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::logging_en</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>whether or not logging is enabled, false if disabled, true if enabled </p>
-
-</div>
-</div>
-<a id="a0c88ef8c3afe21f3d825dc62d5bf9b92" name="a0c88ef8c3afe21f3d825dc62d5bf9b92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c88ef8c3afe21f3d825dc62d5bf9b92">&#9670;&#160;</a></span>name</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::name</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>name of <a class="el" href="class_data_control_1_1_data_wrapper.html" title="Base DataWrapper class.">DataWrapper</a> object, used in log statements </p>
-
-</div>
-</div>
-<a id="a128e5564edd2b7723c5781ac7fc3c68a" name="a128e5564edd2b7723c5781ac7fc3c68a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a128e5564edd2b7723c5781ac7fc3c68a">&#9670;&#160;</a></span>new_data</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::new_data</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>new data, overwrites current data after execution of all call-back functions </p>
-
-</div>
-</div>
-<a id="a7a2158d7c7c27ff46224f3f328e06119" name="a7a2158d7c7c27ff46224f3f328e06119"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a2158d7c7c27ff46224f3f328e06119">&#9670;&#160;</a></span>next_id</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::next_id</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>next follower ID to assign </p>
-
-</div>
-</div>
-<a id="aa8a84530810dc340ddf38c57693edd65" name="aa8a84530810dc340ddf38c57693edd65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8a84530810dc340ddf38c57693edd65">&#9670;&#160;</a></span>stack_depth</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::stack_depth</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>depth of task executing call-back functions </p>
-
-</div>
-</div>
-<a id="ae07a80934a40d90998e4f8fb3cfc7e7b" name="ae07a80934a40d90998e4f8fb3cfc7e7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae07a80934a40d90998e4f8fb3cfc7e7b">&#9670;&#160;</a></span>TAG</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const constexpr char* <a class="el" href="class_data_control_1_1_data_wrapper.html">DataControl::DataWrapper</a>&lt; T &gt;::TAG = &quot;DataControl&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>class tag, used in logging statements </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/development/esp/projects/idf_4_0/data_control/components/data_control/<a class="el" href="_data_wrapper_8hpp_source.html">DataWrapper.hpp</a></li>
-<li>D:/development/esp/projects/idf_4_0/data_control/components/data_control/<a class="el" href="_data_wrapper_8cpp_source.html">DataWrapper.cpp</a></li>
+<li>D:/development/esp/projects/idf_4_0/data_control_rework/components/data_control/<a class="el" href="_data_wrapper_8hpp_source.html">DataWrapper.hpp</a></li>
+<li>D:/development/esp/projects/idf_4_0/data_control_rework/components/data_control/<a class="el" href="_data_wrapper_8cpp_source.html">DataWrapper.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

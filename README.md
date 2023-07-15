@@ -76,11 +76,12 @@ Its functionality shares some similarities, but the implementation is different.
    ```
 
 
-2. Cd into the components directory and clone the DataControl repo.  
+2. Cd into the components directory and clone the DataControl and TaskWrapper repo. DataControl is dependent on TaskWrapper, it will not build without it.
 
    ```sh
    cd components
    git clone https://github.com/myles-parfeniuk/data_control.git
+   git clone https://github.com/myles-parfeniuk/task_wrapper.git
    ```
 
 
@@ -90,7 +91,7 @@ Its functionality shares some similarities, but the implementation is different.
    ```sh
    idf_component_register(SRC_DIRS "." 
    INCLUDE_DIRS "" 
-   REQUIRES data_control)
+   REQUIRES task_wrapper data_control)
    ```
    <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,7 +101,7 @@ Its functionality shares some similarities, but the implementation is different.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Quick Start
-This is intended to be a quick-guide, api documentation generated with doxygen can be found in the documentation directory of the master repo.  
+This is intended to be a quick-guide, api documentation generated with doxygen can be found in the documentation directory of the master branch.  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 #### Instantiating a DataWrapper Object
@@ -109,7 +110,6 @@ To instantiate a DataWrapper, instantiate one of its sub-classes. The difference
 * CallAlways will execute follower callback functions _always_
 * CallDifferent will only execute follower callback functions if the current data is _different_ from the new data set()
 * CallSame will only execute follower callback functions if the current data is the _same_ as the new data set()
-* CallEquals will only execute follower callback functions if the new data set() _equals_ its compare_data member  
 
    Example syntax:  
 
@@ -198,8 +198,8 @@ while(1)
 {
   fan_speed.set(take_tach_reading()); //set fan speed as result of new reading
 
-  /*after set is called, pwm's callback function will execute first (it was instantiated first),
-  * and oled's will execute second (it was instantiated second) */
+  /*after set is called, pwm's callback function will execute first (it was registered first),
+  * and oled's will execute second (it was registered second) */
 
   vTaskDelay(200/portTICK_PERIOD_MS); //delay for 200ms 
 }

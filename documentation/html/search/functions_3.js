@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_0',['get',['../class_data_control_1_1_data_wrapper.html#aee43e40ca8569976ee7ef896760df181',1,'DataControl::DataWrapper']]]
+  ['follow_0',['follow',['../class_data_control_1_1_data_wrapper.html#a0db75e5847db5d2fab3503b9d4d0c90a',1,'DataControl::DataWrapper']]]
 ];

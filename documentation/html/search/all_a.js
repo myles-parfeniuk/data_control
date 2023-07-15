@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['un_5ffollow_0',['un_follow',['../class_data_control_1_1_data_wrapper.html#a79090a72dbbab83ed081194465494861',1,'DataControl::DataWrapper']]],
-  ['un_5fpause_1',['un_pause',['../class_data_control_1_1_data_wrapper.html#a4e521a23968de496d73752f8122dc746',1,'DataControl::DataWrapper']]]
+  ['readme_0',['README',['../md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e.html',1,'']]]
 ];

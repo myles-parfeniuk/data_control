@@ -1,0 +1,32 @@
+\doxysection{Cb\+Helper.\+hpp}
+\label{_cb_helper_8hpp_source}\index{D:/development/esp/projects/idf\_4\_0/data\_control\_rework/components/data\_control/cb\_helper/CbHelper.hpp@{D:/development/esp/projects/idf\_4\_0/data\_control\_rework/components/data\_control/cb\_helper/CbHelper.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../task\_wrapper/TaskWrapper.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }CbHelper\ \{\ \ \ \ \ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ initialize();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ main\_task();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_main\_cb\_task\_depth(uint32\_t\ stack\_depth);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ execute\_callbacks(std::function<\textcolor{keywordtype}{void}\ ()>\ cb);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::function<void(\textcolor{keywordtype}{void})>>\ pending\_cb\_list;\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ TaskWrapper<CbHelper>\ main\_cb\_task;\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ initialized;\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}*\ TAG\ =\ \textcolor{stringliteral}{"{}CbHelper"{}};\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keyword}{constexpr}\ uint32\_t\ default\_stack\_size\ =\ 4096;\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+
+\end{DoxyCode}

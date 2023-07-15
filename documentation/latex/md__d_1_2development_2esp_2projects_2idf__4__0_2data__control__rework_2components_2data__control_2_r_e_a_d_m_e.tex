@@ -1,0 +1,341 @@
+\chapter{README}
+\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e}\index{README@{README}}
+\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_readme-top}%
+  
+
+{\bfseries{Table of Contents}}\begin{adjustwidth}{1em}{0em}
+
+\begin{DoxyEnumerate}
+\item {\texttt{ About}}  
+\item {\texttt{ Getting Started}} 
+\begin{DoxyItemize}
+\item {\texttt{ Adding to Project}} 
+\end{DoxyItemize}
+\item {\texttt{ Usage}} 
+\begin{DoxyItemize}
+\item {\texttt{ Quick Start}} 
+\begin{DoxyItemize}
+\item {\texttt{ Instantiating a Data\+Wrapper Object}} 
+\item {\texttt{ Registering Callback with a Data\+Wrapper Object}} 
+\item {\texttt{ Modifying Data}} 
+\item {\texttt{ Unfollowing, Pausing, and Unpausing a Callbacks}} 
+\end{DoxyItemize}
+\item {\texttt{ Quick Example}} 
+\item {\texttt{ More Examples}} 
+\end{DoxyItemize}
+\item {\texttt{ Program Flowchart}} 
+\item {\texttt{ License}} 
+\item {\texttt{ Contact}} 
+\end{DoxyEnumerate}\end{adjustwidth}
+\doxysubsection{About}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md0}
+Data\+Control is a C++ component written for esp-\/idf version 4.\+0, intended to simplify the management of data and actions associated with that data.
+
+{\bfseries{What does it do?}}
+\begin{DoxyItemize}
+\item Allows the creation of Data\+Wrapper objects implemented as a template class, used to store data of any type.
+\item Call-\/back functions can be registered to Data\+Wrapper objects.
+\item Call-\/back functions will be executed when the data of Data\+Wrapper object is modified.
+\end{DoxyItemize}
+
+{\bfseries{Why is it useful?}}
+
+In embedded applications it\textquotesingle{}s often required to take some sort of action that is associated with a piece of data. ~\newline
+ For example, we might want to\+:
+
+
+\begin{DoxyItemize}
+\item Detect the press of a button, then turn on an LED, and power on an external peripheral.
+\item Sample a fan\textquotesingle{}s tach signal, then adjust its PWM, and write its speed to an OLED.
+\end{DoxyItemize}
+
+Firmware can become complicated due to actions like these, especially in the context of a large system where several actions may need to be associated with a single piece of data. Data\+Control is intended to remedy this issue.
+
+In the context of the above examples, with Data\+Control we can\+:
+
+
+\begin{DoxyItemize}
+\item Store the status of the button within a Data\+Wrapper as a member of a\"{}\+Button\"{} class, register 2 different call-\/backs to Data\+Wrapper in separate classes (for ex. \"{}\+Led\+Backend\"{} and \"{}\+Ext\+Peripheral\+Backend\"{})
+\item Store the speed of the fan within a Data\+Wrapper object as a member of a \"{}\+Fan\"{} class, register 2 different call-\/backs to Data\+Wrapper in separate classes (for ex. \"{}\+Oled\+Backend\"{} \& \"{}\+PWMBackend\"{})
+\end{DoxyItemize}
+
+When the data is modified due to code within the scope of the Fan or Button class, a task will be created and execute any call-\/back functions registered in the \"{}\+Led\+Backend\"{}, \"{}\+Ext\+Peripheral\+Backend\"{}, \"{}\+PWMBackend\"{}, and \"{}\+Oled\+Backend\"{} implementations. Meaning, any \"{}backend\"{} objects will be notified of new data, without being aware of each other\textquotesingle{}s existence.
+
+This leads to well organized firmware that is much easier to work with, especially as a system expands and grows.
+
+It was originally inspired by an in-\/house component I used at a workplace; however, this component has been re-\/written without using that component as a reference. ~\newline
+ Its functionality shares some similarities, but the implementation is different.\doxysubsection{Getting Started}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md1}
+({\texttt{ back to top}})\doxysubsubsection{Adding to Project}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item Create a \"{}components\"{} directory in the root workspace directory of your esp-\/idf project if it does not exist already. ~\newline
+
+
+In workspace directory\+: ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir\ components}
+
+\end{DoxyCode}
+
+\item Cd into the components directory and clone the Data\+Control and Task\+Wrapper repo. Data\+Control is dependent on Task\+Wrapper, it will not build without it.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ components}
+\DoxyCodeLine{git\ clone\ https://github.com/myles-\/parfeniuk/data\_control.git}
+\DoxyCodeLine{git\ clone\ https://github.com/myles-\/parfeniuk/task\_wrapper.git}
+
+\end{DoxyCode}
+
+\item You may have to edit project CMake\+Lists.\+txt file to include the components. ~\newline
+
+
+For example\+: ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{idf\_component\_register(SRC\_DIRS\ "{}."{}\ }
+\DoxyCodeLine{INCLUDE\_DIRS\ "{}"{}\ }
+\DoxyCodeLine{REQUIRES\ task\_wrapper\ data\_control)}
+
+\end{DoxyCode}
+ 
+
+({\texttt{ back to top}})
+\end{DoxyEnumerate}\doxysubsection{Usage}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md3}
+({\texttt{ back to top}})\doxysubsubsection{Quick Start}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md4}
+This is intended to be a quick-\/guide, api documentation generated with doxygen can be found in the documentation directory of the master branch. ~\newline
+ 
+
+({\texttt{ back to top}})\doxyparagraph{Instantiating a Data\+Wrapper Object}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md5}
+To instantiate a Data\+Wrapper, instantiate one of its sub-\/classes. The differences are as follows\+:
+
+
+\begin{DoxyItemize}
+\item Call\+Always will execute follower callback functions {\itshape always}
+\item Call\+Different will only execute follower callback functions if the current data is {\itshape different} from the new data set()
+\item Call\+Same will only execute follower callback functions if the current data is the {\itshape same} as the new data set()
+
+Example syntax\+: ~\newline
+
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*integer\ data\ with\ initial\ value\ of\ 0,}}
+\DoxyCodeLine{\textcolor{comment}{\ callbacks\ executed\ every\ time\ set()\ method\ is\ called\ (call\ always)*/}}
+\DoxyCodeLine{DataControl::CallAlways<int16\_t>\ number(0);\ }
+\DoxyCodeLine{\textcolor{comment}{/*bool\ data\ with\ initial\ value\ of\ false,\ }}
+\DoxyCodeLine{\textcolor{comment}{*\ callbacks\ executed\ every\ time\ set()\ method\ is\ called,\ }}
+\DoxyCodeLine{\textcolor{comment}{*\ and\ new\ data\ is\ different\ from\ current\ data\ (call\ different)*/}}
+\DoxyCodeLine{DataControl::CallDifferent<bool>\ my\_bool(\textcolor{keyword}{false});}
+
+\end{DoxyCode}
+
+
+Another example using the second example from the About section\+: ~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*inside\ Fan\ class\ definition*/}}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{DataControl::CallAlways<int16\_t>\ fan\_speed(0);}
+
+\end{DoxyCode}
+ 
+
+({\texttt{ back to top}})\doxyparagraph{Registering Callback with a Data\+Wrapper Object}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md6}
+To register any desired call back functions, call the follow() method.
+
+Example syntax\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{number.follow(}
+\DoxyCodeLine{\ \textcolor{comment}{//lambda\ call-\/back\ function\ that\ executes\ whenever\ set()\ is\ called\ on\ number}}
+\DoxyCodeLine{\ [\&number](int16\_t\ new\_data)}
+\DoxyCodeLine{\ \{}
+\DoxyCodeLine{\ \ \ ESP\_LOGI(\textcolor{stringliteral}{"{}Current\ Number:\ \%d,\ New\ Number:\ \%d"{}},\ number.get(),\ new\_data);}
+\DoxyCodeLine{\ \});}
+
+\end{DoxyCode}
+
+
+Using the same fan example, it makes for good organization to register the call-\/back functions within the class constructors\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*in\ main.cpp*/}}
+\DoxyCodeLine{Fan\ *fan\ =\ \textcolor{keyword}{new}\ Fan(\textcolor{comment}{/*init\ vals*/});\ \textcolor{comment}{//instantiate\ fan}}
+\DoxyCodeLine{PWMBackend\ *pwm\ =\ PWMBackend(*fan);\ \textcolor{comment}{//instantiate\ pwm\ with\ reference\ to\ fan}}
+\DoxyCodeLine{OledBackend\ *oled\ =\ OledBackend(*fan);\ \textcolor{comment}{//instantiate\ oled\ with\ reference\ to\ fan}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*PWMBackend\ constructor\ in\ PWMBackend.cpp*/}}
+\DoxyCodeLine{PWMBackend::\ PWMBackend(Fan\ \&fan):}
+\DoxyCodeLine{fan(fan)\ \textcolor{comment}{//initialize\ fan\ member\ as\ reference\ to\ fan}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ fan-\/>fan\_speed.follow(}
+\DoxyCodeLine{\ \ [\&\textcolor{keyword}{this},\ \&fan](int16\_t\ new\_speed)\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//set\ pwm\ according\ to\ new\ speed\ with\ PWMBackend\ method}}
+\DoxyCodeLine{\ \ \ \ this-\/>pwm\_control(new\_speed);\ }
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*OledBackend\ constructor\ in\ Oled.cpp*/}}
+\DoxyCodeLine{OledBackend::\ OledBackend(Fan\ \&fan):}
+\DoxyCodeLine{fan(fan)\ \textcolor{comment}{//initialize\ fan\ member\ as\ reference\ to\ fan}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ fan-\/>fan\_speed.follow(}
+\DoxyCodeLine{\ \ [\&\textcolor{keyword}{this},\ \&fan](int16\_t\ new\_speed)\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//draw\ speed\ to\ OLED\ with\ OledBackend\ method\ when\ new\ fan\ speed\ reading\ is\ taken}}
+\DoxyCodeLine{\ \ \ \ this-\/>draw\_speed(new\_speed);\ }
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+({\texttt{ back to top}})\doxyparagraph{Modifying Data}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md7}
+Update the data within data wrapper object by calling the set() method, and all call-\/backs previously registered with the follow() method will be executed automatically. The call-\/backs will be executed in the order they were registered.
+
+Example syntax\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{number.set(number.get()\ +\ 1);\ \textcolor{comment}{//increment\ number\ by\ one}}
+
+\end{DoxyCode}
+
+
+Again, same example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*inside\ a\ task\ within\ Fan.cpp*/}}
+\DoxyCodeLine{fan\_speed.set(0);}
+\DoxyCodeLine{\textcolor{keywordflow}{while}(1)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ fan\_speed.set(take\_tach\_reading());\ \textcolor{comment}{//set\ fan\ speed\ as\ result\ of\ new\ reading}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{/*after\ set\ is\ called,\ pwm's\ callback\ function\ will\ execute\ first\ (it\ was\ registered\ first),}}
+\DoxyCodeLine{\textcolor{comment}{\ \ *\ and\ oled's\ will\ execute\ second\ (it\ was\ registered\ second)\ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ vTaskDelay(200/portTICK\_PERIOD\_MS);\ \textcolor{comment}{//delay\ for\ 200ms\ }}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+({\texttt{ back to top}})\doxyparagraph{Unfollowing, Pausing, and Unpausing a Callbacks}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md8}
+If it is desired to stop executing a callback, its ID must be saved when it is registered. ~\newline
+
+
+Example syntax\+: ~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint16\_t\ follower\_id\ =\ 0;\ \textcolor{comment}{//callback\ function\ ID}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ follower\_id\ =\ number.follow(\ \ \textcolor{comment}{//registering\ a\ call-\/back\ and\ saving\ its\ ID}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//lambda\ call-\/back\ function\ that\ executes\ whenever\ set()\ is\ called\ on\ number}}
+\DoxyCodeLine{\ \ [\&number](int16\_t\ new\_data)}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ ESP\_LOGI(\textcolor{stringliteral}{"{}Current\ Number:\ \%d,\ New\ Number:\ \%d"{}},\ number.get(),\ new\_data);}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//temporarily\ pauses\ this\ callback\ until\ un\_pause\ is\ called,\ a\ paused\ callback\ never\ executes}}
+\DoxyCodeLine{\ \ number.pause(follower\_id);}
+\DoxyCodeLine{\ \ \textcolor{comment}{//un-\/pauses\ the\ callback\ such\ that\ it\ executes\ as\ normal}}
+\DoxyCodeLine{\ \ number.un\_pause(follower\_id);}
+\DoxyCodeLine{\ \ \textcolor{comment}{//un-\/registers\ callback\ permanently\ \ }}
+\DoxyCodeLine{\ \ number.unfollow(follower\_id);\ }
+
+\end{DoxyCode}
+ 
+
+({\texttt{ back to top}})\doxysubsubsection{Quick Example}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md9}
+A quick example that generates some terminal output which can be seen in the gif below.
+
+Code\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*main.cpp*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//standard\ library\ includes}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}\ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//in-\/house\ component\ includes}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}DataControl.hpp"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//esp-\/idf\ component\ includes}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \textcolor{keywordtype}{void}\ app\_main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ uint16\_t\ counter\_id\ =\ 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ DataControl::CallAlways<int16\_t>\ counter(0);\ \textcolor{comment}{//initialize\ data\ with\ value\ of\ 0}}
+\DoxyCodeLine{\ \ \ \ DataControl::CallDifferent<bool>\ over\_five(\textcolor{keyword}{false});\ \textcolor{comment}{//initialize\ data\ with\ value\ of\ false}}
+\DoxyCodeLine{\ \ \ \ DataControl::CallDifferent<bool>\ over\_ten(\textcolor{keyword}{false});\ \textcolor{comment}{//initialize\ data\ with\ value\ of\ false}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//register\ callbacks}}
+\DoxyCodeLine{\ \ \ \ counter\_id\ =\ counter.follow(}
+\DoxyCodeLine{\ \ \ \ [\&counter](int16\_t\ new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//print\ current\ and\ new\ counts}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ESP\_LOGI(\textcolor{stringliteral}{"{}Follower0"{}},\ \textcolor{stringliteral}{"{}|\ Current\ Count:\ \%d\ |\ New\ Count:\ \%d\ |"{}},\ counter.get(),\ new\_data);\ }
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ over\_five.follow(}
+\DoxyCodeLine{\ \ \ \ [](\textcolor{keywordtype}{bool}\ new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ESP\_LOGE(\textcolor{stringliteral}{"{}Follower1"{}},\ \textcolor{stringliteral}{"{}Count\ is\ now\ over\ five."{}});}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ over\_ten.follow(}
+\DoxyCodeLine{\ \ \ \ [\&counter,\ counter\_id](\textcolor{keywordtype}{bool}\ new\_data)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ counter.un\_follow(counter\_id);\ \textcolor{comment}{//un-\/follow\ counter\ when\ count\ exceeds\ ten}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ESP\_LOGE(\textcolor{stringliteral}{"{}Follower2"{}},\ \textcolor{stringliteral}{"{}Count\ is\ now\ over\ ten,\ counter\ un-\/followed."{}});}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{while}(1)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ counter.set(counter.get()\ +\ 1);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vTaskDelay(500/portTICK\_PERIOD\_MS);\ \textcolor{comment}{//delay\ for\ 0.5\ seconds}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(counter.get()\ >\ 5)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ over\_five.set(\textcolor{keyword}{true});\ \textcolor{comment}{//set\ over\_five\ true\ after\ 5\ iterations\ of\ loop}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(counter.get()\ >\ 10)\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ over\_ten.set(\textcolor{keyword}{true});\ \textcolor{comment}{//set\ over\_ten\ true\ after\ 10\ iterations\ of\ loop}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Terminal Output\+:
+
+ 
+
+({\texttt{ back to top}})\doxysubsubsection{More Examples}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md10}
+Examples are available in the Data\+Control directory of my esp\+\_\+idf\+\_\+cpp\+\_\+examples repo\+: ~\newline
+
+
+{\texttt{ https\+://github.\+com/myles-\/parfeniuk/esp\+\_\+idf\+\_\+cpp\+\_\+examples}}
+
+My other component Button\+Driver also utilizes Data\+Control\+:
+
+{\texttt{ https\+://github.\+com/myles-\/parfeniuk/button\+\_\+driver}} 
+
+({\texttt{ back to top}})\doxysubsection{Program Flowchart}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md11}
+ 
+
+({\texttt{ back to top}})\doxysubsection{License}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md12}
+Distributed under the MIT License. See {\ttfamily LICENSE.\+md} for more information. 
+
+({\texttt{ back to top}})\doxysubsection{Contact}\label{md__d_1_2development_2esp_2projects_2idf__4__0_2data__control__rework_2components_2data__control_2_r_e_a_d_m_e_autotoc_md13}
+Myles Parfeniuk -\/ {\texttt{ myles.\+parfenyuk@gmail.\+com}}
+
+Project Link\+: {\texttt{ https\+://github.\+com/myles-\/parfeniuk/data\+\_\+control}} 
+
+({\texttt{ back to top}})

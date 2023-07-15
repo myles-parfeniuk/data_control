@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['un_5ffollow_0',['un_follow',['../class_data_control_1_1_data_wrapper.html#a79090a72dbbab83ed081194465494861',1,'DataControl::DataWrapper']]],
-  ['un_5fpause_1',['un_pause',['../class_data_control_1_1_data_wrapper.html#a4e521a23968de496d73752f8122dc746',1,'DataControl::DataWrapper']]]
+  ['main_5ftask_0',['main_task',['../class_cb_helper.html#a2e9aa188d1c755d0e62929c94cd46a9f',1,'CbHelper']]]
 ];

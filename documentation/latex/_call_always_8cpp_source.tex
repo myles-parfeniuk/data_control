@@ -1,48 +1,49 @@
 \doxysection{Call\+Always.\+cpp}
-\hypertarget{_call_always_8cpp_source}{}\label{_call_always_8cpp_source}\index{D:/development/esp/projects/idf\_4\_0/data\_control/components/data\_control/cb\_types/CallAlways.cpp@{D:/development/esp/projects/idf\_4\_0/data\_control/components/data\_control/cb\_types/CallAlways.cpp}}
-\mbox{\hyperlink{_call_always_8cpp}{Go to the documentation of this file.}}
+\label{_call_always_8cpp_source}\index{D:/development/esp/projects/idf\_4\_0/data\_control\_rework/components/data\_control/cb\_types/CallAlways.cpp@{D:/development/esp/projects/idf\_4\_0/data\_control\_rework/components/data\_control/cb\_types/CallAlways.cpp}}
+
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_call_always_8hpp}{CallAlways.hpp}}"{}}}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}CallAlways.hpp"{}}}
 \DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_data_control}{DataControl}};}
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ namespace\ }DataControl;}
 \DoxyCodeLine{00004\ }
 \DoxyCodeLine{00005\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00006\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_always_a320cd65fa7c4f7f5dcd214042e99c9ce}{CallAlways<T>::set}}(T\ new\_data)}
+\DoxyCodeLine{00006\ \textcolor{keywordtype}{void}\ CallAlways<T>::set(T\ new\_data)}
 \DoxyCodeLine{00007\ \{}
-\DoxyCodeLine{00008\ \ \ \ \ this-\/>new\_data\ =\ new\_data;\ }
+\DoxyCodeLine{00008\ \ \ \ \ uint16\_t\ i\ =\ 0;}
 \DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \ \ \ \ xTaskCreate(\&cb\_task\_trampoline,\ \textcolor{stringliteral}{"{}cb\_task"{}},\ this-\/>stack\_depth,\ \textcolor{keyword}{this},\ 4,\ \&this-\/>cb\_task\_hdl);}
-\DoxyCodeLine{00011\ \}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00015\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_always_a31e28dbe71a040fab784d687df15c8af}{CallAlways<T>::cb\_task}}()\{}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
-\DoxyCodeLine{00017\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.empty())}
-\DoxyCodeLine{00020\ \ \ \ \ \{}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>follower\_list.size();\ i++)}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.at(i).paused)\ \textcolor{comment}{//if\ follower\ is\ not\ paused}}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>follower\_list.at(i).cb(this-\/>new\_data);\ \textcolor{comment}{//call\ follower\ call-\/back\ function}}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00010\ \ \ \ \ this-\/>new\_data\ =\ new\_data;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>immediate\_follower\_list.empty())}
+\DoxyCodeLine{00013\ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>immediate\_follower\_list.size();\ i++)\{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>immediate\_follower\_list.at(i).paused)\ \textcolor{comment}{//if\ follower\ is\ not\ paused\ \ }}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>immediate\_follower\_list.at(i).cb(new\_data);\ \textcolor{comment}{//call\ follower\ call-\/back\ function}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00018\ \ \ \ \ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ CbHelper::execute\_callbacks(std::bind(\&CallAlways::cb\_executor,\ \textcolor{keyword}{this}));}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00025\ \ \textcolor{keywordtype}{void}\ CallAlways<T>::cb\_executor()\{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ \ \ this-\/>data\ =\ this-\/>new\_data;}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};\ \ }
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \}}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00037\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_data_control_1_1_call_always_ad12ba41e6460de225c6cb46ae578d75a}{CallAlways<T>::cb\_task\_trampoline}}(\textcolor{keywordtype}{void}\ *data)\{}
-\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_data_control_1_1_call_always}{CallAlways}}\ *local\_data\ =\ (\mbox{\hyperlink{class_data_control_1_1_call_always}{CallAlways}}\ *)data;\ }
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ local\_data-\/>\mbox{\hyperlink{class_data_control_1_1_call_always_a31e28dbe71a040fab784d687df15c8af}{cb\_task}}();}
-\DoxyCodeLine{00041\ \ \ \ \ vTaskDelete(NULL);\ \ \textcolor{comment}{//self-\/delete\ task}}
-\DoxyCodeLine{00042\ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.empty())}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>follower\_list.size();\ i++)}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.at(i).paused)\ \textcolor{comment}{//if\ follower\ is\ not\ paused}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>follower\_list.at(i).cb(this-\/>new\_data);\ \textcolor{comment}{//call\ follower\ call-\/back\ function}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ this-\/>data\ =\ this-\/>new\_data;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};\ \ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \}}
 
 \end{DoxyCode}

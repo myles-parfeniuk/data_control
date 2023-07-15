@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pause_0',['pause',['../class_data_control_1_1_data_wrapper.html#a87ba78fe9b88854524689970de6c22c8',1,'DataControl::DataWrapper']]],
-  ['paused_1',['paused',['../struct_data_wrapper_1_1_follower.html#a5a2fa3aa099f6a5ed7be96abe32323cc',1,'DataWrapper::Follower']]]
+  ['logging_5fen_0',['logging_en',['../class_data_control_1_1_data_wrapper.html#ae43ba0a0f3557c05ec54fea975154143',1,'DataControl::DataWrapper']]]
 ];

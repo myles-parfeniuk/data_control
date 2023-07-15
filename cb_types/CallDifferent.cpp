@@ -5,14 +5,27 @@ using namespace DataControl;
 template <typename T>
 void CallDifferent<T>::set(T new_data)
 {
+    uint16_t i = 0;
+    
     this->new_data = new_data; 
 
-    xTaskCreate(&cb_task_trampoline, "cb_task", this->stack_depth, this, 4, &this->cb_task_hdl);
+    if(!this->immediate_follower_list.empty())
+    {
+        if(this->data !=new_data){
+            for(i = 0; i < this->immediate_follower_list.size(); i++)
+            {
+                if(!this->immediate_follower_list.at(i).paused) //if follower is not paused  
+                    this->immediate_follower_list.at(i).cb(new_data); //call follower call-back function
+            }
+        }
+    }
+
+    CbHelper::execute_callbacks(std::bind(&CallDifferent::cb_executor, this)); //for non immediate call-backs   
 }
 
 
  template <typename T>
- void CallDifferent<T>::cb_task(){
+ void CallDifferent<T>::cb_executor(){
     static uint16_t i = 0;
     this->cb_task_complete = false;
     
@@ -33,13 +46,4 @@ void CallDifferent<T>::set(T new_data)
 
     this->cb_task_complete = true;  
 
- }
-
-
- template <typename T>
- void CallDifferent<T>::cb_task_trampoline(void *data){
-    CallDifferent *local_data = (CallDifferent *)data; 
-
-    local_data->cb_routine();
-    vTaskDelete(NULL);  //self-delete task
  }

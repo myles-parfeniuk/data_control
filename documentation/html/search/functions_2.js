@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['follow_0',['follow',['../class_data_control_1_1_data_wrapper.html#aaace46d4f8c57627f43a718ca1a4583d',1,'DataControl::DataWrapper']]]
+  ['execute_5fcallbacks_0',['execute_callbacks',['../class_cb_helper.html#af872b35ffbac6218a5fce4ec69a1387a',1,'CbHelper']]]
 ];

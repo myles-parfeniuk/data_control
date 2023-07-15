@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name_0',['name',['../class_data_control_1_1_data_wrapper.html#a0c88ef8c3afe21f3d825dc62d5bf9b92',1,'DataControl::DataWrapper']]],
-  ['new_5fdata_1',['new_data',['../class_data_control_1_1_data_wrapper.html#a128e5564edd2b7723c5781ac7fc3c68a',1,'DataControl::DataWrapper']]],
-  ['next_5fid_2',['next_id',['../class_data_control_1_1_data_wrapper.html#a7a2158d7c7c27ff46224f3f328e06119',1,'DataControl::DataWrapper']]]
+  ['immediate_5ffollower_5flist_0',['immediate_follower_list',['../class_data_control_1_1_data_wrapper.html#a1b9463da621594a3314f85838dba2a4d',1,'DataControl::DataWrapper']]],
+  ['initialize_1',['initialize',['../class_cb_helper.html#a1d22b28701f02c1966e1d1f10f098bb8',1,'CbHelper']]],
+  ['initialized_2',['initialized',['../class_cb_helper.html#a9b31ad04ed1cb7110bba75b61db14278',1,'CbHelper']]]
 ];

@@ -1,0 +1,110 @@
+\doxysection{Cb\+Helper Class Reference}
+\label{class_cb_helper}\index{CbHelper@{CbHelper}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \textbf{ initialize} ()
+\begin{DoxyCompactList}\small\item\em Starts main cb task. \end{DoxyCompactList}\item 
+static void \textbf{ main\+\_\+task} ()
+\begin{DoxyCompactList}\small\item\em Task responsible for executing non-\/immediate call-\/backs of all Data\+Wrapper objects. \end{DoxyCompactList}\item 
+static void \textbf{ set\+\_\+main\+\_\+cb\+\_\+task\+\_\+depth} (uint32\+\_\+t stack\+\_\+depth)
+\begin{DoxyCompactList}\small\item\em Sets stack depth of main call-\/back task. \end{DoxyCompactList}\item 
+static void \textbf{ execute\+\_\+callbacks} (std\+::function$<$ void()$>$ cb)
+\begin{DoxyCompactList}\small\item\em Passes call-\/backs to be executed in main\+\_\+cb\+\_\+task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_cb_helper_a0fac097b05a1cbc44201cddf801cb611} 
+static std\+::vector$<$ std\+::function$<$ void(void)$>$ $>$ {\bfseries pending\+\_\+cb\+\_\+list}
+\begin{DoxyCompactList}\small\item\em pending cb\+\_\+executor functions from Data\+Wrapper subclasses. Pushed to list when \doxyref{execute\+\_\+callbacks()}{p.}{class_cb_helper_af872b35ffbac6218a5fce4ec69a1387a} is called. \end{DoxyCompactList}\item 
+\label{class_cb_helper_a3c37ebd14bdbe3a024247ef75a8f0bf9} 
+static Task\+Wrapper$<$ \textbf{ Cb\+Helper} $>$ {\bfseries main\+\_\+cb\+\_\+task}
+\begin{DoxyCompactList}\small\item\em task responsible for executing all non-\/immediate call-\/backs \end{DoxyCompactList}\item 
+\label{class_cb_helper_a9b31ad04ed1cb7110bba75b61db14278} 
+static bool {\bfseries initialized} = false
+\begin{DoxyCompactList}\small\item\em whether or not the main task has been started \end{DoxyCompactList}\item 
+\label{class_cb_helper_a3c25c7a1ac72426287573a6f5b494388} 
+static const constexpr char $\ast$ {\bfseries TAG} = \"{}Cb\+Helper\"{}
+\begin{DoxyCompactList}\small\item\em class tag, used in logging statements \end{DoxyCompactList}\item 
+\label{class_cb_helper_a8caf8c7e81dd6b0e8ec55904048543a3} 
+static const constexpr uint32\+\_\+t {\bfseries default\+\_\+stack\+\_\+size} = 4096
+\begin{DoxyCompactList}\small\item\em default stack size of main task \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_cb_helper_af872b35ffbac6218a5fce4ec69a1387a} 
+\index{CbHelper@{CbHelper}!execute\_callbacks@{execute\_callbacks}}
+\index{execute\_callbacks@{execute\_callbacks}!CbHelper@{CbHelper}}
+\doxysubsubsection{execute\_callbacks()}
+{\footnotesize\ttfamily void Cb\+Helper\+::execute\+\_\+callbacks (\begin{DoxyParamCaption}\item[{std\+::function$<$ void()$>$}]{cb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Passes call-\/backs to be executed in main\+\_\+cb\+\_\+task. 
+
+This method is called from the set() method in the Data\+Wrapper child classes such as Call\+Always, Call\+Same, \& Call\+Different. It pushes their cb\+\_\+executor function to the pending\+\_\+cb list and resume\textquotesingle{}s main\+\_\+cb\+\_\+task such that any non immediate call-\/backs registered to the respective Data\+Wrapper object will be executed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & the cb executor to be added to the pending\+\_\+cb\+\_\+list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\label{class_cb_helper_a1d22b28701f02c1966e1d1f10f098bb8} 
+\index{CbHelper@{CbHelper}!initialize@{initialize}}
+\index{initialize@{initialize}!CbHelper@{CbHelper}}
+\doxysubsubsection{initialize()}
+{\footnotesize\ttfamily void Cb\+Helper\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Starts main cb task. 
+
+Only called once when the first data wrapper object is created.
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\label{class_cb_helper_a2e9aa188d1c755d0e62929c94cd46a9f} 
+\index{CbHelper@{CbHelper}!main\_task@{main\_task}}
+\index{main\_task@{main\_task}!CbHelper@{CbHelper}}
+\doxysubsubsection{main\_task()}
+{\footnotesize\ttfamily void Cb\+Helper\+::main\+\_\+task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Task responsible for executing non-\/immediate call-\/backs of all Data\+Wrapper objects. 
+
+This task is resumed whenever set() is called on a Data\+Wrapper object, it runs until all functions within the pending\+\_\+cb\+\_\+list have been executed and self suspends upon completion.
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\label{class_cb_helper_a85f1eb21a7093c71b4d88f7b17942d04} 
+\index{CbHelper@{CbHelper}!set\_main\_cb\_task\_depth@{set\_main\_cb\_task\_depth}}
+\index{set\_main\_cb\_task\_depth@{set\_main\_cb\_task\_depth}!CbHelper@{CbHelper}}
+\doxysubsubsection{set\_main\_cb\_task\_depth()}
+{\footnotesize\ttfamily void Cb\+Helper\+::set\+\_\+main\+\_\+cb\+\_\+task\+\_\+depth (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stack\+\_\+depth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sets stack depth of main call-\/back task. 
+
+Sets the stack depth of the task responsible for executing all non-\/immediate call-\/backs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & the desired stack depth for main call-\/back task, default is 4096bytes\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/development/esp/projects/idf\+\_\+4\+\_\+0/data\+\_\+control\+\_\+rework/components/data\+\_\+control/cb\+\_\+helper/Cb\+Helper.\+hpp\item 
+D\+:/development/esp/projects/idf\+\_\+4\+\_\+0/data\+\_\+control\+\_\+rework/components/data\+\_\+control/cb\+\_\+helper/Cb\+Helper.\+cpp\end{DoxyCompactItemize}
