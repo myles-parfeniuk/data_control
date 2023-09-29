@@ -101,7 +101,6 @@ class DataWrapper {
     struct Follower; 
     std::vector<Follower> follower_list; ///<list of followers
     std::vector<Follower> immediate_follower_list; ///<list of followers for which callbacks are executed immediately from the thread which set() was called
-    xTaskHandle cb_task_hdl; ///<task handle of call-back task
     bool cb_task_complete; ///<whether or not the call-back task has completed, false if running, true if completed
     const char *name; ///<name of DataWrapper object, used in log statements
     bool logging_en;  ///<whether or not logging is enabled, false if disabled, true if enabled

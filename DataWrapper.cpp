@@ -107,13 +107,14 @@ bool DataWrapper<T>::pause(uint16_t follower_id)
     for(i = 0; i < immediate_follower_list.size(); i++)
     {
         //if matching id is found
-        if(immediate_follower_list.at(i).f_id == follower_id){
+        if(immediate_follower_list.at(i).f_id == follower_id)
+        {
             if(logging_en)
                ESP_LOGI(TAG, "%s -> Paused callback for follower: f_id_%d", name, immediate_follower_list.at(i).f_id);
 
-               immediate_follower_list.at(i).paused = true; //pause follower such that its callback will not be executed
-               return true;
-            }
+            immediate_follower_list.at(i).paused = true; //pause follower such that its callback will not be executed
+            return true;
+        }
     }
 
     //loop through all followers

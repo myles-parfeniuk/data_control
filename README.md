@@ -33,7 +33,7 @@
 <!-- ABOUT -->
 ## About
 
-DataControl is a C++ component written for esp-idf version 4.0, intended to simplify the management of data and actions associated with that data.
+DataControl is a C++ component written for esp-idf version 5.1, intended to simplify the management of data and actions associated with that data.
 
 **What does it do?**
 - Allows the creation of DataWrapper objects implemented as a template class, used to store data of any type.
@@ -82,16 +82,6 @@ Its functionality shares some similarities, but the implementation is different.
    cd components
    git clone https://github.com/myles-parfeniuk/data_control.git
    git clone https://github.com/myles-parfeniuk/task_wrapper.git
-   ```
-
-
-3. You may have to edit project CMakeLists.txt file to include the components.  
-   
-   For example:  
-   ```sh
-   idf_component_register(SRC_DIRS "." 
-   INCLUDE_DIRS "" 
-   REQUIRES task_wrapper data_control)
    ```
    <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
