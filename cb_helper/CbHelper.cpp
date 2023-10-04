@@ -1,14 +1,14 @@
 #include "CbHelper.hpp"
 
 bool CbHelper::initialized = false;
-TaskWrapper<CbHelper> CbHelper::main_cb_task(&CbHelper::main_task);
+TaskHandle_t CbHelper::main_cb_task_hdl = NULL; 
+SemaphoreHandle_t CbHelper::pending_cb_list_mutex = xSemaphoreCreateMutex();
 std::vector<std::function<void(void)>> CbHelper::pending_cb_list;
 
 void CbHelper::initialize()
 {
     if(!initialized){
-        main_cb_task.set_stack_size(4096);
-        main_cb_task.start_task();
+        xTaskCreate(&main_cb_task, "nav_switch_task", default_stack_size, nullptr, 5, &main_cb_task_hdl);
         
     }
 
@@ -18,26 +18,38 @@ void CbHelper::initialize()
 
 void CbHelper::execute_callbacks(std::function<void(void)> cb)
 {
+   lock_pending_cb_list(); 
    pending_cb_list.push_back(cb);
-   main_cb_task.resume_task();
+   unlock_pending_cb_list(); 
+   vTaskResume(main_cb_task_hdl);
 }
 
-void CbHelper::main_task()
+void CbHelper::main_cb_task(void *arg)
 {
-    while(1){
-
-    while(!pending_cb_list.empty())
+    while(1)
     {
-        pending_cb_list.back()(); 
-        pending_cb_list.pop_back();
-        vTaskDelay(15/portTICK_PERIOD_MS); 
-    }
+    
+        while(!pending_cb_list.empty())
+        {
+            lock_pending_cb_list(); 
+            pending_cb_list.back()(); 
+            pending_cb_list.pop_back();
+            unlock_pending_cb_list(); 
 
-    main_cb_task.suspend_task(); 
+            vTaskDelay(8/portTICK_PERIOD_MS); 
+        }
+
+        vTaskSuspend(NULL);
     }
 }
 
-void CbHelper:: set_main_cb_task_depth(uint32_t stack_depth)
+
+void CbHelper::lock_pending_cb_list()
 {
-    main_cb_task.set_stack_size(stack_depth);
+    xSemaphoreTake(pending_cb_list_mutex, portMAX_DELAY);
+}
+
+void CbHelper::unlock_pending_cb_list()
+{
+    xSemaphoreGive(pending_cb_list_mutex);
 }
