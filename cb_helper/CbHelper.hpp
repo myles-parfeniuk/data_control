@@ -6,6 +6,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
+#include "esp_log.h"
 
 class CbHelper {     
 
@@ -19,6 +20,7 @@ class CbHelper {
     */
     static void initialize();
 
+    static void unlock_pending_cb_list();
 
     /**
     * @brief Passes call-backs to be executed in main_cb_task. 
@@ -45,7 +47,7 @@ class CbHelper {
     static void main_cb_task(void *arg);
 
     static void lock_pending_cb_list();
-    static void unlock_pending_cb_list();
+
 
     static std::vector<std::function<void(void)>> pending_cb_list; ///<pending cb_executor functions from DataWrapper subclasses. Pushed to list when execute_callbacks() is called.
     static TaskHandle_t main_cb_task_hdl; ///<task handle of main call-back task

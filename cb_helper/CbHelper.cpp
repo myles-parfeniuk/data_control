@@ -2,13 +2,13 @@
 
 bool CbHelper::initialized = false;
 TaskHandle_t CbHelper::main_cb_task_hdl = NULL; 
-SemaphoreHandle_t CbHelper::pending_cb_list_mutex = xSemaphoreCreateMutex();
+SemaphoreHandle_t CbHelper::pending_cb_list_mutex = xSemaphoreCreateRecursiveMutex();
 std::vector<std::function<void(void)>> CbHelper::pending_cb_list;
 
 void CbHelper::initialize()
 {
     if(!initialized){
-        xTaskCreate(&main_cb_task, "nav_switch_task", default_stack_size, nullptr, 5, &main_cb_task_hdl);
+        xTaskCreate(&main_cb_task, "main_cb_task", default_stack_size, nullptr, 5, &main_cb_task_hdl);
         
     }
 
@@ -20,9 +20,10 @@ void CbHelper::execute_callbacks(std::function<void(void)> cb)
 {
    lock_pending_cb_list(); 
    pending_cb_list.push_back(cb);
-   unlock_pending_cb_list(); 
    vTaskResume(main_cb_task_hdl);
+   unlock_pending_cb_list(); 
 }
+
 
 void CbHelper::main_cb_task(void *arg)
 {

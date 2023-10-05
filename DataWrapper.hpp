@@ -1,7 +1,9 @@
 #pragma once
 //esp-idf includes
-#include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/semphr.h"
+#include "esp_log.h"
 //standard library includes
 #include <cstdint>
 #include <functional>
@@ -66,6 +68,16 @@ class DataWrapper {
     bool un_follow(uint16_t follower_id);
 
   /**
+  * @brief Un-follow DataWrapper object from its own callback
+  * 
+  * Stop triggering callback for respective follower permanently.
+  * 
+  * @param follower_id The ID of the follower to remove from the follower list. Returned when follow() is called. 
+  * @return true if follower successfully un-followed, false if otherwise
+  */
+    bool un_follow_from_cb(uint16_t follower_id);
+
+  /**
   * @brief Pause follower callback 
   * 
   * Temporarily stop triggering callback for respective follower when this DataWrapper object is set.
@@ -75,6 +87,17 @@ class DataWrapper {
   * @return true if follower successfully paused, false if otherwise
   */
     bool pause(uint16_t follower_id);
+
+  /**
+  * @brief Pause follower callback from its own callback
+  * 
+  * Temporarily stop triggering callback for respective follower when this DataWrapper object is set.
+  * Re-enable callback by calling the un_pause() method. 
+  * 
+  * @param follower_id The ID of the follower owning the callback to be paused. 
+  * @return true if follower successfully paused, false if otherwise
+  */
+    bool pause_from_cb(uint16_t follower_id);
 
   /**
   * @brief un-pause follower callback 
@@ -87,6 +110,16 @@ class DataWrapper {
     bool un_pause(uint16_t follower_id);
 
   /**
+  * @brief un-pause follower callback from its own callback
+  * 
+  * Re-enable callback for respective follower when this DataWrapper object is set.
+  * 
+  * @param follower_id The ID of the follower owning the callback to be un-paused. 
+  * @return true if follower successfully un-paused, false if otherwise
+  */
+    bool un_pause_from_cb(uint16_t follower_id);
+
+  /**
   * @brief Get current data. 
   * 
   * @return the current data
@@ -95,6 +128,11 @@ class DataWrapper {
 
 
   protected:
+    void lock_follower_list();
+    void unlock_follower_list();
+    void lock_immediate_follower_list();
+    void unlock_immediate_follower_list();
+
     T data; ///<the current data
     T new_data; ///<new data, overwrites current data after execution of all call-back functions
     uint16_t next_follower_id; ///<next follower ID to assign
@@ -105,6 +143,8 @@ class DataWrapper {
     const char *name; ///<name of DataWrapper object, used in log statements
     bool logging_en;  ///<whether or not logging is enabled, false if disabled, true if enabled
     static const constexpr char* TAG = "DataControl"; ///<class tag, used in logging statements
+    SemaphoreHandle_t follower_list_mutex; 
+    SemaphoreHandle_t immediate_follower_list_mutex; 
 };
 
 };

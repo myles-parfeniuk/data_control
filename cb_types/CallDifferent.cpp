@@ -9,6 +9,7 @@ void CallDifferent<T>::set(T new_data)
     
     this->new_data = new_data; 
 
+    this->lock_immediate_follower_list(); 
     if(!this->immediate_follower_list.empty())
     {
         if(this->data !=new_data){
@@ -19,6 +20,7 @@ void CallDifferent<T>::set(T new_data)
             }
         }
     }
+    this->unlock_immediate_follower_list(); 
 
     CbHelper::execute_callbacks(std::bind(&CallDifferent::cb_executor, this)); //for non immediate call-backs   
 }
@@ -29,6 +31,7 @@ void CallDifferent<T>::set(T new_data)
     static uint16_t i = 0;
     this->cb_task_complete = false;
     
+    this->lock_follower_list();
     if(this->data != this->new_data)
     {
         if(!this->follower_list.empty())
@@ -41,6 +44,7 @@ void CallDifferent<T>::set(T new_data)
             }
         }
     }
+    this->unlock_follower_list();
 
     this->data = this->new_data;
 
