@@ -72,7 +72,6 @@ template <typename T>
  bool DataWrapper<T>::un_follow(uint16_t follower_id){
 
     static uint16_t i = 0;
-    bool follower_found = false; 
 
     lock_immediate_follower_list(); 
     if(!immediate_follower_list.empty()){
@@ -117,7 +116,6 @@ template <typename T>
   template <typename T>
  bool DataWrapper<T>::un_follow_from_cb(uint16_t follower_id){
     static uint16_t i = 0;
-    bool follower_found = false; 
 
     if(!immediate_follower_list.empty()){
         //loop through all immediate followers
@@ -233,7 +231,6 @@ bool DataWrapper<T>::pause_from_cb(uint16_t follower_id)
 template <typename T>
 bool DataWrapper<T>::un_pause(uint16_t follower_id)
 {
-    bool follower_found = false;
     uint16_t i = 0; 
 
     lock_immediate_follower_list();
@@ -275,7 +272,6 @@ bool DataWrapper<T>::un_pause(uint16_t follower_id)
 template <typename T>
 bool DataWrapper<T>::un_pause_from_cb(uint16_t follower_id)
 {
-    bool follower_found = false;
     uint16_t i = 0; 
 
     //loop through all immediate followers
