@@ -1,0 +1,337 @@
+\doxysection{Data\+Wrapper.\+cpp}
+\label{_data_wrapper_8cpp_source}\index{D:/development/git/data\_control\_rework/components/data\_control/DataWrapper.cpp@{D:/development/git/data\_control\_rework/components/data\_control/DataWrapper.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}DataWrapper.hpp"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//esp-\/idf\ component\ includes}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}freertos/projdefs.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ namespace\ }DataControl;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{struct\ }DataWrapper<T>::Follower\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ std::function<void(T)>\ cb;\ }
+\DoxyCodeLine{00015\ \ \ \ \ uint16\_t\ f\_id;\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ paused;\ }
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00020\ DataWrapper<T>::\ DataWrapper(T\ data,\ \textcolor{keywordtype}{bool}\ logging\_en,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ name):}
+\DoxyCodeLine{00021\ data(data),\ }
+\DoxyCodeLine{00022\ next\_follower\_id(0),\ }
+\DoxyCodeLine{00023\ cb\_task\_complete(true),\ }
+\DoxyCodeLine{00024\ name(name),\ }
+\DoxyCodeLine{00025\ logging\_en(logging\_en),}
+\DoxyCodeLine{00026\ follower\_list\_mutex(xSemaphoreCreateRecursiveMutex()),}
+\DoxyCodeLine{00027\ immediate\_follower\_list\_mutex(xSemaphoreCreateRecursiveMutex())}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ CbHelper::initialize();\ }
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00034\ T\ DataWrapper<T>::get()}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ data;\ }
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00040\ \ uint16\_t\ DataWrapper<T>::follow(std::function<\textcolor{keywordtype}{void}(T)>\ cb,\ \textcolor{keywordtype}{bool}\ execute\_immediately)}
+\DoxyCodeLine{00041\ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//initialize\ new\ follower}}
+\DoxyCodeLine{00043\ \ \ \ \ Follower\ follower\ =\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ .cb\ =\ cb,\ \textcolor{comment}{//assign\ callback}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ .f\_id\ =\ next\_follower\_id,\ \textcolor{comment}{//assign\ id}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ .paused\ =\ \textcolor{keyword}{false},\ \textcolor{comment}{//follower\ unpaused\ by\ default}}
+\DoxyCodeLine{00047\ \ \ \ \ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ next\_follower\_id++;\ \textcolor{comment}{//generate\ id\ for\ next\ follower}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Follow:\ \%d"{}},\ name,\ follower.f\_id);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}(!execute\_immediately)}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ lock\_follower\_list();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ follower\_list.push\_back(follower);\ \textcolor{comment}{//push\ new\ follower\ to\ list}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ unlock\_follower\_list();}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00061\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ lock\_immediate\_follower\_list();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ immediate\_follower\_list.push\_back(follower);\ \textcolor{comment}{//push\ new\ immediate\ follower\ to\ list}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ unlock\_immediate\_follower\_list();}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ follower.f\_id;\ \textcolor{comment}{//return\ the\ id\ of\ the\ new\ follower}}
+\DoxyCodeLine{00069\ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00072\ \ \textcolor{keywordtype}{bool}\ DataWrapper<T>::un\_follow(uint16\_t\ follower\_id)\{}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ follower\_found\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ lock\_immediate\_follower\_list();\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{if}(!immediate\_follower\_list.empty())\{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ immediate\ followers}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ immediate\_follower\_list.size();\ i++)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ ID\ is\ found}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(immediate\_follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unfollow:\ \%d"{}},\ name,\ immediate\_follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ immediate\_follower\_list.erase(immediate\_follower\_list.begin()\ +\ i);\ \textcolor{comment}{//erase\ follower\ from\ list}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unlock\_immediate\_follower\_list();\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ unlock\_immediate\_follower\_list();\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ lock\_follower\_list();\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{if}(!follower\_list.empty())\{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ follower\_list.size();\ i++)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ ID\ is\ found}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unfollow:\ \%d"{}},\ name,\ follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ follower\_list.erase(follower\_list.begin()\ +\ i);\ \textcolor{comment}{//erase\ follower\ from\ list}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unlock\_follower\_list();\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ unlock\_follower\_list();\ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//no\ matching\ follower\ id\ found\ }}
+\DoxyCodeLine{00114\ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00118\ \ \textcolor{keywordtype}{bool}\ DataWrapper<T>::un\_follow\_from\_cb(uint16\_t\ follower\_id)\{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{bool}\ follower\_found\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{if}(!immediate\_follower\_list.empty())\{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ immediate\ followers}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ immediate\_follower\_list.size();\ i++)}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ ID\ is\ found}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(immediate\_follower\_list.at(i).f\_id\ ==\ immediate\_follower\_list)\{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unfollow:\ \%d"{}},\ name,\ immediate\_follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ immediate\_follower\_list.erase(immediate\_follower\_list.begin()\ +\ i);\ \textcolor{comment}{//erase\ follower\ from\ list}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{if}(!follower\_list.empty())\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ follower\_list.size();\ i++)}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ ID\ is\ found}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unfollow:\ \%d"{}},\ name,\ follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ follower\_list.erase(follower\_list.begin()\ +\ i);\ \textcolor{comment}{//erase\ follower\ from\ list}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//no\ matching\ follower\ id\ found\ }}
+\DoxyCodeLine{00153\ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00156\ \textcolor{keywordtype}{bool}\ DataWrapper<T>::pause(uint16\_t\ follower\_id)}
+\DoxyCodeLine{00157\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ lock\_immediate\_follower\_list();}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ immediate\ followers}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ immediate\_follower\_list.size();\ i++)}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ id\ is\ found}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(immediate\_follower\_list.at(i).f\_id\ ==\ follower\_id)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Paused\ callback\ for\ follower:\ f\_id\_\%d"{}},\ name,\ immediate\_follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ immediate\_follower\_list.at(i).paused\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//pause\ follower\ such\ that\ its\ callback\ will\ not\ be\ executed}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ unlock\_immediate\_follower\_list();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ unlock\_immediate\_follower\_list();}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ lock\_follower\_list();\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ follower\_list.size();\ i++)}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ id\ is\ found}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Paused\ callback\ for\ follower:\ f\_id\_\%d"{}},\ name,\ follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ follower\_list.at(i).paused\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//pause\ follower\ such\ that\ its\ callback\ will\ not\ be\ executed}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unlock\_follower\_list();}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ unlock\_follower\_list();}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//no\ matching\ follower\ id\ found\ }}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00199\ \textcolor{keywordtype}{bool}\ DataWrapper<T>::pause\_from\_cb(uint16\_t\ follower\_id)}
+\DoxyCodeLine{00200\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ immediate\ followers}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ immediate\_follower\_list.size();\ i++)}
+\DoxyCodeLine{00204\ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ id\ is\ found}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(immediate\_follower\_list.at(i).f\_id\ ==\ follower\_id)}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Paused\ callback\ for\ follower:\ f\_id\_\%d"{}},\ name,\ immediate\_follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ immediate\_follower\_list.at(i).paused\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//pause\ follower\ such\ that\ its\ callback\ will\ not\ be\ executed}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ follower\_list.size();\ i++)}
+\DoxyCodeLine{00218\ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ id\ is\ found}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Paused\ callback\ for\ follower:\ f\_id\_\%d"{}},\ name,\ follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ follower\_list.at(i).paused\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//pause\ follower\ such\ that\ its\ callback\ will\ not\ be\ executed}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//no\ matching\ follower\ id\ found\ }}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00234\ \textcolor{keywordtype}{bool}\ DataWrapper<T>::un\_pause(uint16\_t\ follower\_id)}
+\DoxyCodeLine{00235\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{bool}\ follower\_found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00237\ \ \ \ \ uint16\_t\ i\ =\ 0;\ }
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ lock\_immediate\_follower\_list();}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ immediate\ followers}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ immediate\_follower\_list.size();\ i++)}
+\DoxyCodeLine{00242\ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ id\ is\ found}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(immediate\_follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unpaused\ callback\ for\ follower:\ f\_id\_\%d"{}},\ name,\ immediate\_follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ immediate\_follower\_list.at(i).paused\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//un-\/pause\ follower\ such\ that\ its\ callback\ will\ resume\ normal\ execution\ }}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unlock\_immediate\_follower\_list();\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ \ \ \ \ unlock\_immediate\_follower\_list();\ }
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ lock\_follower\_list();\ }
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ follower\_list.size();\ i++)}
+\DoxyCodeLine{00258\ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ id\ is\ found}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unpaused\ callback\ for\ follower:\ f\_id\_\%d"{}},\ name,\ follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ follower\_list.at(i).paused\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//un-\/pause\ follower\ such\ that\ its\ callback\ will\ resume\ normal\ execution\ }}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ unlock\_follower\_list();\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ unlock\_follower\_list();\ }
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//no\ matching\ follower\ id\ found\ }}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00276\ \textcolor{keywordtype}{bool}\ DataWrapper<T>::un\_pause\_from\_cb(uint16\_t\ follower\_id)}
+\DoxyCodeLine{00277\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordtype}{bool}\ follower\_found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00279\ \ \ \ \ uint16\_t\ i\ =\ 0;\ }
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ immediate\ followers}}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ immediate\_follower\_list.size();\ i++)}
+\DoxyCodeLine{00283\ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ id\ is\ found}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(immediate\_follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unpaused\ callback\ for\ follower:\ f\_id\_\%d"{}},\ name,\ immediate\_follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ immediate\_follower\_list.at(i).paused\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//un-\/pause\ follower\ such\ that\ its\ callback\ will\ resume\ normal\ execution\ }}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ follower\_list.size();\ i++)}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ matching\ id\ is\ found}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(follower\_list.at(i).f\_id\ ==\ follower\_id)\{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(logging\_en)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(TAG,\ \textcolor{stringliteral}{"{}\%s\ -\/>\ Unpaused\ callback\ for\ follower:\ f\_id\_\%d"{}},\ name,\ follower\_list.at(i).f\_id);}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ follower\_list.at(i).paused\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//un-\/pause\ follower\ such\ that\ its\ callback\ will\ resume\ normal\ execution\ }}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00305\ \ \ \ \ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//no\ matching\ follower\ id\ found\ }}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00312\ \textcolor{keywordtype}{void}\ DataWrapper<T>::lock\_follower\_list()}
+\DoxyCodeLine{00313\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ xSemaphoreTake(follower\_list\_mutex,\ portMAX\_DELAY);}
+\DoxyCodeLine{00315\ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00318\ \textcolor{keywordtype}{void}\ DataWrapper<T>::lock\_immediate\_follower\_list()}
+\DoxyCodeLine{00319\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ xSemaphoreTake(immediate\_follower\_list\_mutex,\ portMAX\_DELAY);}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00324\ \textcolor{keywordtype}{void}\ DataWrapper<T>::unlock\_follower\_list()}
+\DoxyCodeLine{00325\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ xSemaphoreGive(follower\_list\_mutex);}
+\DoxyCodeLine{00327\ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00330\ \textcolor{keywordtype}{void}\ DataWrapper<T>::unlock\_immediate\_follower\_list()}
+\DoxyCodeLine{00331\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ xSemaphoreGive(immediate\_follower\_list\_mutex);}
+\DoxyCodeLine{00333\ \}}
+\DoxyCodeLine{00334\ }
+
+\end{DoxyCode}

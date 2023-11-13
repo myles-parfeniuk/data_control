@@ -1,0 +1,59 @@
+\doxysection{Call\+Different.\+cpp}
+\label{_call_different_8cpp_source}\index{D:/development/git/data\_control\_rework/components/data\_control/cb\_types/CallDifferent.cpp@{D:/development/git/data\_control\_rework/components/data\_control/cb\_types/CallDifferent.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}CallDifferent.hpp"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{using\ namespace\ }DataControl;}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00006\ \textcolor{keywordtype}{void}\ CallDifferent<T>::set(T\ new\_data)}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00009\ \ \ \ \ }
+\DoxyCodeLine{00010\ \ \ \ \ this-\/>new\_data\ =\ new\_data;\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ this-\/>lock\_immediate\_follower\_list();\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>immediate\_follower\_list.empty())}
+\DoxyCodeLine{00014\ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>data\ !=new\_data)\{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>immediate\_follower\_list.size();\ i++)}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>immediate\_follower\_list.at(i).paused)\ \textcolor{comment}{//if\ follower\ is\ not\ paused\ \ }}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>immediate\_follower\_list.at(i).cb(new\_data);\ \textcolor{comment}{//call\ follower\ call-\/back\ function}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ this-\/>unlock\_immediate\_follower\_list();\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ CbHelper::execute\_callbacks(std::bind(\&CallDifferent::cb\_executor,\ \textcolor{keyword}{this}));\ \textcolor{comment}{//for\ non\ immediate\ call-\/backs\ \ \ }}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00030\ \ \textcolor{keywordtype}{void}\ CallDifferent<T>::cb\_executor()\{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ i\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ this-\/>lock\_follower\_list();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>data\ !=\ this-\/>new\_data)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.empty())}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//loop\ through\ all\ followers}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ this-\/>follower\_list.size();\ i++)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!this-\/>follower\_list.at(i).paused)\ \textcolor{comment}{//if\ follower\ is\ not\ paused\ \ }}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>follower\_list.at(i).cb(this-\/>new\_data);\ \textcolor{comment}{//call\ follower\ call-\/back\ function}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ this-\/>unlock\_follower\_list();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ this-\/>data\ =\ this-\/>new\_data;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ this-\/>cb\_task\_complete\ =\ \textcolor{keyword}{true};\ \ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \}}
+
+\end{DoxyCode}

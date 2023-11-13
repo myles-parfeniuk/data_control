@@ -1,0 +1,380 @@
+\doxysection{Data\+Control\+::Data\+Wrapper$<$ T $>$ Class Template Reference}
+\label{class_data_control_1_1_data_wrapper}\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+
+
+Base \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} class.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Wrapper.\+hpp$>$}
+
+Inheritance diagram for Data\+Control\+::Data\+Wrapper$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.876047cm]{class_data_control_1_1_data_wrapper}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \textbf{ follow} (std\+::function$<$ void(T)$>$ cb, bool execute\+\_\+immediately=false)
+\begin{DoxyCompactList}\small\item\em Follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. \end{DoxyCompactList}\item 
+bool \textbf{ un\+\_\+follow} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Un-\/follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. \end{DoxyCompactList}\item 
+bool \textbf{ un\+\_\+follow\+\_\+from\+\_\+cb} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Un-\/follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object from its own callback. \end{DoxyCompactList}\item 
+bool \textbf{ pause} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Pause follower callback. \end{DoxyCompactList}\item 
+bool \textbf{ pause\+\_\+from\+\_\+cb} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Pause follower callback from its own callback. \end{DoxyCompactList}\item 
+bool \textbf{ un\+\_\+pause} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em un-\/pause follower callback \end{DoxyCompactList}\item 
+bool \textbf{ un\+\_\+pause\+\_\+from\+\_\+cb} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em un-\/pause follower callback from its own callback \end{DoxyCompactList}\item 
+T \textbf{ get} ()
+\begin{DoxyCompactList}\small\item\em Get current data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Data\+Wrapper} (T \textbf{ data}, bool \textbf{ logging\+\_\+en}=false, const char $\ast$\textbf{ name}=\"{}unamed\"{})
+\begin{DoxyCompactList}\small\item\em Construct a \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. \end{DoxyCompactList}\item 
+void \textbf{ lock\+\_\+follower\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em Lock follower list. \end{DoxyCompactList}\item 
+void \textbf{ unlock\+\_\+follower\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em Unlock follower list. \end{DoxyCompactList}\item 
+void \textbf{ lock\+\_\+immediate\+\_\+follower\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em Lock immediate follower list. \end{DoxyCompactList}\item 
+void \textbf{ unlock\+\_\+immediate\+\_\+follower\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em Unlock immediate follower list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_data_control_1_1_data_wrapper_a0a056ad814647ada600f5ae36f4da4f3} 
+T {\bfseries data}
+\begin{DoxyCompactList}\small\item\em the current data \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_a128e5564edd2b7723c5781ac7fc3c68a} 
+T {\bfseries new\+\_\+data}
+\begin{DoxyCompactList}\small\item\em new data, overwrites current data after execution of all call-\/back functions \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_a2d99c003dade3bbbe57d2280a1d9d7e4} 
+uint16\+\_\+t {\bfseries next\+\_\+follower\+\_\+id}
+\begin{DoxyCompactList}\small\item\em next follower ID to assign \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_a44019614a9a3f58931a02835c9855914} 
+std\+::vector$<$ Follower $>$ {\bfseries follower\+\_\+list}
+\begin{DoxyCompactList}\small\item\em list of followers \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_a1b9463da621594a3314f85838dba2a4d} 
+std\+::vector$<$ Follower $>$ {\bfseries immediate\+\_\+follower\+\_\+list}
+\begin{DoxyCompactList}\small\item\em list of followers for which callbacks are executed immediately from the thread which set() was called \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_a049b55ecc5cde9f4961af519dfc140b0} 
+bool {\bfseries cb\+\_\+task\+\_\+complete}
+\begin{DoxyCompactList}\small\item\em whether or not the call-\/back task has completed, false if running, true if completed \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_a0c88ef8c3afe21f3d825dc62d5bf9b92} 
+const char $\ast$ {\bfseries name}
+\begin{DoxyCompactList}\small\item\em name of \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object, used in log statements \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_ae43ba0a0f3557c05ec54fea975154143} 
+bool {\bfseries logging\+\_\+en}
+\begin{DoxyCompactList}\small\item\em whether or not logging is enabled, false if disabled, true if enabled \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_a2482797fcaabb8e4923993eac785becf} 
+Semaphore\+Handle\+\_\+t {\bfseries follower\+\_\+list\+\_\+mutex}
+\begin{DoxyCompactList}\small\item\em follower list semaphore used by lock and unlock functions \end{DoxyCompactList}\item 
+\label{class_data_control_1_1_data_wrapper_a2942687016608a6536ab2834c8e7fe87} 
+Semaphore\+Handle\+\_\+t {\bfseries immediate\+\_\+follower\+\_\+list\+\_\+mutex}
+\begin{DoxyCompactList}\small\item\em immediate follower list semaphore used by lock and unlock functions \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_data_control_1_1_data_wrapper_ae07a80934a40d90998e4f8fb3cfc7e7b} 
+static const constexpr char $\ast$ {\bfseries TAG} = \"{}Data\+Control\"{}
+\begin{DoxyCompactList}\small\item\em class tag, used in logging statements \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Data\+Control\+::\+Data\+Wrapper$<$ T $>$}
+Base \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} class. 
+
+Stores a variable/data and allows for execution of callback functions when it is modified.
+
+When modifying the data is desired, the set() method should be called, upon which\+:
+\begin{DoxyItemize}
+\item any callbacks registered with the \doxyref{follow()}{p.}{class_data_control_1_1_data_wrapper_a0db75e5847db5d2fab3503b9d4d0c90a} method will be executed
+\item the data currently stored will be updated with the new value
+\end{DoxyItemize}
+
+\doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} objects are not possible to instantiate directly, instead insatiate objects from child classes of which definitions can be found in cb\+\_\+types/ directory. ~\newline
+
+
+\begin{DoxyAuthor}{Author}
+Myles Parfeniuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_data_control_1_1_data_wrapper_a0beae71b238414eacc3dbf3a1e09eddf} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!DataWrapper@{DataWrapper}}
+\index{DataWrapper@{DataWrapper}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{DataWrapper()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Data\+Wrapper\+::\+Data\+Wrapper (\begin{DoxyParamCaption}\item[{T}]{data,  }\item[{bool}]{logging\+\_\+en = {\ttfamily false},  }\item[{const char $\ast$}]{name = {\ttfamily \"{}unamed\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Construct a \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. 
+
+Construct a \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes. This constructor is called by child classes, \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} objects are not instantiated directly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & initial value of data \\
+\hline
+{\em logging\+\_\+en} & logging status, true to enable debug logs, false to disable (optional, default false) \\
+\hline
+{\em name} & name of data wrapper object, printed out with debug logs to aid debugging (optional, default \"{}unamed\"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_data_control_1_1_data_wrapper_a0db75e5847db5d2fab3503b9d4d0c90a} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!follow@{follow}}
+\index{follow@{follow}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{follow()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+uint16\+\_\+t Data\+Wrapper\+::follow (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(T)$>$}]{cb,  }\item[{bool}]{execute\+\_\+immediately = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. 
+
+Registers a call-\/back with this data wrapper object. Registered call-\/back functions are executed when the set() method is called on the same data wrapper object.
+
+The call-\/back function parameter should have a single input parameter of type T. This parameter will be the new data passed to the callback when set() has been called.
+
+Calling the \doxyref{get()}{p.}{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181} method from within the callback will return the previous value. When all callbacks have been executed the current value will over written with the new value. ~\newline
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & the call-\/back function to be called when \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object is set, must take the form \"{}void my\+\_\+callback(\+T new\+\_\+data)\"{} \\
+\hline
+{\em execute\+\_\+immediately} & if true the call-\/back is executed in the same thread in which set() was called, only recommended for short call-\/back functions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+follower ID, if un-\/following \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object is desired this return value must be saved 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_aee43e40ca8569976ee7ef896760df181} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!get@{get}}
+\index{get@{get}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{get()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T Data\+Wrapper\+::get}
+
+
+
+Get current data. 
+
+\begin{DoxyReturn}{Returns}
+the current data 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a9665e751525ea4080bb00395a70faa55} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!lock\_follower\_list@{lock\_follower\_list}}
+\index{lock\_follower\_list@{lock\_follower\_list}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{lock\_follower\_list()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Data\+Wrapper\+::lock\+\_\+follower\+\_\+list\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Lock follower list. 
+
+Take the follower list semaphore such that any processing respective to it is not interrupted by other tasks. ~\newline
+
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_ac5bceb0c1ba4e0937d727ba03e117b1c} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!lock\_immediate\_follower\_list@{lock\_immediate\_follower\_list}}
+\index{lock\_immediate\_follower\_list@{lock\_immediate\_follower\_list}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{lock\_immediate\_follower\_list()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Data\+Wrapper\+::lock\+\_\+immediate\+\_\+follower\+\_\+list\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Lock immediate follower list. 
+
+Take the immediate follower list semaphore such that any processing respective to it is not interrupted by other tasks. ~\newline
+
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a87ba78fe9b88854524689970de6c22c8} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!pause@{pause}}
+\index{pause@{pause}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{pause()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Data\+Wrapper\+::pause (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Pause follower callback. 
+
+Temporarily stop triggering callback for respective follower when this \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object is set. Re-\/enable callback by calling the \doxyref{un\+\_\+pause()}{p.}{class_data_control_1_1_data_wrapper_a4e521a23968de496d73752f8122dc746} method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower owning the callback to be paused. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if follower successfully paused, false if otherwise 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a45b76ef1007d822a7703aec455972eb9} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!pause\_from\_cb@{pause\_from\_cb}}
+\index{pause\_from\_cb@{pause\_from\_cb}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{pause\_from\_cb()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Data\+Wrapper\+::pause\+\_\+from\+\_\+cb (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Pause follower callback from its own callback. 
+
+Temporarily stop triggering callback for respective follower when this \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object is set, from within the context of callback. This function assumes ownership of the follower lists, and does not take or give their respective semaphores. Re-\/enable callback by calling the \doxyref{un\+\_\+pause()}{p.}{class_data_control_1_1_data_wrapper_a4e521a23968de496d73752f8122dc746} method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower owning the callback to be paused. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if follower successfully paused, false if otherwise 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a79090a72dbbab83ed081194465494861} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!un\_follow@{un\_follow}}
+\index{un\_follow@{un\_follow}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{un\_follow()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Data\+Wrapper\+::un\+\_\+follow (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Un-\/follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. 
+
+Stop triggering callback for respective follower permanently.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower to remove from the follower list. Returned when \doxyref{follow()}{p.}{class_data_control_1_1_data_wrapper_a0db75e5847db5d2fab3503b9d4d0c90a} is called. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if follower successfully un-\/followed, false if otherwise 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a64c5fecb28cb024cd74cc8a683304700} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!un\_follow\_from\_cb@{un\_follow\_from\_cb}}
+\index{un\_follow\_from\_cb@{un\_follow\_from\_cb}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{un\_follow\_from\_cb()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Data\+Wrapper\+::un\+\_\+follow\+\_\+from\+\_\+cb (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Un-\/follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object from its own callback. 
+
+Stop triggering callback for respective follower permanently from within the context of callback. This function assumes ownership of the follower lists, and does not take or give their respective semaphores.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower to remove from the follower list. Returned when \doxyref{follow()}{p.}{class_data_control_1_1_data_wrapper_a0db75e5847db5d2fab3503b9d4d0c90a} is called. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if follower successfully un-\/followed, false if otherwise 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a4e521a23968de496d73752f8122dc746} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!un\_pause@{un\_pause}}
+\index{un\_pause@{un\_pause}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{un\_pause()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Data\+Wrapper\+::un\+\_\+pause (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+un-\/pause follower callback 
+
+Re-\/enable callback for respective follower when this \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object is set.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower owning the callback to be un-\/paused. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if follower successfully un-\/paused, false if otherwise 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a6110e720cd8e6997ed1f6d16ed172f05} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!un\_pause\_from\_cb@{un\_pause\_from\_cb}}
+\index{un\_pause\_from\_cb@{un\_pause\_from\_cb}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{un\_pause\_from\_cb()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Data\+Wrapper\+::un\+\_\+pause\+\_\+from\+\_\+cb (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{follower\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+un-\/pause follower callback from its own callback 
+
+Re-\/enable callback for respective follower when this \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object is set, from within the context of callback. This function assumes ownership of the follower lists, and does not take or give their respective semaphores.
+
+
+\begin{DoxyParams}{Parameters}
+{\em follower\+\_\+id} & The ID of the follower owning the callback to be un-\/paused. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if follower successfully un-\/paused, false if otherwise 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a9275bcec720bff7884165955bb55daa0} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!unlock\_follower\_list@{unlock\_follower\_list}}
+\index{unlock\_follower\_list@{unlock\_follower\_list}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{unlock\_follower\_list()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Data\+Wrapper\+::unlock\+\_\+follower\+\_\+list\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Unlock follower list. 
+
+Give the follower list semaphore to indicate any processing is complete.
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\label{class_data_control_1_1_data_wrapper_a809ca8970f92280064115047f174873e} 
+\index{DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}!unlock\_immediate\_follower\_list@{unlock\_immediate\_follower\_list}}
+\index{unlock\_immediate\_follower\_list@{unlock\_immediate\_follower\_list}!DataControl::DataWrapper$<$ T $>$@{DataControl::DataWrapper$<$ T $>$}}
+\doxysubsubsection{unlock\_immediate\_follower\_list()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Data\+Wrapper\+::unlock\+\_\+immediate\+\_\+follower\+\_\+list\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Unlock immediate follower list. 
+
+Give the immediate follower list semaphore to indicate any processing is complete.
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/development/git/data\+\_\+control\+\_\+rework/components/data\+\_\+control/Data\+Wrapper.\+hpp\item 
+D\+:/development/git/data\+\_\+control\+\_\+rework/components/data\+\_\+control/Data\+Wrapper.\+cpp\end{DoxyCompactItemize}

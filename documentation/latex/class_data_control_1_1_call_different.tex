@@ -1,0 +1,174 @@
+\doxysection{Data\+Control\+::Call\+Different$<$ T $>$ Class Template Reference}
+\label{class_data_control_1_1_call_different}\index{DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
+
+
+\doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} that executes callbacks when \doxyref{set()}{p.}{class_data_control_1_1_call_different_ade070629e521048e33ef3d8504d601e7} method is called and new data is different from current data.  
+
+
+
+
+{\ttfamily \#include $<$Call\+Different.\+hpp$>$}
+
+Inheritance diagram for Data\+Control\+::Call\+Different$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_data_control_1_1_call_different}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Call\+Different} (T \textbf{ data}, bool \textbf{ logging\+\_\+en}=false, const char $\ast$\textbf{ name}=\"{}unamed\"{})
+\begin{DoxyCompactList}\small\item\em Construct a \doxyref{Call\+Different}{p.}{class_data_control_1_1_call_different} \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. \end{DoxyCompactList}\item 
+void \textbf{ set} (T \textbf{ new\+\_\+data})
+\begin{DoxyCompactList}\small\item\em Set value of data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \textbf{ follow} (std\+::function$<$ void(T)$>$ cb, bool execute\+\_\+immediately=false)
+\begin{DoxyCompactList}\small\item\em Follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. \end{DoxyCompactList}\item 
+bool \textbf{ un\+\_\+follow} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Un-\/follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. \end{DoxyCompactList}\item 
+bool \textbf{ un\+\_\+follow\+\_\+from\+\_\+cb} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Un-\/follow \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object from its own callback. \end{DoxyCompactList}\item 
+bool \textbf{ pause} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Pause follower callback. \end{DoxyCompactList}\item 
+bool \textbf{ pause\+\_\+from\+\_\+cb} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Pause follower callback from its own callback. \end{DoxyCompactList}\item 
+bool \textbf{ un\+\_\+pause} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em un-\/pause follower callback \end{DoxyCompactList}\item 
+bool \textbf{ un\+\_\+pause\+\_\+from\+\_\+cb} (uint16\+\_\+t follower\+\_\+id)
+\begin{DoxyCompactList}\small\item\em un-\/pause follower callback from its own callback \end{DoxyCompactList}\item 
+T \textbf{ get} ()
+\begin{DoxyCompactList}\small\item\em Get current data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ cb\+\_\+executor} ()
+\begin{DoxyCompactList}\small\item\em Executes non-\/immediate call-\/backs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \textbf{ Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Data\+Wrapper} (T \textbf{ data}, bool \textbf{ logging\+\_\+en}=false, const char $\ast$\textbf{ name}=\"{}unamed\"{})
+\begin{DoxyCompactList}\small\item\em Construct a \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. \end{DoxyCompactList}\item 
+void \textbf{ lock\+\_\+follower\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em Lock follower list. \end{DoxyCompactList}\item 
+void \textbf{ unlock\+\_\+follower\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em Unlock follower list. \end{DoxyCompactList}\item 
+void \textbf{ lock\+\_\+immediate\+\_\+follower\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em Lock immediate follower list. \end{DoxyCompactList}\item 
+void \textbf{ unlock\+\_\+immediate\+\_\+follower\+\_\+list} ()
+\begin{DoxyCompactList}\small\item\em Unlock immediate follower list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \textbf{ Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}
+\begin{DoxyCompactItemize}
+\item 
+T {\bfseries data}
+\begin{DoxyCompactList}\small\item\em the current data \end{DoxyCompactList}\item 
+T {\bfseries new\+\_\+data}
+\begin{DoxyCompactList}\small\item\em new data, overwrites current data after execution of all call-\/back functions \end{DoxyCompactList}\item 
+uint16\+\_\+t {\bfseries next\+\_\+follower\+\_\+id}
+\begin{DoxyCompactList}\small\item\em next follower ID to assign \end{DoxyCompactList}\item 
+std\+::vector$<$ Follower $>$ {\bfseries follower\+\_\+list}
+\begin{DoxyCompactList}\small\item\em list of followers \end{DoxyCompactList}\item 
+std\+::vector$<$ Follower $>$ {\bfseries immediate\+\_\+follower\+\_\+list}
+\begin{DoxyCompactList}\small\item\em list of followers for which callbacks are executed immediately from the thread which set() was called \end{DoxyCompactList}\item 
+bool {\bfseries cb\+\_\+task\+\_\+complete}
+\begin{DoxyCompactList}\small\item\em whether or not the call-\/back task has completed, false if running, true if completed \end{DoxyCompactList}\item 
+const char $\ast$ {\bfseries name}
+\begin{DoxyCompactList}\small\item\em name of \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object, used in log statements \end{DoxyCompactList}\item 
+bool {\bfseries logging\+\_\+en}
+\begin{DoxyCompactList}\small\item\em whether or not logging is enabled, false if disabled, true if enabled \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t {\bfseries follower\+\_\+list\+\_\+mutex}
+\begin{DoxyCompactList}\small\item\em follower list semaphore used by lock and unlock functions \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t {\bfseries immediate\+\_\+follower\+\_\+list\+\_\+mutex}
+\begin{DoxyCompactList}\small\item\em immediate follower list semaphore used by lock and unlock functions \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \textbf{ Data\+Control\+::\+Data\+Wrapper$<$ T $>$}}
+\begin{DoxyCompactItemize}
+\item 
+static const constexpr char $\ast$ {\bfseries TAG} = \"{}Data\+Control\"{}
+\begin{DoxyCompactList}\small\item\em class tag, used in logging statements \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Data\+Control\+::\+Call\+Different$<$ T $>$}
+\doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} that executes callbacks when \doxyref{set()}{p.}{class_data_control_1_1_call_different_ade070629e521048e33ef3d8504d601e7} method is called and new data is different from current data. 
+
+\begin{DoxyAuthor}{Author}
+Myles Parfeniuk 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\label{class_data_control_1_1_call_different_a7ed1e9f7126fb983b485887c624ae809} 
+\index{DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}!CallDifferent@{CallDifferent}}
+\index{CallDifferent@{CallDifferent}!DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
+\doxysubsubsection{CallDifferent()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\textbf{ Data\+Control\+::\+Call\+Different}$<$ T $>$\+::\+Call\+Different (\begin{DoxyParamCaption}\item[{T}]{data,  }\item[{bool}]{logging\+\_\+en = {\ttfamily false},  }\item[{const char $\ast$}]{name = {\ttfamily \"{}unamed\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a \doxyref{Call\+Different}{p.}{class_data_control_1_1_call_different} \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. 
+
+Construct a \doxyref{Call\+Different}{p.}{class_data_control_1_1_call_different} \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes. \doxyref{Call\+Different}{p.}{class_data_control_1_1_call_different} objects execute callbacks whenever \doxyref{set()}{p.}{class_data_control_1_1_call_different_ade070629e521048e33ef3d8504d601e7} method is called and new data is different from current data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & initial value of data \\
+\hline
+{\em logging\+\_\+en} & logging status, true to enable debug logs, false to disable (optional, default false) \\
+\hline
+{\em name} & name of data wrapper object, printed out with debug logs to aid debugging (optional, default \"{}unamed\"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\label{class_data_control_1_1_call_different_a7c0deceb0afcf37d12cbd40288070ca2} 
+\index{DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}!cb\_executor@{cb\_executor}}
+\index{cb\_executor@{cb\_executor}!DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
+\doxysubsubsection{cb\_executor()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Call\+Different\+::cb\+\_\+executor\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Executes non-\/immediate call-\/backs. 
+
+Method responsible for executing non-\/immediate call-\/back functions of followers registered to this \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object. Executes follower callback if and only if the new data is different from the previous data. This function is called from \doxyref{Cb\+Helper}{p.}{class_cb_helper}\textquotesingle{}s main task.
+
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+\label{class_data_control_1_1_call_different_ade070629e521048e33ef3d8504d601e7} 
+\index{DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}!set@{set}}
+\index{set@{set}!DataControl::CallDifferent$<$ T $>$@{DataControl::CallDifferent$<$ T $>$}}
+\doxysubsubsection{set()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Call\+Different\+::set (\begin{DoxyParamCaption}\item[{T}]{new\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Set value of data. 
+
+Overwrite current data with a new value. When this function is called, any followers registered to this \doxyref{Data\+Wrapper}{p.}{class_data_control_1_1_data_wrapper} object will have their call-\/backs executed. Upon completion of call-\/back executions, the current data value will be over-\/written with the data passed into this function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+data} & the new value to over-\/write current data with.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void, nothing to return 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/development/git/data\+\_\+control\+\_\+rework/components/data\+\_\+control/cb\+\_\+types/Call\+Different.\+hpp\item 
+D\+:/development/git/data\+\_\+control\+\_\+rework/components/data\+\_\+control/cb\+\_\+types/Call\+Different.\+cpp\end{DoxyCompactItemize}
