@@ -33,7 +33,7 @@
 <!-- ABOUT -->
 ## About
 
-DataControl is a C++ component written for esp-idf version 5.1, intended to simplify the management of data and actions associated with that data.
+DataControl is a C++ component written for esp-idf v5.0+, intended to simplify the management of data and actions associated with that data.
 
 **What does it do?**
 - Allows the creation of DataWrapper objects implemented as a template class, used to store data of any type.
@@ -76,12 +76,11 @@ Its functionality shares some similarities, but the implementation is different.
    ```
 
 
-2. Cd into the components directory and clone the DataControl and TaskWrapper repo. DataControl is dependent on TaskWrapper, it will not build without it.
+2. Cd into the components directory and clone the DataControl repo.
 
    ```sh
    cd components
    git clone https://github.com/myles-parfeniuk/data_control.git
-   git clone https://github.com/myles-parfeniuk/task_wrapper.git
    ```
    <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -104,12 +103,12 @@ To instantiate a DataWrapper, instantiate one of its sub-classes. The difference
    Example syntax:  
 
 ```cpp  
-    /*integer data with initial value of 0,
-     callbacks executed every time set() method is called (call always)*/
+    //integer data with initial value of 0,
+    //callbacks executed every time set() method is called (call always)
     DataControl::CallAlways<int16_t> number(0); 
-    /*bool data with initial value of false, 
-    * callbacks executed every time set() method is called, 
-    * and new data is different from current data (call different)*/
+
+    //bool data with initial value of false, 
+    //and new data is different from current data (call different)
     DataControl::CallDifferent<bool> my_bool(false);
 ```
 
@@ -144,7 +143,7 @@ Fan *fan = new Fan(/*init vals*/); //instantiate fan
 PWMBackend *pwm = PWMBackend(*fan); //instantiate pwm with reference to fan
 OledBackend *oled = OledBackend(*fan); //instantiate oled with reference to fan
 
-/*PWMBackend constructor in PWMBackend.cpp*/
+//PWMBackend constructor in PWMBackend.cpp
 PWMBackend:: PWMBackend(Fan &fan):
 fan(fan) //initialize fan member as reference to fan
 {
@@ -156,7 +155,7 @@ fan(fan) //initialize fan member as reference to fan
 
 }
 
-/*OledBackend constructor in Oled.cpp*/
+//OledBackend constructor in Oled.cpp
 OledBackend:: OledBackend(Fan &fan):
 fan(fan) //initialize fan member as reference to fan
 {
@@ -182,7 +181,7 @@ The call-backs will be executed in the order they were registered.
 Again, same example:
 
 ```cpp
-/*inside a task within Fan.cpp*/
+//inside a task within Fan.cpp
 fan_speed.set(0);
 while(1)
 {

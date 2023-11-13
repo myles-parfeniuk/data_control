@@ -16,10 +16,13 @@ namespace DataControl{
 *
 * @brief Base DataWrapper class
 *
-* Stores a variable/data and allows for execution of callback functions when it is modified. When modifying the data
-* is desired, the set() method should be called, upon which any callbacks registered with the follow()
-* method will be executed, and the data updated. 
-* DataWrapper objects should not be instantiated directly, instead insatiate objects from derived classes
+* Stores a variable/data and allows for execution of callback functions when it is modified.
+* 
+* When modifying the data is desired, the set() method should be called, upon which:
+* - any callbacks registered with the follow() method will be executed
+* - the data currently stored will be updated with the new value 
+*
+* DataWrapper objects are not possible to instantiate directly, instead insatiate objects from child classes
 * of which definitions can be found in cb_types/ directory.  
 *
 * @author Myles Parfeniuk
@@ -31,24 +34,15 @@ class DataWrapper {
   public:
 
   /**
-  * @brief Construct a DataWrapper object. 
-  * 
-  * Construct a DataWrapper with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes. 
-  * 
-  * @param data initial value of data
-  * @param logging_en logging status, true to enable debug logs, false to disable (optional, default false)
-  * @param name name of data wrapper object, printed out with debug logs to aid debugging (optional, default "unamed")
-  * @return void, nothing to return
-  */
-    DataWrapper(T data, bool logging_en = false, const char *name = "unamed");
-
-  /**
   * @brief Follow DataWrapper object.
   *        
   * Registers a call-back with this data wrapper object. 
   * Registered call-back functions are executed when the set() method is called on the same data wrapper object. 
+  * 
   * The call-back function parameter should have a single input parameter of type T. 
-  * This input will be the new value of the data being set. Calling the get() method from within the callback will return the current value. 
+  * This parameter will be the new data passed to the callback when set() has been called. 
+  * 
+  * Calling the get() method from within the callback will return the previous value. 
   * When all callbacks have been executed the current value will over written with the new value.    
   *        
   * @param cb the call-back function to be called when DataWrapper object is set, must take the form "void my_callback(T new_data)"
@@ -70,7 +64,8 @@ class DataWrapper {
   /**
   * @brief Un-follow DataWrapper object from its own callback
   * 
-  * Stop triggering callback for respective follower permanently.
+  * Stop triggering callback for respective follower permanently from within the context of callback. 
+  * This function assumes ownership of the follower lists, and does not take or give their respective semaphores. 
   * 
   * @param follower_id The ID of the follower to remove from the follower list. Returned when follow() is called. 
   * @return true if follower successfully un-followed, false if otherwise
@@ -91,7 +86,8 @@ class DataWrapper {
   /**
   * @brief Pause follower callback from its own callback
   * 
-  * Temporarily stop triggering callback for respective follower when this DataWrapper object is set.
+  * Temporarily stop triggering callback for respective follower when this DataWrapper object is set, from within the context of callback.
+  * This function assumes ownership of the follower lists, and does not take or give their respective semaphores. 
   * Re-enable callback by calling the un_pause() method. 
   * 
   * @param follower_id The ID of the follower owning the callback to be paused. 
@@ -112,7 +108,8 @@ class DataWrapper {
   /**
   * @brief un-pause follower callback from its own callback
   * 
-  * Re-enable callback for respective follower when this DataWrapper object is set.
+  * Re-enable callback for respective follower when this DataWrapper object is set, from within the context of callback.
+  * This function assumes ownership of the follower lists, and does not take or give their respective semaphores. 
   * 
   * @param follower_id The ID of the follower owning the callback to be un-paused. 
   * @return true if follower successfully un-paused, false if otherwise
@@ -126,13 +123,57 @@ class DataWrapper {
   */
     T get();
 
-
   protected:
-    void lock_follower_list();
-    void unlock_follower_list();
-    void lock_immediate_follower_list();
-    void unlock_immediate_follower_list();
 
+  /**
+  * @brief Construct a DataWrapper object. 
+  * 
+  * Construct a DataWrapper with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes. 
+  * This constructor is called by child classes, DataWrapper objects are not instantiated directly. 
+  * 
+  * @param data initial value of data
+  * @param logging_en logging status, true to enable debug logs, false to disable (optional, default false)
+  * @param name name of data wrapper object, printed out with debug logs to aid debugging (optional, default "unamed")
+  * @return void, nothing to return
+  */
+    DataWrapper(T data, bool logging_en = false, const char *name = "unamed");
+
+  /**
+  * @brief Lock follower list.
+  * 
+  * Take the follower list semaphore such that any processing respective to it is not interrupted by other tasks.  
+  * 
+  * @return void, nothing to return
+  */
+    void lock_follower_list();
+
+  /**
+  * @brief Unlock follower list.
+  * 
+  * Give the follower list semaphore to indicate any processing is complete. 
+  * 
+  * @return void, nothing to return
+  */
+    void unlock_follower_list();
+
+  /**
+  * @brief Lock immediate follower list.
+  * 
+  * Take the immediate follower list semaphore such that any processing respective to it is not interrupted by other tasks.  
+  * 
+  * @return void, nothing to return
+  */
+    void lock_immediate_follower_list();
+
+  /**
+  * @brief Unlock immediate follower list.
+  * 
+  * Give the immediate follower list semaphore to indicate any processing is complete. 
+  * 
+  * @return void, nothing to return
+  */
+    void unlock_immediate_follower_list();
+  
     T data; ///<the current data
     T new_data; ///<new data, overwrites current data after execution of all call-back functions
     uint16_t next_follower_id; ///<next follower ID to assign
@@ -143,8 +184,8 @@ class DataWrapper {
     const char *name; ///<name of DataWrapper object, used in log statements
     bool logging_en;  ///<whether or not logging is enabled, false if disabled, true if enabled
     static const constexpr char* TAG = "DataControl"; ///<class tag, used in logging statements
-    SemaphoreHandle_t follower_list_mutex; 
-    SemaphoreHandle_t immediate_follower_list_mutex; 
+    SemaphoreHandle_t follower_list_mutex; ///< follower list semaphore used by lock and unlock functions
+    SemaphoreHandle_t immediate_follower_list_mutex; ///< immediate follower list semaphore used by lock and unlock functions
 };
 
 };

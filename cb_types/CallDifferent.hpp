@@ -4,19 +4,31 @@
 namespace DataControl {
 
 /**
-*
 * @brief DataWrapper that executes callbacks when set() method is called and new data is different from current data.
 *
-* For further information see base class DataWrapper documentation. 
-*
 * @author Myles Parfeniuk
-*
 */
 template <typename T>
 class CallDifferent : public DataWrapper<T>
 {
+  /**
+  * @brief Construct a CallDifferent DataWrapper object. 
+  * 
+  * Construct a CallDifferent DataWrapper with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes. 
+  * CallDifferent objects execute callbacks whenever set() method is called and new data is different from current data.
+  * 
+  * @param data initial value of data
+  * @param logging_en logging status, true to enable debug logs, false to disable (optional, default false)
+  * @param name name of data wrapper object, printed out with debug logs to aid debugging (optional, default "unamed")
+  * @return void, nothing to return
+  */
     public:
-        using DataWrapper<T>::DataWrapper;
+        CallDifferent(T data, bool logging_en = false, const char *name = "unamed"):
+        DataWrapper<T>(data, logging_en, name) 
+        {
+
+        }
+
     /**
     * @brief Set value of data. 
     * 

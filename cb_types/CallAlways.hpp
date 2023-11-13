@@ -4,19 +4,31 @@
 namespace DataControl {
 
 /**
-*
 * @brief DataWrapper that executes callbacks whenever set() method is called.
 *
-* For further information see base class DataWrapper documentation. 
-*
 * @author Myles Parfeniuk
-*
 */
 template <typename T>
 class CallAlways : public DataWrapper<T>
 {
      public:
-        using DataWrapper<T>::DataWrapper;
+    /**
+     * @brief Construct a CallAlways DataWrapper object. 
+     * 
+     * Construct a CallAlways DataWrapper with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes. 
+     * CallAlways objects execute callbacks whenever set() method is called.
+     * 
+     * @param data initial value of data
+     * @param logging_en logging status, true to enable debug logs, false to disable (optional, default false)
+     * @param name name of data wrapper object, printed out with debug logs to aid debugging (optional, default "unamed")
+     * @return void, nothing to return
+     */
+        CallAlways(T data, bool logging_en = false, const char *name = "unamed"):
+         DataWrapper<T>(data, logging_en, name) 
+        {
+
+        }
+
     /**
     * @brief Set value of data. 
     * 

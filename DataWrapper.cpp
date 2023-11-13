@@ -80,7 +80,7 @@ template <typename T>
         for(i = 0; i < immediate_follower_list.size(); i++)
         {
             //if matching ID is found
-            if(immediate_follower_list.at(i).f_id == immediate_follower_list){
+            if(immediate_follower_list.at(i).f_id == follower_id){
                 if(logging_en)
                     ESP_LOGI(TAG, "%s -> Unfollow: %d", name, immediate_follower_list.at(i).f_id);
 

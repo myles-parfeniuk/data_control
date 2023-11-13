@@ -4,19 +4,32 @@
 namespace DataControl {
 
 /**
-*
 * @brief DataWrapper that executes callbacks when set() method is called and new data is the same as the current data.
 *
-* For further information see base class DataWrapper documentation. 
-*
 * @author Myles Parfeniuk
-*
 */
 template <typename T>
 class CallSame : public DataWrapper<T>
 {
     public:
-        using DataWrapper<T>::DataWrapper; //inherit DataWrapper constructors
+
+    /**
+     * @brief Construct a CallSame DataWrapper object. 
+     * 
+     * Construct a CallSame DataWrapper with initial value, logging status, and name. Enabling logs may be desirable for debugging purposes. 
+     * CallSame objects execute callbacks whenever set() method is called and new data is the same as the current data.
+     * 
+     * @param data initial value of data
+     * @param logging_en logging status, true to enable debug logs, false to disable (optional, default false)
+     * @param name name of data wrapper object, printed out with debug logs to aid debugging (optional, default "unamed")
+     * @return void, nothing to return
+     */
+        CallSame(T data, bool logging_en = false, const char *name = "unamed"):
+        DataWrapper<T>(data, logging_en, name) 
+        {
+
+        }
+
     /**
     * @brief Set value of data. 
     * 

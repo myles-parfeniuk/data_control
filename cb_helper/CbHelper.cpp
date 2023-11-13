@@ -18,10 +18,12 @@ void CbHelper::initialize()
 
 void CbHelper::execute_callbacks(std::function<void(void)> cb)
 {
-   lock_pending_cb_list(); 
-   pending_cb_list.push_back(cb);
-   vTaskResume(main_cb_task_hdl);
-   unlock_pending_cb_list(); 
+    lock_pending_cb_list(); 
+    pending_cb_list.push_back(cb);
+    unlock_pending_cb_list(); 
+
+    if(eTaskGetState(main_cb_task_hdl) != eRunning)
+        xTaskNotifyGive(main_cb_task_hdl);
 }
 
 
@@ -29,18 +31,19 @@ void CbHelper::main_cb_task(void *arg)
 {
     while(1)
     {
-    
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY); //block until notified on index 0 by call to set()
+        
         while(!pending_cb_list.empty())
         {
             lock_pending_cb_list(); 
             pending_cb_list.back()(); 
             pending_cb_list.pop_back();
             unlock_pending_cb_list(); 
-
             vTaskDelay(8/portTICK_PERIOD_MS); 
+
         }
 
-        vTaskSuspend(NULL);
+        
     }
 }
 
