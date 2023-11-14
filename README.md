@@ -82,9 +82,14 @@ Its functionality shares some similarities, but the implementation is different.
    cd components
    git clone https://github.com/myles-parfeniuk/data_control.git
    ```
-   <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
+   
+3. Ensure you clean your esp-idf project before rebuilding.  
+   Within esp-idf enabled terminal:
+   ```sh
+    idf.py fullclean
+   ```
+   
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
